@@ -7,9 +7,19 @@ use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pegawais = Pegawai::latest()->get();
+        $query = Pegawai::latest();
+
+        if ($request->filled('search')) {
+            $search = $request->get('search');
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('nuptk', 'like', "%{$search}%");
+            });
+        }
+
+        $pegawais = $query->get();
         return view('pegawai.index', compact('pegawais'));
     }
 

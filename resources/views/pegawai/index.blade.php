@@ -5,8 +5,14 @@
     <div class="flex-1 min-w-0">
         <h2 class="text-2xl font-bold leading-7 text-slate-900 sm:text-3xl sm:truncate">Daftar Pegawai</h2>
     </div>
-    <div class="mt-4 flex md:mt-0 md:ml-4">
-        <a href="{{ route('pegawai.create') }}" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+    <div class="mt-4 flex md:mt-0 md:ml-4 space-x-3">
+        <form action="{{ route('pegawai.index') }}" method="GET" class="flex">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari Nama / NUPTK..." class="rounded-l-md border-slate-300 text-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:w-64">
+            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent rounded-r-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none">
+                Cari
+            </button>
+        </form>
+        <a href="{{ route('pegawai.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
             Tambah Pegawai
         </a>
     </div>

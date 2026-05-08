@@ -10,9 +10,19 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class P2kpController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $p2kps = P2kp::with(['employee', 'ratingOfficial'])->latest()->get();
+        $query = P2kp::with(['employee', 'ratingOfficial'])->latest();
+
+        if ($request->filled('search')) {
+            $search = $request->get('search');
+            $query->whereHas('employee', function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('nuptk', 'like', "%{$search}%");
+            });
+        }
+
+        $p2kps = $query->get();
         return view('p2kp.index', compact('p2kps'));
     }
 
