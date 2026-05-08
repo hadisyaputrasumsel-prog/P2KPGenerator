@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $table = Schema::hasTable('p2kp_items') ? 'p2kp_items' : 'skp_items';
+        $tableName = Schema::hasTable('p2kp_items') ? 'p2kp_items' : 'skp_items';
         
-        if (Schema::hasTable($table) && !Schema::hasColumn($table, 'type')) {
-            Schema::table($table, function (Blueprint $table) {
+        if (Schema::hasTable($tableName) && !Schema::hasColumn($tableName, 'type')) {
+            Schema::table($tableName, function (Blueprint $table) {
                 $table->string('type')->default('utama')->after('real_cost');
             });
         }
@@ -25,10 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table = Schema::hasTable('p2kp_items') ? 'p2kp_items' : 'skp_items';
+        $tableName = Schema::hasTable('p2kp_items') ? 'p2kp_items' : 'skp_items';
         
-        if (Schema::hasTable($table) && Schema::hasColumn($table, 'type')) {
-            Schema::table($table, function (Blueprint $table) {
+        if (Schema::hasTable($tableName) && Schema::hasColumn($tableName, 'type')) {
+            Schema::table($tableName, function (Blueprint $table) {
                 $table->dropColumn('type');
             });
         }

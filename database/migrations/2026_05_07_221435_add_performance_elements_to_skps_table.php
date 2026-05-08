@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $table = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
+        $tableName = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
         
-        if (Schema::hasTable($table)) {
-            Schema::table($table, function (Blueprint $table) use ($table) {
-                if (!Schema::hasColumn($table, 'service_orientation')) {
+        if (Schema::hasTable($tableName)) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                if (!Schema::hasColumn($tableName, 'service_orientation')) {
                     $table->decimal('service_orientation', 5, 2)->default(0);
                     $table->decimal('integrity', 5, 2)->default(0);
                     $table->decimal('commitment', 5, 2)->default(0);
@@ -32,10 +32,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
+        $tableName = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
         
-        if (Schema::hasTable($table)) {
-            Schema::table($table, function (Blueprint $table) {
+        if (Schema::hasTable($tableName)) {
+            Schema::table($tableName, function (Blueprint $table) {
                 $table->dropColumn(['service_orientation', 'integrity', 'commitment', 'discipline', 'cooperation', 'leadership']);
             });
         }

@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $table = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
+        $tableName = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
         
-        if (Schema::hasTable($table)) {
-            Schema::table($table, function (Blueprint $table) use ($table) {
-                if (!Schema::hasColumn($table, 'recommendation')) {
+        if (Schema::hasTable($tableName)) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                if (!Schema::hasColumn($tableName, 'recommendation')) {
                     $table->text('recommendation')->nullable()->after('leadership');
                     $table->text('objection')->nullable()->after('recommendation');
                     $table->text('response')->nullable()->after('objection');
@@ -30,10 +30,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
+        $tableName = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
         
-        if (Schema::hasTable($table)) {
-            Schema::table($table, function (Blueprint $table) {
+        if (Schema::hasTable($tableName)) {
+            Schema::table($tableName, function (Blueprint $table) {
                 $table->dropColumn(['recommendation', 'objection', 'response', 'decision']);
             });
         }

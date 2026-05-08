@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         // Try both table names in case renaming hasn't happened yet or already happened
-        $table = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
+        $tableName = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
         
-        if (Schema::hasTable($table) && !Schema::hasColumn($table, 'higher_official_id')) {
-            Schema::table($table, function (Blueprint $table) {
+        if (Schema::hasTable($tableName) && !Schema::hasColumn($tableName, 'higher_official_id')) {
+            Schema::table($tableName, function (Blueprint $table) {
                 $table->foreignId('higher_official_id')->nullable()->after('rating_official_id')->constrained('pegawais')->onDelete('cascade');
             });
         }
@@ -26,10 +26,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
+        $tableName = Schema::hasTable('p2kps') ? 'p2kps' : 'skps';
         
-        if (Schema::hasTable($table) && Schema::hasColumn($table, 'higher_official_id')) {
-            Schema::table($table, function (Blueprint $table) {
+        if (Schema::hasTable($tableName) && Schema::hasColumn($tableName, 'higher_official_id')) {
+            Schema::table($tableName, function (Blueprint $table) {
                 $table->dropForeign(['higher_official_id']);
                 $table->dropColumn('higher_official_id');
             });
