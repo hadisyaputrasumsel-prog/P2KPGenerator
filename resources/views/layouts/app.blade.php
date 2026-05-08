@@ -21,8 +21,7 @@
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="shrink-0 flex items-center">
-                            <a href="/" class="flex items-center text-xl font-bold text-indigo-600">
-                                <img src="{{ asset('logoUSS1.jpg') }}" alt="Logo USS" class="h-8 w-auto mr-3">
+                            <a href="/" class="text-xl font-bold text-indigo-600">
                                 P2KP Generator
                             </a>
                         </div>
