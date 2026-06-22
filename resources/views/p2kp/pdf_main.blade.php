@@ -27,7 +27,7 @@
         .signature-space { height: 90px; }
         
         .logo-box { text-align: center; margin-top: 0; margin-bottom: 0; }
-        .logo-img { width: 120px; height: auto; }
+        .logo-img { width: 280px; height: auto; }
         
         .title-box { text-align: center; font-weight: bold; font-size: 12pt; margin-top: -5px; margin-bottom: 10px; line-height: 1.2; }
     </style>
@@ -36,8 +36,8 @@
 
 @php
     $imageSrc = '';
-    if(file_exists(public_path('LogoUSSsaja.png'))) {
-        $imageData = base64_encode(file_get_contents(public_path('LogoUSSsaja.png')));
+    if(file_exists(public_path('Logo Universitas Sumatera Selatan.png'))) {
+        $imageData = base64_encode(file_get_contents(public_path('Logo Universitas Sumatera Selatan.png')));
         $imageSrc = 'data:image/png;base64,' . $imageData;
     }
     
@@ -136,9 +136,8 @@
             @endif
         </div>
 
-        <div class="title-box" style="font-size: 14pt;">
-            PENILAIAN PRESTASI KERJA<br>
-            UNIVERSITAS SUMATERA SELATAN
+        <div class="title-box" style="font-size: 14pt; margin-top: 15px;">
+            PENILAIAN PRESTASI KERJA
         </div>
 
         <table class="no-border" style="font-size: 11pt; margin-bottom: 15px;">
@@ -303,9 +302,9 @@
 <!-- PAGE 3: CAPAIAN SKP -->
 <div class="logo-box">
     @if($imageSrc)
-        <img src="{{ $imageSrc }}" style="width: 120px;">
+        <img src="{{ $imageSrc }}" style="width: 250px;">
     @endif
-</div><div class="title-box">PENILAIAN CAPAIAN SASARAN KINERJA<br>PEGAWAI UNIVERSITAS SUMATERA SELATAN</div>
+</div><div class="title-box" style="margin-top: 15px;">PENILAIAN CAPAIAN SASARAN KINERJA PEGAWAI</div>
 <div style="text-align: center; margin-bottom: 10px;">Jangka Waktu penilaian {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('D MMMM Y') }} s.d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('D MMMM Y') }}</div>
 
 <table class="bordered" style="font-size: 8pt;">

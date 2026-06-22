@@ -21,20 +21,19 @@
 
 @php
     $imageSrc = '';
-    if(file_exists(public_path('LogoUSSsaja.png'))) {
-        $imageData = base64_encode(file_get_contents(public_path('LogoUSSsaja.png')));
+    if(file_exists(public_path('Logo Universitas Sumatera Selatan.png'))) {
+        $imageData = base64_encode(file_get_contents(public_path('Logo Universitas Sumatera Selatan.png')));
         $imageSrc = 'data:image/png;base64,' . $imageData;
     }
 @endphp
 
 <div class="logo-box">
     @if($imageSrc)
-        <img src="{{ $imageSrc }}" style="width: 120px;">
+        <img src="{{ $imageSrc }}" style="width: 250px;">
     @endif
 </div>
-<div class="title-box">
-    FORMULIR SASARAN KERJA PEGAWAI<br>
-    UNIVERSITAS SUMATERA SELATAN
+<div class="title-box" style="margin-top: 15px;">
+    FORMULIR SASARAN KERJA PEGAWAI
 </div>
 
 <table class="bordered" style="font-size: 9pt;">
