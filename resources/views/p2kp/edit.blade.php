@@ -189,48 +189,56 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="utama-table">
-                    <thead class="bg-slate-50">
+                    <thead class="bg-slate-100 text-slate-700">
                         <tr>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[250px] border border-slate-200 align-middle">Kegiatan</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 align-middle">AK</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Output</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Waktu</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Satuan</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200 align-middle">Aksi</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                         </tr>
                         <tr>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200">
-                        @foreach($p2kp->items->where('type', 'utama') as $index => $item)
-                        <tr>
-                            <td class="p-2 border border-slate-200 align-top">
-                                <input type="hidden" name="items[{{ $index }}][type]" value="utama">
-                                <textarea name="items[{{ $index }}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required>{{ $item->activity }}</textarea>
-                            </td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top text-center">
-                                <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
+                    @foreach($p2kp->items->where('type', 'utama') as $index => $item)
+                    <tbody class="border-b-4 border-slate-300">
+                        <tr class="bg-indigo-50/50">
+                            <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                                <div class="flex items-start gap-2">
+                                    <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
+                                    <input type="hidden" name="items[{{ $index }}][type]" value="utama">
+                                    <textarea name="items[{{ $index }}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>{{ $item->activity }}</textarea>
+                                </div>
                             </td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                                <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -247,48 +255,56 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="tambahan-table">
-                    <thead class="bg-slate-50">
+                    <thead class="bg-slate-100 text-slate-700">
                         <tr>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[250px] border border-slate-200 align-middle">Kegiatan</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 align-middle">AK</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Output</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Waktu</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Satuan</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200 align-middle">Aksi</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                         </tr>
                         <tr>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200">
-                        @foreach($p2kp->items->where('type', 'tambahan') as $index => $item)
-                        <tr>
-                            <td class="p-2 border border-slate-200 align-top">
-                                <input type="hidden" name="items[{{ $index }}][type]" value="tambahan">
-                                <textarea name="items[{{ $index }}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required>{{ $item->activity }}</textarea>
-                            </td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top text-center">
-                                <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
+                    @foreach($p2kp->items->where('type', 'tambahan') as $index => $item)
+                    <tbody class="border-b-4 border-slate-300">
+                        <tr class="bg-indigo-50/50">
+                            <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                                <div class="flex items-start gap-2">
+                                    <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
+                                    <input type="hidden" name="items[{{ $index }}][type]" value="tambahan">
+                                    <textarea name="items[{{ $index }}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>{{ $item->activity }}</textarea>
+                                </div>
                             </td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                                <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -305,48 +321,56 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="kreatifitas-table">
-                    <thead class="bg-slate-50">
+                    <thead class="bg-slate-100 text-slate-700">
                         <tr>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[250px] border border-slate-200 align-middle">Kegiatan</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 align-middle">AK</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Output</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Waktu</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Satuan</th>
-                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200 align-middle">Aksi</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                         </tr>
                         <tr>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
-                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-200">
-                        @foreach($p2kp->items->whereIn('type', ['kreatifitas', 'penunjang']) as $index => $item)
-                        <tr>
-                            <td class="p-2 border border-slate-200 align-top">
-                                <input type="hidden" name="items[{{ $index }}][type]" value="kreatifitas">
-                                <textarea name="items[{{ $index }}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required>{{ $item->activity }}</textarea>
-                            </td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                            <td class="p-2 border border-slate-200 align-top text-center">
-                                <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
+                    @foreach($p2kp->items->whereIn('type', ['kreatifitas', 'penunjang']) as $index => $item)
+                    <tbody class="border-b-4 border-slate-300">
+                        <tr class="bg-indigo-50/50">
+                            <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                                <div class="flex items-start gap-2">
+                                    <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
+                                    <input type="hidden" name="items[{{ $index }}][type]" value="kreatifitas">
+                                    <textarea name="items[{{ $index }}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>{{ $item->activity }}</textarea>
+                                </div>
                             </td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                                <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -407,27 +431,39 @@
     let pendingLkdItems = [];
 
     function addRow(type) {
-        const tbody = document.querySelector(`#${type}-table tbody`);
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td class="p-2 border border-slate-200 align-top">
-                <input type="hidden" name="items[${rowCount}][type]" value="${type}">
-                <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required></textarea>
-            </td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_qty]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_quality]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_time]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-            <td class="p-2 border border-slate-200 align-top text-center">
-                <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
-            </td>
+        const table = document.getElementById(`${type}-table`);
+        const newBody = document.createElement('tbody');
+        newBody.className = 'border-b-4 border-slate-300';
+        newBody.innerHTML = `
+            <tr class="bg-indigo-50/50">
+                <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                    <div class="flex items-start gap-2">
+                        <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
+                        <input type="hidden" name="items[${rowCount}][type]" value="${type}">
+                        <textarea name="items[${rowCount}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_qty]" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_quality]" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_time]" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                    <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                </td>
+            </tr>
         `;
-        tbody.appendChild(newRow);
+        table.appendChild(newBody);
         rowCount++;
     }
 
@@ -507,32 +543,44 @@
             const selectEl = document.querySelector(`.mapping-select[data-index="${index}"]`);
             const type = selectEl ? selectEl.value : 'utama'; 
             
-            const tbody = document.querySelector(`#${type}-table tbody`);
-            if (!tbody) {
+            const table = document.getElementById(`${type}-table`);
+            if (!table) {
                 console.error('Table not found for type:', type);
                 return;
             }
             
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td class="p-2 border border-slate-200 align-top">
-                    <input type="hidden" name="items[${rowCount}][type]" value="${type}">
-                    <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required>${item.activity}</textarea>
-                </td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
-                <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
-                <td class="p-2 border border-slate-200 align-top text-center">
-                    <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
-                </td>
+            const newBody = document.createElement('tbody');
+            newBody.className = 'border-b-4 border-slate-300';
+            newBody.innerHTML = `
+                <tr class="bg-indigo-50/50">
+                    <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                        <div class="flex items-start gap-2">
+                            <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
+                            <input type="hidden" name="items[${rowCount}][type]" value="${type}">
+                            <textarea name="items[${rowCount}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>${item.activity}</textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                        <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
             `;
-            tbody.appendChild(newRow);
+            table.appendChild(newBody);
             rowCount++;
         });
         
