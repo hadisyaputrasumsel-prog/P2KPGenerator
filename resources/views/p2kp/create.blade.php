@@ -192,38 +192,43 @@
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-slate-200" id="utama-table">
-                    <thead>
+                <table class="min-w-full border-collapse border border-slate-200" id="utama-table">
+                    <thead class="bg-slate-50">
                         <tr>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[300px]">Kegiatan</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[80px]">AK</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Output</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Satuan</th>
-                            <th class="px-2 py-3"></th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[250px] border border-slate-200 align-middle">Kegiatan</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 align-middle">AK</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Output</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Waktu</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Satuan</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200 align-middle">Aksi</th>
+                        </tr>
+                        <tr>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">
                         <tr>
-                            <td class="p-2">
+                            <td class="p-2 border border-slate-200 align-top">
                                 <input type="hidden" name="items[0][type]" value="utama">
-                                <textarea name="items[0][activity]" class="w-full border-slate-300 rounded-md text-sm" rows="6" required></textarea>
+                                <textarea name="items[0][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required></textarea>
                             </td>
-                            <td class="p-2"><input type="number" step="0.001" name="items[0][credit_score]" class="w-full border-slate-300 rounded-md text-sm"></td>
-                            <td class="p-2"><input type="number" name="items[0][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                            <td class="p-2"><input type="number" name="items[0][real_qty]" class="w-full border-slate-300 rounded-md text-sm"></td>
-                            <td class="p-2"><input type="text" name="items[0][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                            <td class="p-2"><input type="number" name="items[0][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                            <td class="p-2"><input type="number" name="items[0][real_quality]" class="w-full border-slate-300 rounded-md text-sm"></td>
-                            <td class="p-2"><input type="number" name="items[0][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                            <td class="p-2"><input type="number" name="items[0][real_time]" class="w-full border-slate-300 rounded-md text-sm"></td>
-                            <td class="p-2"><input type="text" name="items[0][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                            <td class="p-2 text-right"></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[0][credit_score]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[0][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[0][real_qty]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[0][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[0][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[0][real_quality]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[0][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[0][real_time]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[0][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                            <td class="p-2 border border-slate-200 align-top text-center"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -241,20 +246,25 @@
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-slate-200" id="tambahan-table">
-                    <thead>
-                        <tr class="bg-slate-50">
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[300px]">Kegiatan</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[80px]">AK</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Output</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Satuan</th>
-                            <th class="px-2 py-3"></th>
+                <table class="min-w-full border-collapse border border-slate-200" id="tambahan-table">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[250px] border border-slate-200 align-middle">Kegiatan</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 align-middle">AK</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Output</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Waktu</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Satuan</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200 align-middle">Aksi</th>
+                        </tr>
+                        <tr>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">
@@ -274,20 +284,25 @@
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-slate-200" id="kreatifitas-table">
-                    <thead>
-                        <tr class="bg-slate-50">
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[300px]">Kegiatan</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[80px]">AK</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Output</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Satuan</th>
-                            <th class="px-2 py-3"></th>
+                <table class="min-w-full border-collapse border border-slate-200" id="kreatifitas-table">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[250px] border border-slate-200 align-middle">Kegiatan</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 align-middle">AK</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Output</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200">Waktu</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px] border border-slate-200 align-middle">Satuan</th>
+                            <th rowspan="2" class="px-2 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider border border-slate-200 align-middle">Aksi</th>
+                        </tr>
+                        <tr>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Target</th>
+                            <th class="px-2 py-2 text-center text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[70px] border border-slate-200 bg-slate-50">Realisasi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">
@@ -355,21 +370,21 @@
         const tbody = document.querySelector(`#${type}-table tbody`);
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td class="p-2">
+            <td class="p-2 border border-slate-200 align-top">
                 <input type="hidden" name="items[${rowCount}][type]" value="${type}">
-                <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm" rows="6" required></textarea>
+                <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required></textarea>
             </td>
-            <td class="p-2"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" class="w-full border-slate-300 rounded-md text-sm"></td>
-            <td class="p-2"><input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm" required></td>
-            <td class="p-2"><input type="number" name="items[${rowCount}][real_qty]" class="w-full border-slate-300 rounded-md text-sm"></td>
-            <td class="p-2"><input type="text" name="items[${rowCount}][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm" required></td>
-            <td class="p-2"><input type="number" name="items[${rowCount}][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm" required></td>
-            <td class="p-2"><input type="number" name="items[${rowCount}][real_quality]" class="w-full border-slate-300 rounded-md text-sm"></td>
-            <td class="p-2"><input type="number" name="items[${rowCount}][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm" required></td>
-            <td class="p-2"><input type="number" name="items[${rowCount}][real_time]" class="w-full border-slate-300 rounded-md text-sm"></td>
-            <td class="p-2"><input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm" required></td>
-            <td class="p-2 text-right">
-                <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900">Hapus</button>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_qty]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_quality]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_time]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+            <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+            <td class="p-2 border border-slate-200 align-top text-center">
+                <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
             </td>
         `;
         tbody.appendChild(newRow);
@@ -462,21 +477,21 @@
             
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td class="p-2">
+                <td class="p-2 border border-slate-200 align-top">
                     <input type="hidden" name="items[${rowCount}][type]" value="${type}">
-                    <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm" rows="6" required>${item.activity}</textarea>
+                    <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-1.5" rows="4" required>${item.activity}</textarea>
                 </td>
-                <td class="p-2"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm"></td>
-                <td class="p-2"><input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                <td class="p-2"><input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-full border-slate-300 rounded-md text-sm"></td>
-                <td class="p-2"><input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                <td class="p-2"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                <td class="p-2"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 rounded-md text-sm"></td>
-                <td class="p-2"><input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                <td class="p-2"><input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-full border-slate-300 rounded-md text-sm"></td>
-                <td class="p-2"><input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" class="w-full border-slate-300 rounded-md text-sm" required></td>
-                <td class="p-2 text-right">
-                    <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900">Hapus</button>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5"></td>
+                <td class="p-2 border border-slate-200 align-top"><input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" class="w-full border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 px-1 py-1.5" required></td>
+                <td class="p-2 border border-slate-200 align-top text-center">
+                    <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900 font-medium text-sm mt-2">Hapus</button>
                 </td>
             `;
             tbody.appendChild(newRow);
