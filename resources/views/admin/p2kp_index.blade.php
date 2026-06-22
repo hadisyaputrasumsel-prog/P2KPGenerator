@@ -18,7 +18,8 @@
                         </a>
                     </div>
                     
-                    <table class="min-w-full divide-y divide-slate-200">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200">
                         <thead class="bg-slate-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Pegawai</th>
@@ -43,14 +44,16 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="{{ route('p2kp.edit', $p2kp) }}" class="text-blue-600 hover:text-blue-900 font-bold mr-4">EDIT</a>
-                                    <form action="{{ route('p2kp.destroy', $p2kp) }}" method="POST" onsubmit="return confirm('Hapus data ini?')" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900 font-bold mr-4">HAPUS</button>
-                                    </form>
-                                    <a href="{{ route('p2kp.pdf', $p2kp) }}" class="text-indigo-600 hover:text-indigo-900 mr-4" target="_blank">PENILAIAN PRESTASI KERJA</a>
-                                    <a href="{{ route('p2kp.form-pdf', $p2kp) }}" class="text-gray-600 hover:text-gray-900" target="_blank">FORMULIR SASARAN KERJA PEGAWAI</a>
+                                    <div class="flex space-x-4">
+                                        <a href="{{ route('p2kp.edit', $p2kp) }}" class="text-blue-600 hover:text-blue-900 font-bold">EDIT</a>
+                                        <form action="{{ route('p2kp.destroy', $p2kp) }}" method="POST" onsubmit="return confirm('Hapus data ini?')" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900 font-bold">HAPUS</button>
+                                        </form>
+                                        <a href="{{ route('p2kp.pdf', $p2kp) }}" class="text-indigo-600 hover:text-indigo-900 font-bold" target="_blank">CETAK P2KP</a>
+                                        <a href="{{ route('p2kp.form-pdf', $p2kp) }}" class="text-slate-600 hover:text-slate-900 font-bold" target="_blank">CETAK FORMULIR</a>
+                                    </div>
                                 </td>
                             </tr>
                             @empty
