@@ -33,7 +33,8 @@
     @endif
 </div>
 <div class="title-box" style="margin-top: 15px;">
-    FORMULIR SASARAN KERJA PEGAWAI
+    FORMULIR SASARAN KERJA PEGAWAI<br>
+    UNIVERSITAS SUMATERA SELATAN
 </div>
 
 <table class="bordered" style="font-size: 9pt;">

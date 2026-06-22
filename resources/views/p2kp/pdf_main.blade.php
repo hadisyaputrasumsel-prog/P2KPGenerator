@@ -137,7 +137,8 @@
         </div>
 
         <div class="title-box" style="font-size: 14pt; margin-top: 15px;">
-            PENILAIAN PRESTASI KERJA
+            PENILAIAN PRESTASI KERJA<br>
+            UNIVERSITAS SUMATERA SELATAN
         </div>
 
         <table class="no-border" style="font-size: 11pt; margin-bottom: 15px;">
@@ -304,7 +305,7 @@
     @if($imageSrc)
         <img src="{{ $imageSrc }}" style="width: 250px;">
     @endif
-</div><div class="title-box" style="margin-top: 15px;">PENILAIAN CAPAIAN SASARAN KINERJA PEGAWAI</div>
+</div><div class="title-box" style="margin-top: 15px;">PENILAIAN CAPAIAN SASARAN KINERJA<br>PEGAWAI UNIVERSITAS SUMATERA SELATAN</div>
 <div style="text-align: center; margin-bottom: 10px;">Jangka Waktu penilaian {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('D MMMM Y') }} s.d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('D MMMM Y') }}</div>
 
 <table class="bordered" style="font-size: 8pt;">
