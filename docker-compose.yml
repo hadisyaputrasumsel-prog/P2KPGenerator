@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: p2kpgenerator-app
+    ports:
+      - "8086:80"
+    environment:
+      - APP_NAME=P2KPGenerator
+      - APP_ENV=production
+      - APP_KEY=base64:XyZjH2O6Xk2p3H+B8o9E9x/4lA+kH3jIqO6Q7p8mXzE=
+      - APP_DEBUG=false
+      - APP_URL=http://localhost:8086
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=p2kp_generator
+      - DB_USERNAME=root
+      - DB_PASSWORD=root_password
+    depends_on:
+      - db
+    networks:
+      - p2kp-network
+    volumes:
+      - p2kp-storage:/var/www/html/storage
+
+  db:
+    image: mariadb:10.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=p2kp_generator
+    volumes:
+      - p2kp-db:/var/lib/mysql
+    networks:
+      - p2kp-network
+
+volumes:
+  p2kp-db:
+  p2kp-storage:
+
+networks:
+  p2kp-network:
+    driver: bridge
