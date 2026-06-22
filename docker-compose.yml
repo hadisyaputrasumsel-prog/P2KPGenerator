@@ -6,13 +6,13 @@ services:
       dockerfile: Dockerfile
     image: p2kpgenerator-app
     ports:
-      - "8086:80"
+      - "8088:80"
     environment:
       - APP_NAME=P2KPGenerator
       - APP_ENV=production
       - APP_KEY=base64:XyZjH2O6Xk2p3H+B8o9E9x/4lA+kH3jIqO6Q7p8mXzE=
       - APP_DEBUG=false
-      - APP_URL=http://localhost:8086
+      - APP_URL=http://localhost:8088
       - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
