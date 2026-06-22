@@ -144,7 +144,7 @@
         <table class="no-border" style="font-size: 11pt; margin-bottom: 15px;">
             <tr><td style="width: 40%;">UNIT KERJA</td><td>: {{ $p2kp->employee->unit }}</td></tr>
             <tr><td>JANGKA WAKTU PENILAIAN</td><td>: 1 Tahun</td></tr>
-            <tr><td>BULAN</td><td>: Januari s/d Desember {{ \Carbon\Carbon::parse($p2kp->period_start)->format('Y') }}</td></tr>
+            <tr><td>BULAN</td><td>: {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('MMMM Y') }} s/d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('MMMM Y') }}</td></tr>
         </table>
 
         <!-- Table border removed as requested (Kotak Merah) -->
