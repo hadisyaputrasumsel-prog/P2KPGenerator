@@ -27,7 +27,7 @@
         .signature-space { height: 90px; }
         
         .logo-box { text-align: center; margin-top: 0; margin-bottom: 0; }
-        .logo-img { width: 280px; height: auto; }
+        .logo-img { width: 150px; height: auto; }
         
         .title-box { text-align: center; font-weight: bold; font-size: 12pt; margin-top: -5px; margin-bottom: 10px; line-height: 1.2; }
     </style>
