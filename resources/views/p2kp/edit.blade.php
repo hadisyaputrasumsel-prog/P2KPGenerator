@@ -191,16 +191,16 @@
                 <table class="min-w-full divide-y divide-slate-200" id="utama-table">
                     <thead>
                         <tr>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 40%;">Kegiatan</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 100px;">AK</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kuantitas/Output (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kuantitas/Output (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 12%;">Output</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kualitas/Mutu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kualitas/Mutu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Waktu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Waktu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Satuan</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[300px]">Kegiatan</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[80px]">AK</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Output</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Satuan</th>
                             <th class="px-2 py-3"></th>
                         </tr>
                     </thead>
@@ -244,16 +244,16 @@
                 <table class="min-w-full divide-y divide-slate-200" id="tambahan-table">
                     <thead>
                         <tr class="bg-slate-50">
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 40%;">Kegiatan</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 100px;">AK</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kuantitas/Output (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kuantitas/Output (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 12%;">Output</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kualitas/Mutu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kualitas/Mutu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Waktu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Waktu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Satuan</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[300px]">Kegiatan</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[80px]">AK</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Output</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Satuan</th>
                             <th class="px-2 py-3"></th>
                         </tr>
                     </thead>
@@ -297,16 +297,16 @@
                 <table class="min-w-full divide-y divide-slate-200" id="kreatifitas-table">
                     <thead>
                         <tr class="bg-slate-50">
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 40%;">Kegiatan</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 100px;">AK</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kuantitas/Output (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kuantitas/Output (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider" style="width: 12%;">Output</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kualitas/Mutu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Kualitas/Mutu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Waktu (T)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Waktu (R)</th>
-                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-32">Satuan</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[300px]">Kegiatan</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[80px]">AK</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kuantitas/Output (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Output</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Kualitas/Mutu (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (T)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[100px]">Waktu (R)</th>
+                            <th class="px-2 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider min-w-[120px]">Satuan</th>
                             <th class="px-2 py-3"></th>
                         </tr>
                     </thead>
