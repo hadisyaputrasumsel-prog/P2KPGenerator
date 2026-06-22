@@ -351,15 +351,18 @@
                         
                         $totalScore += $nilai_capaian;
                         
+                        // Output the credit_score properly formatted or blank if 0
+                        $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '0';
+                        
                         echo "<tr>
                             <td class='text-center font-bold'>{$globalIndex}</td>
                             <td>{$item->activity}</td>
-                            <td class='text-center'>" . rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') . "</td>
+                            <td class='text-center'>{$cs_val}</td>
                             <td class='text-center'>{$item->target_qty}/{$item->target_output}</td>
                             <td class='text-center'>{$item->target_quality}</td>
                             <td class='text-center'>{$item->target_time} {$item->target_time_unit}</td>
                             <td class='text-center'>-</td>
-                            <td class='text-center'>" . rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') . "</td>
+                            <td class='text-center'>{$cs_val}</td>
                             <td class='text-center'>{$real_qty}/{$item->target_output}</td>
                             <td class='text-center'>{$real_quality}</td>
                             <td class='text-center'>{$real_time} {$item->target_time_unit}</td>
@@ -374,7 +377,14 @@
         @endphp
 
         {{-- 1. Kegiatan Tugas Jabatan --}}
-        @php renderItemsAll($p2kp->items, $globalIndex, $totalScore); @endphp
+        @php 
+            $utamaItems = $p2kp->items->where('type', 'utama');
+            if($utamaItems->count() > 0) {
+                renderItemsAll($utamaItems, $globalIndex, $totalScore); 
+            } else {
+                echo "<tr><td colspan='14' class='text-center'>-</td></tr>";
+            }
+        @endphp
 
         {{-- II. Tugas Tambahan dan Kreatifitas --}}
         <tr class="font-bold">
@@ -385,10 +395,24 @@
             <td class="text-center font-bold">1</td>
             <td colspan="13">(TUGAS TAMBAHAN)</td>
         </tr>
+        @php 
+            $tambahanItems = $p2kp->items->where('type', 'tambahan');
+            $globalIndex = 1; // Reset index for tambahan? Usually it might continue, but let's reset or skip index for this. Let's just use empty or continue. The image shows no items under it. If there are, let's render them.
+            if($tambahanItems->count() > 0) {
+                renderItemsAll($tambahanItems, $globalIndex, $totalScore); 
+            }
+        @endphp
         <tr>
             <td class="text-center font-bold">2</td>
             <td colspan="13">(KREATIFITAS)</td>
         </tr>
+        @php 
+            $kreatifitasItems = $p2kp->items->whereIn('type', ['kreatifitas', 'penunjang']);
+            $globalIndex = 1; // Reset index
+            if($kreatifitasItems->count() > 0) {
+                renderItemsAll($kreatifitasItems, $globalIndex, $totalScore); 
+            }
+        @endphp
 
         @php $avgScore = $totalItems > 0 ? $totalScore / $totalItems : 0; @endphp
         <tr class="font-bold">
