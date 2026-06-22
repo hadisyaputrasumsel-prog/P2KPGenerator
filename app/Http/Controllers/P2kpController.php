@@ -64,7 +64,7 @@ class P2kpController extends Controller
             'items.*.real_quality' => 'nullable|integer',
             'items.*.real_time' => 'nullable|integer',
             'items.*.real_cost' => 'nullable|numeric',
-            'items.*.type' => 'required|string|in:utama,tambahan,kreatifitas',
+            'items.*.type' => 'required|string|in:utama,tambahan,kreatifitas,penunjang',
         ]);
 
         $p2kp = P2kp::create($validated);
@@ -73,6 +73,9 @@ class P2kpController extends Controller
             $p2kp->items()->create(array_merge($item, ['order' => $index]));
         }
 
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.p2kp')->with('success', 'P2kp created successfully.');
+        }
         return redirect()->route('p2kp.index')->with('success', 'P2kp created successfully.');
     }
 
@@ -141,7 +144,7 @@ class P2kpController extends Controller
             'items.*.real_quality' => 'nullable|integer',
             'items.*.real_time' => 'nullable|integer',
             'items.*.real_cost' => 'nullable|numeric',
-            'items.*.type' => 'required|string|in:utama,tambahan,kreatifitas',
+            'items.*.type' => 'required|string|in:utama,tambahan,kreatifitas,penunjang',
         ]);
 
         $p2kp->update($validated);
@@ -151,12 +154,18 @@ class P2kpController extends Controller
             $p2kp->items()->create(array_merge($item, ['order' => $index]));
         }
 
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.p2kp')->with('success', 'P2kp updated successfully.');
+        }
         return redirect()->route('p2kp.index')->with('success', 'P2kp updated successfully.');
     }
 
     public function destroy(P2kp $p2kp)
     {
         $p2kp->delete();
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return redirect()->route('admin.p2kp')->with('success', 'P2kp deleted successfully.');
+        }
         return redirect()->route('p2kp.index')->with('success', 'P2kp deleted successfully.');
     }
 }

@@ -26,6 +26,7 @@ class P2kp extends Model
         'objection',
         'response',
         'decision',
+        'status',
     ];
 
     public function employee()

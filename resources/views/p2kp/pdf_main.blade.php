@@ -36,8 +36,8 @@
 
 @php
     $imageSrc = '';
-    if(file_exists(public_path('logo.png'))) {
-        $imageData = base64_encode(file_get_contents(public_path('logo.png')));
+    if(file_exists(public_path('LogoUSSsaja.png'))) {
+        $imageData = base64_encode(file_get_contents(public_path('LogoUSSsaja.png')));
         $imageSrc = 'data:image/png;base64,' . $imageData;
     }
     
@@ -54,19 +54,27 @@
 
     // SKP Score calculation (Target vs Realisasi)
     $totalCapaian = 0;
+    $validItemCount = 0;
     foreach($p2kp->items as $item) {
         $real_qty = $item->real_qty ?? 0;
-        $real_quality = $item->real_quality ?? 0;
-        $real_time = $item->real_time ?? 0;
         
-        $score_qty = $item->target_qty > 0 ? ($real_qty / $item->target_qty) * 100 : 0;
-        $score_quality = $item->target_quality > 0 ? ($real_quality / $item->target_quality) * 100 : 0;
-        $score_time = $item->target_time > 0 ? ((1.76 * $item->target_time) - $real_time) / $item->target_time * 100 : 0;
+        if ($real_qty == 0) {
+            $nilai_capaian = 0;
+        } else {
+            $real_quality = $item->real_quality ?? 0;
+            $real_time = $item->real_time ?? 0;
+            
+            $score_qty = $item->target_qty > 0 ? ($real_qty / $item->target_qty) * 100 : 0;
+            $score_quality = $item->target_quality > 0 ? ($real_quality / $item->target_quality) * 100 : 0;
+            $score_time = $item->target_time > 0 ? ((1.76 * $item->target_time) - $real_time) / $item->target_time * 100 : 0;
+            
+            $nilai_capaian = ($score_qty + $score_quality + $score_time) / 3;
+        }
         
-        $nilai_capaian = ($score_qty + $score_quality + $score_time) / 3;
         $totalCapaian += $nilai_capaian;
+        $validItemCount++;
     }
-    $skpScore = count($p2kp->items) > 0 ? $totalCapaian / count($p2kp->items) : 0;
+    $skpScore = $validItemCount > 0 ? $totalCapaian / $validItemCount : 0;
     $skp60 = $skpScore * 0.6;
     
     // Behavior Score
@@ -297,7 +305,7 @@
     @if($imageSrc)
         <img src="{{ $imageSrc }}" style="width: 180px;">
     @endif
-</div><div class="title-box">PENILAIAN CAPAIAN SASARAN KINERJA<br>PEGAWAI UNIVERSITAS SUMATERA SELATAN PALEMBANG</div>
+</div><div class="title-box">PENILAIAN CAPAIAN SASARAN KINERJA<br>PEGAWAI UNIVERSITAS SUMATERA SELATAN</div>
 <div style="text-align: center; margin-bottom: 10px;">Jangka Waktu penilaian {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('D MMMM Y') }} s.d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('D MMMM Y') }}</div>
 
 <table class="bordered" style="font-size: 8pt;">
@@ -321,122 +329,70 @@
         @php 
             $totalScore = 0; 
             $totalItems = count($p2kp->items);
-            $utamaItems = $p2kp->items->where('type', 'utama');
-            $tambahanItems = $p2kp->items->where('type', 'tambahan');
-            $kreatifitasItems = $p2kp->items->where('type', 'kreatifitas');
             $globalIndex = 1;
+            
+            if (!function_exists('renderItemsAll')) {
+                function renderItemsAll($items, &$globalIndex, &$totalScore) {
+                    foreach($items as $item) {
+                        $real_qty = $item->real_qty ?? 0;
+                        $real_quality = $item->real_quality ?? 0;
+                        $real_time = $item->real_time ?? 0;
+                        
+                        if ($real_qty == 0) {
+                            $penghitungan = 0;
+                            $nilai_capaian = 0;
+                        } else {
+                            $score_qty = $item->target_qty > 0 ? ($real_qty / $item->target_qty) * 100 : 0;
+                            $score_quality = $item->target_quality > 0 ? ($real_quality / $item->target_quality) * 100 : 0;
+                            $score_time = $item->target_time > 0 ? ((1.76 * $item->target_time) - $real_time) / $item->target_time * 100 : 0;
+                            $penghitungan = $score_qty + $score_quality + $score_time;
+                            $nilai_capaian = $penghitungan / 3;
+                        }
+                        
+                        $totalScore += $nilai_capaian;
+                        
+                        echo "<tr>
+                            <td class='text-center font-bold'>{$globalIndex}</td>
+                            <td>{$item->activity}</td>
+                            <td class='text-center'>" . rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') . "</td>
+                            <td class='text-center'>{$item->target_qty}/{$item->target_output}</td>
+                            <td class='text-center'>{$item->target_quality}</td>
+                            <td class='text-center'>{$item->target_time} {$item->target_time_unit}</td>
+                            <td class='text-center'>-</td>
+                            <td class='text-center'>" . rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') . "</td>
+                            <td class='text-center'>{$real_qty}/{$item->target_output}</td>
+                            <td class='text-center'>{$real_quality}</td>
+                            <td class='text-center'>{$real_time} {$item->target_time_unit}</td>
+                            <td class='text-center'>-</td>
+                            <td class='text-center'>" . number_format($penghitungan, 0) . "</td>
+                            <td class='text-center'>" . number_format($nilai_capaian, 0) . "</td>
+                        </tr>";
+                        $globalIndex++;
+                    }
+                }
+            }
         @endphp
 
-        {{-- 1. UTAMA --}}
-        @foreach($utamaItems as $item)
-            @php
-                $real_qty = $item->real_qty ?? 0;
-                $real_quality = $item->real_quality ?? 0;
-                $real_time = $item->real_time ?? 0;
-                $score_qty = $item->target_qty > 0 ? ($real_qty / $item->target_qty) * 100 : 0;
-                $score_quality = $item->target_quality > 0 ? ($real_quality / $item->target_quality) * 100 : 0;
-                $score_time = $item->target_time > 0 ? ((1.76 * $item->target_time) - $real_time) / $item->target_time * 100 : 0;
-                $penghitungan = $score_qty + $score_quality + $score_time;
-                $nilai_capaian = $penghitungan / 3;
-                $totalScore += $nilai_capaian;
-            @endphp
-            <tr>
-                <td class="text-center">{{ $globalIndex++ }}</td>
-                <td>{{ $item->activity }}</td>
-                <td class="text-center">{{ rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') }}</td>
-                <td class="text-center">{{ $item->target_qty }}/{{ $item->target_output }}</td>
-                <td class="text-center">{{ $item->target_quality }}</td>
-                <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-                <td class="text-center">-</td>
-                <td class="text-center">{{ rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') }}</td>
-                <td class="text-center">{{ $real_qty }}/{{ $item->target_output }}</td>
-                <td class="text-center">{{ $real_quality }}</td>
-                <td class="text-center">{{ $real_time }} {{ $item->target_time_unit }}</td>
-                <td class="text-center">-</td>
-                <td class="text-center">{{ number_format($penghitungan, 2) }}</td>
-                <td class="text-center">{{ number_format($nilai_capaian, 2) }}</td>
-            </tr>
-        @endforeach
+        {{-- 1. Kegiatan Tugas Jabatan --}}
+        @php renderItemsAll($p2kp->items, $globalIndex, $totalScore); @endphp
 
-        {{-- 2 & 3. TAMBAHAN & KREATIFITAS --}}
+        {{-- II. Tugas Tambahan dan Kreatifitas --}}
         <tr class="font-bold">
-            <td class="text-center">II.</td>
-            <td colspan="13">TUGAS TAMBAHAN DAN KREATIFITAS/UNSUR PENUNJANG</td>
+            <td></td>
+            <td colspan="13">II. TUGAS TAMBAHAN DAN KREATIFITAS/UNSUR PENUNJANG</td>
         </tr>
-        
-        {{-- TAMBAHAN --}}
         <tr>
-            <td class="text-center">1</td>
+            <td class="text-center font-bold">1</td>
             <td colspan="13">(TUGAS TAMBAHAN)</td>
         </tr>
-        @foreach($tambahanItems as $item)
-            @php
-                $real_qty = $item->real_qty ?? 0;
-                $real_quality = $item->real_quality ?? 0;
-                $real_time = $item->real_time ?? 0;
-                $score_qty = $item->target_qty > 0 ? ($real_qty / $item->target_qty) * 100 : 0;
-                $score_quality = $item->target_quality > 0 ? ($real_quality / $item->target_quality) * 100 : 0;
-                $score_time = $item->target_time > 0 ? ((1.76 * $item->target_time) - $real_time) / $item->target_time * 100 : 0;
-                $penghitungan = $score_qty + $score_quality + $score_time;
-                $nilai_capaian = $penghitungan / 3;
-                $totalScore += $nilai_capaian;
-            @endphp
-            <tr>
-                <td class="text-center"></td>
-                <td>{{ $item->activity }}</td>
-                <td class="text-center">{{ rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') }}</td>
-                <td class="text-center">{{ $item->target_qty }}/{{ $item->target_output }}</td>
-                <td class="text-center">{{ $item->target_quality }}</td>
-                <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-                <td class="text-center">-</td>
-                <td class="text-center">{{ rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') }}</td>
-                <td class="text-center">{{ $real_qty }}/{{ $item->target_output }}</td>
-                <td class="text-center">{{ $real_quality }}</td>
-                <td class="text-center">{{ $real_time }} {{ $item->target_time_unit }}</td>
-                <td class="text-center">-</td>
-                <td class="text-center">{{ number_format($penghitungan, 2) }}</td>
-                <td class="text-center">{{ number_format($nilai_capaian, 2) }}</td>
-            </tr>
-        @endforeach
-
-        {{-- KREATIFITAS --}}
         <tr>
-            <td class="text-center">2</td>
+            <td class="text-center font-bold">2</td>
             <td colspan="13">(KREATIFITAS)</td>
         </tr>
-        @foreach($kreatifitasItems as $item)
-            @php
-                $real_qty = $item->real_qty ?? 0;
-                $real_quality = $item->real_quality ?? 0;
-                $real_time = $item->real_time ?? 0;
-                $score_qty = $item->target_qty > 0 ? ($real_qty / $item->target_qty) * 100 : 0;
-                $score_quality = $item->target_quality > 0 ? ($real_quality / $item->target_quality) * 100 : 0;
-                $score_time = $item->target_time > 0 ? ((1.76 * $item->target_time) - $real_time) / $item->target_time * 100 : 0;
-                $penghitungan = $score_qty + $score_quality + $score_time;
-                $nilai_capaian = $penghitungan / 3;
-                $totalScore += $nilai_capaian;
-            @endphp
-            <tr>
-                <td class="text-center"></td>
-                <td>{{ $item->activity }}</td>
-                <td class="text-center">{{ rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') }}</td>
-                <td class="text-center">{{ $item->target_qty }}/{{ $item->target_output }}</td>
-                <td class="text-center">{{ $item->target_quality }}</td>
-                <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-                <td class="text-center">-</td>
-                <td class="text-center">{{ rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') }}</td>
-                <td class="text-center">{{ $real_qty }}/{{ $item->target_output }}</td>
-                <td class="text-center">{{ $real_quality }}</td>
-                <td class="text-center">{{ $real_time }} {{ $item->target_time_unit }}</td>
-                <td class="text-center">-</td>
-                <td class="text-center">{{ number_format($penghitungan, 2) }}</td>
-                <td class="text-center">{{ number_format($nilai_capaian, 2) }}</td>
-            </tr>
-        @endforeach
 
         @php $avgScore = $totalItems > 0 ? $totalScore / $totalItems : 0; @endphp
         <tr class="font-bold">
-            <td colspan="13" class="text-center">Nilai Capaian SKP</td>
+            <td colspan="13" class="text-right" style="padding-right: 15px;">Nilai Capaian SKP</td>
             <td class="text-center">
                 {{ getGradeLabel($avgScore) }}<br>
                 ({{ number_format($avgScore, 2) }})

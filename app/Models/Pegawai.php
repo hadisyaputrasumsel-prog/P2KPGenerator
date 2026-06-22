@@ -13,4 +13,9 @@ class Pegawai extends Model
     {
         return $this->hasMany(P2kp::class, 'employee_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

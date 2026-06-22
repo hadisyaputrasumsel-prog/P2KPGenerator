@@ -1,11 +1,13 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit P2KP') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-<div class="md:flex md:items-center md:justify-between mb-8">
-    <div class="flex-1 min-w-0">
-        <h2 class="text-2xl font-bold leading-7 text-slate-900 sm:text-3xl sm:truncate">Edit P2KP</h2>
-    </div>
-</div>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
 
 @if ($errors->any())
     <div class="mb-4 bg-red-50 p-4 rounded-md border border-red-200">
@@ -40,32 +42,32 @@
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
                 <div class="grid grid-cols-6 gap-6">
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6">
                         <label class="block text-sm font-medium text-slate-700">Pegawai yang Dinilai</label>
-                        <select name="employee_id" class="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <select name="employee_id" class="select2-dropdown mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                             <option value="">Pilih Pegawai</option>
                             @foreach($pegawais as $p)
-                                <option value="{{ $p->id }}" {{ old('employee_id', $p2kp->employee_id) == $p->id ? 'selected' : '' }}>{{ $p->name }}</option>
+                                <option value="{{ $p->id }}" {{ old('employee_id', $p2kp->employee_id) == $p->id ? 'selected' : '' }}>{{ $p->name }} ({{ $p->nuptk }})</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6">
                         <label class="block text-sm font-medium text-slate-700">Pejabat Penilai</label>
-                        <select name="rating_official_id" class="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <select name="rating_official_id" class="select2-dropdown mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                             <option value="">Pilih Pejabat</option>
                             @foreach($pegawais as $p)
-                                <option value="{{ $p->id }}" {{ old('rating_official_id', $p2kp->rating_official_id) == $p->id ? 'selected' : '' }}>{{ $p->name }}</option>
+                                <option value="{{ $p->id }}" {{ old('rating_official_id', $p2kp->rating_official_id) == $p->id ? 'selected' : '' }}>{{ $p->name }} ({{ $p->nuptk }})</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6">
                         <label class="block text-sm font-medium text-slate-700">Atasan Pejabat Penilai</label>
-                        <select name="higher_official_id" class="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <select name="higher_official_id" class="select2-dropdown mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                             <option value="">Pilih Atasan Pejabat</option>
                             @foreach($pegawais as $p)
-                                <option value="{{ $p->id }}" {{ old('higher_official_id', $p2kp->higher_official_id) == $p->id ? 'selected' : '' }}>{{ $p->name }}</option>
+                                <option value="{{ $p->id }}" {{ old('higher_official_id', $p2kp->higher_official_id) == $p->id ? 'selected' : '' }}>{{ $p->name }} ({{ $p->nuptk }})</option>
                             @endforeach
                         </select>
                     </div>
@@ -150,6 +152,32 @@
         </div>
     </div>
 
+    <!-- Import LKD Section -->
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <h3 class="text-lg font-medium leading-6 text-slate-900">Import LKD (2 Berkas)</h3>
+                <p class="mt-1 text-sm text-slate-500">Unggah 2 file PDF LKD (Semester Ganjil & Genap) untuk menambahkan otomatis form.</p>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">LKD Semester Ganjil</label>
+                        <input type="file" id="lkd_file_1" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">LKD Semester Genap</label>
+                        <input type="file" id="lkd_file_2" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+                    </div>
+                    <button type="button" onclick="importLKD()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
+                        Import LKD
+                    </button>
+                </div>
+                <p class="mt-2 text-xs text-slate-500">Sistem akan menambahkan baris otomatis ke formulir berdasarkan data LKD yang diunggah.</p>
+            </div>
+        </div>
+    </div>
+
     {{-- 1. UTAMA --}}
     <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
@@ -203,7 +231,7 @@
         </div>
     </div>
 
-    {{-- 2. TAMBAHAN --}}
+    {{-- 2. TUGAS TAMBAHAN --}}
     <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
             <div class="flex justify-between items-center mb-4">
@@ -256,7 +284,7 @@
         </div>
     </div>
 
-    {{-- 3. KREATIFITAS --}}
+    {{-- 3. KREATIFITAS / PENUNJANG --}}
     <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-1 md:gap-6">
             <div class="flex justify-between items-center mb-4">
@@ -283,7 +311,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">
-                        @foreach($p2kp->items->where('type', 'kreatifitas') as $index => $item)
+                        @foreach($p2kp->items->whereIn('type', ['kreatifitas', 'penunjang']) as $index => $item)
                         <tr>
                             <td class="p-2">
                                 <input type="hidden" name="items[{{ $index }}][type]" value="kreatifitas">
@@ -315,8 +343,54 @@
     </div>
 </form>
 
+<!-- Modal Pilih LKD -->
+<div id="lkd-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Pilih Kegiatan untuk Diimport
+                        </h3>
+                        <div class="mt-4 max-h-96 overflow-y-auto border border-gray-200 rounded-md">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-10">
+                                            <input type="checkbox" id="check-all-lkd" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" checked>
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-56">Mapping Tujuan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kegiatan</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-24">AK</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lkd-items-list" class="bg-white divide-y divide-gray-200">
+                                    <!-- Items will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="button" onclick="insertSelectedLKD()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Import Terpilih
+                </button>
+                <button type="button" onclick="closeLkdModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     let rowCount = {{ $p2kp->items->count() }};
+    let pendingLkdItems = [];
+
     function addRow(type) {
         const tbody = document.querySelector(`#${type}-table tbody`);
         const newRow = document.createElement('tr');
@@ -341,5 +415,144 @@
         tbody.appendChild(newRow);
         rowCount++;
     }
+
+    function importLKD() {
+        const fileInput1 = document.getElementById('lkd_file_1');
+        const fileInput2 = document.getElementById('lkd_file_2');
+        
+        if (!fileInput1.files.length && !fileInput2.files.length) {
+            alert('Pilih setidaknya satu file LKD!');
+            return;
+        }
+        
+        const formData = new FormData();
+        if (fileInput1.files.length) formData.append('file1', fileInput1.files[0]);
+        if (fileInput2.files.length) formData.append('file2', fileInput2.files[0]);
+        formData.append('_token', '{{ csrf_token() }}');
+        
+        fetch('{{ route("p2kp.import-lkd") }}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                pendingLkdItems = data.items;
+                const tbody = document.getElementById('lkd-items-list');
+                tbody.innerHTML = '';
+                
+                pendingLkdItems.forEach((item, index) => {
+                    const lkdType = item.type.toLowerCase();
+                    const defaultMapping = 'utama';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <input type="checkbox" value="${index}" class="lkd-item-checkbox rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" checked>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                <select class="mapping-select mt-1 block w-full py-1 px-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" data-index="${index}">
+                                    <option value="utama" ${defaultMapping === 'utama' ? 'selected' : ''}>1. Kegiatan Tugas Jabatan</option>
+                                    <option value="tambahan" ${defaultMapping === 'tambahan' ? 'selected' : ''}>2. Tugas Tambahan</option>
+                                    <option value="kreatifitas" ${defaultMapping === 'kreatifitas' ? 'selected' : ''}>3. Kreatifitas / Penunjang</option>
+                                </select>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900"><div class="max-w-md line-clamp-2" title="${item.activity}">${item.activity}</div></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.credit_score || '-'}</td>
+                        </tr>
+                    `;
+                });
+                
+                document.getElementById('check-all-lkd').checked = true;
+                document.getElementById('lkd-modal').classList.remove('hidden');
+            } else {
+                alert('Gagal mengambil LKD: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat memproses LKD.');
+        });
+    }
+
+    function closeLkdModal() {
+        document.getElementById('lkd-modal').classList.add('hidden');
+    }
+
+    function insertSelectedLKD() {
+        const checkboxes = document.querySelectorAll('.lkd-item-checkbox:checked');
+        if (checkboxes.length === 0) {
+            alert('Pilih setidaknya satu kegiatan untuk diimport.');
+            return;
+        }
+        
+        checkboxes.forEach(cb => {
+            const index = cb.value;
+            const item = pendingLkdItems[index];
+            const selectEl = document.querySelector(`.mapping-select[data-index="${index}"]`);
+            const type = selectEl ? selectEl.value : 'utama'; 
+            
+            const tbody = document.querySelector(`#${type}-table tbody`);
+            if (!tbody) {
+                console.error('Table not found for type:', type);
+                return;
+            }
+            
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="p-2">
+                    <input type="hidden" name="items[${rowCount}][type]" value="${type}">
+                    <textarea name="items[${rowCount}][activity]" class="w-full border-slate-300 rounded-md text-sm" rows="6" required>${item.activity}</textarea>
+                </td>
+                <td class="p-2"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm"></td>
+                <td class="p-2"><input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-full border-slate-300 rounded-md text-sm" required></td>
+                <td class="p-2"><input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-full border-slate-300 rounded-md text-sm"></td>
+                <td class="p-2"><input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" class="w-full border-slate-300 rounded-md text-sm" required></td>
+                <td class="p-2"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm" required></td>
+                <td class="p-2"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 rounded-md text-sm"></td>
+                <td class="p-2"><input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-full border-slate-300 rounded-md text-sm" required></td>
+                <td class="p-2"><input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-full border-slate-300 rounded-md text-sm"></td>
+                <td class="p-2"><input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" class="w-full border-slate-300 rounded-md text-sm" required></td>
+                <td class="p-2 text-right">
+                    <button type="button" onclick="this.closest('tr').remove()" class="text-red-600 hover:text-red-900">Hapus</button>
+                </td>
+            `;
+            tbody.appendChild(newRow);
+            rowCount++;
+        });
+        
+        closeLkdModal();
+    }
 </script>
-@endsection
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.select2-dropdown').select2({
+            width: '100%',
+            matcher: function(params, data) {
+                if ($.trim(params.term) === '') {
+                    return data;
+                }
+                if (typeof data.text === 'undefined') {
+                    return null;
+                }
+                var term = params.term.toLowerCase();
+                var text = data.text.toLowerCase();
+                if (text.indexOf(term) > -1) {
+                    return data;
+                }
+                return null;
+            }
+        });
+        
+        // Select All checkbox logic for LKD Modal
+        $(document).on('change', '#check-all-lkd', function() {
+            $('.lkd-item-checkbox').prop('checked', $(this).prop('checked'));
+        });
+    });
+</script>
+        </div>
+    </div>
+</x-app-layout>

@@ -21,8 +21,8 @@
 
 @php
     $imageSrc = '';
-    if(file_exists(public_path('logo.png'))) {
-        $imageData = base64_encode(file_get_contents(public_path('logo.png')));
+    if(file_exists(public_path('LogoUSSsaja.png'))) {
+        $imageData = base64_encode(file_get_contents(public_path('LogoUSSsaja.png')));
         $imageSrc = 'data:image/png;base64,' . $imageData;
     }
 @endphp
@@ -33,7 +33,7 @@
     @endif
 </div>
 <div class="title-box">
-    FORMULIR SASARAN KERJA PEGAWAI NEGERI SIPIL<br>
+    FORMULIR SASARAN KERJA PEGAWAI<br>
     UNIVERSITAS SUMATERA SELATAN
 </div>
 
@@ -83,9 +83,73 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($p2kp->items as $index => $item)
+        @php
+            $pendidikanItems = $p2kp->items->where('type', 'utama');
+            $penelitianItems = $p2kp->items->where('type', 'tambahan');
+            $pengabdianItems = $p2kp->items->where('type', 'kreatifitas');
+            $penunjangItems = $p2kp->items->where('type', 'penunjang');
+            $globalIndex = 1;
+        @endphp
+
+        {{-- 1. Unsur Pelaksanaan Pendidikan --}}
+        <tr class="font-bold bg-slate-50">
+            <td class="text-center">I.</td>
+            <td colspan="6">UNSUR PELAKSANAAN PENDIDIKAN</td>
+        </tr>
+        @foreach($pendidikanItems as $item)
         <tr>
-            <td class="text-center">{{ $index + 1 }}</td>
+            <td class="text-center">{{ $globalIndex++ }}</td>
+            <td>{{ $item->activity }}</td>
+            <td class="text-center">-</td>
+            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
+            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
+            <td class="text-center">-</td>
+        </tr>
+        @endforeach
+
+        {{-- 2. Unsur Pelaksanaan Penelitian --}}
+        <tr class="font-bold bg-slate-50">
+            <td class="text-center">II.</td>
+            <td colspan="6">UNSUR PELAKSANAAN PENELITIAN</td>
+        </tr>
+        @foreach($penelitianItems as $item)
+        <tr>
+            <td class="text-center">{{ $globalIndex++ }}</td>
+            <td>{{ $item->activity }}</td>
+            <td class="text-center">-</td>
+            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
+            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
+            <td class="text-center">-</td>
+        </tr>
+        @endforeach
+
+        {{-- 3. Unsur Pelaksanaan Pengabdian --}}
+        <tr class="font-bold bg-slate-50">
+            <td class="text-center">III.</td>
+            <td colspan="6">UNSUR PELAKSANAAN PENGABDIAN KEPADA MASYARAKAT</td>
+        </tr>
+        @foreach($pengabdianItems as $item)
+        <tr>
+            <td class="text-center">{{ $globalIndex++ }}</td>
+            <td>{{ $item->activity }}</td>
+            <td class="text-center">-</td>
+            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
+            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
+            <td class="text-center">-</td>
+        </tr>
+        @endforeach
+
+        {{-- 4. Unsur Pelaksanaan Penunjang --}}
+        <tr class="font-bold bg-slate-50">
+            <td class="text-center">IV.</td>
+            <td colspan="6">UNSUR PELAKSANAAN PENUNJANG TRIDHARMA PERGURUAN TINGGI</td>
+        </tr>
+        @foreach($penunjangItems as $item)
+        <tr>
+            <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
             <td class="text-center">-</td>
             <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>

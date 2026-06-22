@@ -1,6 +1,12 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Daftar Penilaian Prestasi Kerja (P2KP)') }}
+        </h2>
+    </x-slot>
 
-@section('content')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 <div class="md:flex md:items-center md:justify-between mb-8">
     <div class="flex-1 min-w-0">
         <h2 class="text-2xl font-bold leading-7 text-slate-900 sm:text-3xl sm:truncate">Daftar Penilaian Prestasi Kerja (P2KP)</h2>
@@ -56,4 +62,6 @@
         @endforeach
     </ul>
 </div>
-@endsection
+        </div>
+    </div>
+</x-app-layout>
