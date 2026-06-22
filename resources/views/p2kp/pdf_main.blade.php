@@ -27,7 +27,7 @@
         .signature-space { height: 90px; }
         
         .logo-box { text-align: center; margin-top: 0; margin-bottom: 0; }
-        .logo-img { width: 150px; height: auto; }
+        .logo-img { width: 120px; height: auto; }
         
         .title-box { text-align: center; font-weight: bold; font-size: 12pt; margin-top: -5px; margin-bottom: 10px; line-height: 1.2; }
     </style>
@@ -303,7 +303,7 @@
 <!-- PAGE 3: CAPAIAN SKP -->
 <div class="logo-box">
     @if($imageSrc)
-        <img src="{{ $imageSrc }}" style="width: 180px;">
+        <img src="{{ $imageSrc }}" style="width: 120px;">
     @endif
 </div><div class="title-box">PENILAIAN CAPAIAN SASARAN KINERJA<br>PEGAWAI UNIVERSITAS SUMATERA SELATAN</div>
 <div style="text-align: center; margin-bottom: 10px;">Jangka Waktu penilaian {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('D MMMM Y') }} s.d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('D MMMM Y') }}</div>

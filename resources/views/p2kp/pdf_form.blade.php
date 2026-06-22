@@ -29,7 +29,7 @@
 
 <div class="logo-box">
     @if($imageSrc)
-        <img src="{{ $imageSrc }}" style="width: 150px;">
+        <img src="{{ $imageSrc }}" style="width: 120px;">
     @endif
 </div>
 <div class="title-box">
