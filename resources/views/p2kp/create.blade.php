@@ -204,19 +204,19 @@
                             </td>
                         </tr>
                         <tr class="bg-slate-100 text-slate-700">
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[10%]">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[15%]">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Waktu & Satuan</th>
                             <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                         </tr>
                         <tr class="bg-slate-100 text-slate-700">
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                         </tr>
@@ -228,13 +228,13 @@
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[0][target_qty]" value="1" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="number" name="items[0][target_qty]" value="1" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                     <input type="text" name="items[0][target_output]" value="Dokumen" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[0][real_qty]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="number" name="items[0][real_qty]" value="" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                     <input type="text" name="items[0][real_output]" value="" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
@@ -246,13 +246,13 @@
                             <!-- Waktu -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[0][target_time]" value="12" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="number" name="items[0][target_time]" value="12" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                     <input type="text" name="items[0][target_time_unit]" value="Bulan" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[0][real_time]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="number" name="items[0][real_time]" value="" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                     <input type="text" name="items[0][real_time_unit]" value="" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
@@ -372,36 +372,36 @@
                 </td>
                         </tr>
                 <tr class="bg-slate-100 text-slate-700">
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[10%]">AK</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Kuantitas & Output</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[15%]">Kualitas/Mutu</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Waktu & Satuan</th>
                     <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                 </tr>
                 <tr class="bg-slate-100 text-slate-700">
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                 </tr>
                         <tr class="bg-slate-100 text-slate-700">
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[10%]">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[15%]">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Waktu & Satuan</th>
                             <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                         </tr>
                         <tr class="bg-slate-100 text-slate-700">
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                         </tr>
@@ -413,13 +413,13 @@
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                     <input type="text" name="items[${rowCount}][target_output]" value="Dokumen" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_qty]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="number" name="items[${rowCount}][real_qty]" value="" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                     <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
@@ -431,13 +431,13 @@
                             <!-- Waktu -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_time]" value="12" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="number" name="items[${rowCount}][target_time]" value="12" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                     <input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_time]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="number" name="items[${rowCount}][real_time]" value="" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                     <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
@@ -552,36 +552,36 @@
                     </td>
                         </tr>
                 <tr class="bg-slate-100 text-slate-700">
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[10%]">AK</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Kuantitas & Output</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[15%]">Kualitas/Mutu</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Waktu & Satuan</th>
                     <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                 </tr>
                 <tr class="bg-slate-100 text-slate-700">
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                 </tr>
                         <tr class="bg-slate-100 text-slate-700">
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[10%]">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[15%]">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-[35%]">Waktu & Satuan</th>
                             <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                         </tr>
                         <tr class="bg-slate-100 text-slate-700">
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                             <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                         </tr>
@@ -593,13 +593,13 @@
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                     <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                     <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
@@ -611,13 +611,13 @@
                             <!-- Waktu -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                     <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                     <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
