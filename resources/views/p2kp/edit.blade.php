@@ -189,29 +189,10 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="utama-table">
-                    <thead class="bg-slate-100 text-slate-700">
-                        <tr>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                        </tr>
-                    </thead>
                     @foreach($p2kp->items->where('type', 'utama') as $index => $item)
                     <tbody class="border-b-4 border-slate-300">
                         <tr class="bg-indigo-50/50">
-                            <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                            <td colspan="9" class="p-3 border-x border-t border-slate-300">
                                 <div class="flex items-start gap-2">
                                     <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
                                     <input type="hidden" name="items[{{ $index }}][type]" value="utama">
@@ -219,16 +200,60 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                        </tr>
                         <tr>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <!-- AK -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[{{ $index }}][real_credit_score]" value="{{ $item->real_credit_score }}" placeholder="AK" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            
+                            <!-- Kuantitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[{{ $index }}][real_output]" value="{{ $item->real_output }}" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <!-- Kualitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+
+                            <!-- Waktu -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[{{ $index }}][real_time_unit]" value="{{ $item->real_time_unit }}" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
                             <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                                 <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -255,29 +280,10 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="tambahan-table">
-                    <thead class="bg-slate-100 text-slate-700">
-                        <tr>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                        </tr>
-                    </thead>
                     @foreach($p2kp->items->where('type', 'tambahan') as $index => $item)
                     <tbody class="border-b-4 border-slate-300">
                         <tr class="bg-indigo-50/50">
-                            <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                            <td colspan="9" class="p-3 border-x border-t border-slate-300">
                                 <div class="flex items-start gap-2">
                                     <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
                                     <input type="hidden" name="items[{{ $index }}][type]" value="tambahan">
@@ -285,16 +291,60 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                        </tr>
                         <tr>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <!-- AK -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[{{ $index }}][real_credit_score]" value="{{ $item->real_credit_score }}" placeholder="AK" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            
+                            <!-- Kuantitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[{{ $index }}][real_output]" value="{{ $item->real_output }}" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <!-- Kualitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+
+                            <!-- Waktu -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[{{ $index }}][real_time_unit]" value="{{ $item->real_time_unit }}" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
                             <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                                 <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -321,29 +371,10 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="kreatifitas-table">
-                    <thead class="bg-slate-100 text-slate-700">
-                        <tr>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                        </tr>
-                    </thead>
                     @foreach($p2kp->items->whereIn('type', ['kreatifitas', 'penunjang']) as $index => $item)
                     <tbody class="border-b-4 border-slate-300">
                         <tr class="bg-indigo-50/50">
-                            <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                            <td colspan="9" class="p-3 border-x border-t border-slate-300">
                                 <div class="flex items-start gap-2">
                                     <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
                                     <input type="hidden" name="items[{{ $index }}][type]" value="kreatifitas">
@@ -351,16 +382,60 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                        </tr>
                         <tr>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <!-- AK -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[{{ $index }}][credit_score]" value="{{ $item->credit_score + 0 }}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[{{ $index }}][real_credit_score]" value="{{ $item->real_credit_score }}" placeholder="AK" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            
+                            <!-- Kuantitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][target_qty]" value="{{ $item->target_qty }}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[{{ $index }}][target_output]" value="{{ $item->target_output }}" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][real_qty]" value="{{ $item->real_qty }}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[{{ $index }}][real_output]" value="{{ $item->real_output }}" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <!-- Kualitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[{{ $index }}][target_quality]" value="{{ $item->target_quality }}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[{{ $index }}][real_quality]" value="{{ $item->real_quality }}" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+
+                            <!-- Waktu -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][target_time]" value="{{ $item->target_time }}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[{{ $index }}][target_time_unit]" value="{{ $item->target_time_unit }}" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[{{ $index }}][real_time]" value="{{ $item->real_time }}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[{{ $index }}][real_time_unit]" value="{{ $item->real_time_unit }}" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
                             <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                                 <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -436,32 +511,93 @@
         newBody.className = 'border-b-4 border-slate-300';
         newBody.innerHTML = `
             <tr class="bg-indigo-50/50">
-                <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                <td colspan="9" class="p-3 border-x border-t border-slate-300">
                     <div class="flex items-start gap-2">
                         <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
                         <input type="hidden" name="items[${rowCount}][type]" value="${type}">
                         <textarea name="items[${rowCount}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required></textarea>
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_qty]" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_output]" value="Dokumen" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_quality]" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_time]" value="12" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_time]" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                        </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                        </tr>
+                        <tr>
+                            <!-- AK -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            
+                            <!-- Kuantitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_output]" value="Dokumen" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][real_qty]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <!-- Kualitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="100" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+
+                            <!-- Waktu -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][target_time]" value="12" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][real_time]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                     <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                     </button>
                 </td>
-            </tr>
+                        </tr>
         `;
         table.appendChild(newBody);
         rowCount++;
@@ -553,32 +689,93 @@
             newBody.className = 'border-b-4 border-slate-300';
             newBody.innerHTML = `
                 <tr class="bg-indigo-50/50">
-                    <td colspan="10" class="p-3 border-x border-t border-slate-300">
+                    <td colspan="9" class="p-3 border-x border-t border-slate-300">
                         <div class="flex items-start gap-2">
                             <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
                             <input type="hidden" name="items[${rowCount}][type]" value="${type}">
                             <textarea name="items[${rowCount}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>${item.activity}</textarea>
                         </div>
                     </td>
+                        </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
                 </tr>
-                <tr>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                    <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                <tr class="bg-slate-100 text-slate-700">
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas & Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu & Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-24 bg-blue-50">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                        </tr>
+                        <tr>
+                            <!-- AK -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            
+                            <!-- Kuantitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" placeholder="Output" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <!-- Kualitas -->
+                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-full border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+
+                            <!-- Waktu -->
+                            <td class="p-2 border border-slate-300 align-top bg-white">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" placeholder="Satuan" class="flex-1 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                            </td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                <div class="flex gap-1">
+                                    <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="flex-1 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </td>
+
+                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                         <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                         </button>
                     </td>
-                </tr>
+                        </tr>
             `;
             table.appendChild(newBody);
             rowCount++;
