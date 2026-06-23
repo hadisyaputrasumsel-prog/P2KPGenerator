@@ -103,7 +103,7 @@
 
         <div style="margin-top: 40px;"> <!-- Adjusted margin to account for lowered header -->
             <div class="signature-block" style="font-size: 11pt;">
-                DIBUAT TANGGAL, {{ \Carbon\Carbon::parse($p2kp->date_signed)->subDays(4)->isoFormat('D MMMM Y') }}<br>
+                DIBUAT TANGGAL, {{ \Carbon\Carbon::parse($p2kp->date_signed)->locale('id')->isoFormat('D MMMM Y') }}<br>
                 <span class="font-bold">PEJABAT PENILAI</span>
                 <div class="signature-space"></div>
                 <span class="font-bold underline">{{ $p2kp->ratingOfficial->name }}</span><br>
@@ -111,7 +111,7 @@
             </div>
 
             <div class="signature-block" style="font-size: 11pt;">
-                DITERIMA TANGGAL, {{ \Carbon\Carbon::parse($p2kp->date_signed)->subDays(2)->isoFormat('D MMMM Y') }}<br>
+                DITERIMA TANGGAL, {{ \Carbon\Carbon::parse($p2kp->date_signed)->locale('id')->isoFormat('D MMMM Y') }}<br>
                 <span class="font-bold">PEGAWAI YANG DINILAI</span>
                 <div class="signature-space"></div>
                 <span class="font-bold underline">{{ $p2kp->employee->name }}</span><br>
@@ -119,7 +119,7 @@
             </div>
 
             <div class="signature-block" style="font-size: 11pt;">
-                DITERIMA TANGGAL, {{ \Carbon\Carbon::parse($p2kp->date_signed)->isoFormat('D MMMM Y') }}<br>
+                DITERIMA TANGGAL, {{ \Carbon\Carbon::parse($p2kp->date_signed)->locale('id')->isoFormat('D MMMM Y') }}<br>
                 <span class="font-bold">ATASAN PEJABAT PENILAI</span>
                 <div class="signature-space"></div>
                 <span class="font-bold underline">{{ $p2kp->higherOfficial->name ?? '................................................' }}</span><br>
@@ -144,7 +144,7 @@
         <table class="no-border" style="font-size: 11pt; margin-bottom: 15px;">
             <tr><td style="width: 40%;">UNIT KERJA</td><td>: {{ $p2kp->employee->unit }}</td></tr>
             <tr><td>JANGKA WAKTU PENILAIAN</td><td>: 1 Tahun</td></tr>
-            <tr><td>BULAN</td><td>: {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('MMMM Y') }} s/d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('MMMM Y') }}</td></tr>
+            <tr><td>BULAN</td><td>: {{ \Carbon\Carbon::parse($p2kp->period_start)->locale('id')->isoFormat('MMMM Y') }} s/d {{ \Carbon\Carbon::parse($p2kp->period_end)->locale('id')->isoFormat('MMMM Y') }}</td></tr>
         </table>
 
         <!-- Table border removed as requested (Kotak Merah) -->
@@ -306,7 +306,7 @@
         <img src="{{ $imageSrc }}" style="width: 250px;">
     @endif
 </div><div class="title-box" style="margin-top: 15px;">PENILAIAN CAPAIAN SASARAN KINERJA<br>PEGAWAI UNIVERSITAS SUMATERA SELATAN</div>
-<div style="text-align: center; margin-bottom: 10px;">Jangka Waktu penilaian {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('D MMMM Y') }} s.d {{ \Carbon\Carbon::parse($p2kp->period_end)->isoFormat('D MMMM Y') }}</div>
+<div style="text-align: center; margin-bottom: 10px;">Jangka Waktu penilaian {{ \Carbon\Carbon::parse($p2kp->period_start)->locale('id')->isoFormat('D MMMM Y') }} s.d {{ \Carbon\Carbon::parse($p2kp->period_end)->locale('id')->isoFormat('D MMMM Y') }}</div>
 
 <table class="bordered" style="font-size: 8pt;">
     <thead>

@@ -170,7 +170,7 @@
                 NUPTK. {{ $p2kp->ratingOfficial->nuptk }}
             </td>
             <td style="width: 50%;" class="text-center">
-                Palembang, {{ \Carbon\Carbon::parse($p2kp->period_start)->isoFormat('D MMMM Y') }}<br>
+                Palembang, {{ \Carbon\Carbon::parse($p2kp->date_signed)->locale('id')->isoFormat('D MMMM Y') }}<br>
                 Pegawai Yang Dinilai,<br><br><br><br><br><br><br><br>
                 <span class="font-bold underline">{{ $p2kp->employee->name }}</span><br>
                 NUPTK. {{ $p2kp->employee->nuptk }}
