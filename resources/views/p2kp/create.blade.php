@@ -235,8 +235,8 @@
                         </tr>
                         <tr>
                             <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[0][credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[0][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[0][credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[0][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                             
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
@@ -420,8 +420,8 @@
                         </tr>
                         <tr>
                             <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                             
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
@@ -600,8 +600,8 @@
                         </tr>
                         <tr>
                             <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null ? item.credit_score + 0 : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                             
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
