@@ -321,8 +321,8 @@
             <th rowspan="2" style="width: 8%;">NILAI CAPAIAN SKP</th>
         </tr>
         <tr class="text-center font-bold">
-            <th style="font-size: 7pt;">Kuantitas/ Output</th><th style="font-size: 7pt;">Kualitas/ Mutu</th><th style="font-size: 7pt;">Waktu</th><th style="font-size: 7pt;">Biaya</th>
-            <th style="font-size: 7pt;">Kuantitas/ Output</th><th style="font-size: 7pt;">Kualitas/ Mutu</th><th style="font-size: 7pt;">Waktu</th><th style="font-size: 7pt;">Biaya</th>
+            <th style="font-size: 7pt;">KUANTITAS/ OUTPUT</th><th style="font-size: 7pt;">KUALITAS/ MUTU</th><th style="font-size: 7pt;">WAKTU</th><th style="font-size: 7pt;">BIAYA (Rp)</th>
+            <th style="font-size: 7pt;">KUANTITAS/ OUTPUT</th><th style="font-size: 7pt;">KUALITAS/ MUTU</th><th style="font-size: 7pt;">WAKTU</th><th style="font-size: 7pt;">BIAYA (Rp)</th>
         </tr>
     </thead>
     <tbody>

@@ -79,7 +79,7 @@
             <th colspan="4">TARGET</th>
         </tr>
         <tr class="text-center font-bold">
-            <th>KUANT</th><th>KUAL</th><th>WAKTU</th><th>BIAYA</th>
+            <th>KUANTITAS/<br>OUTPUT</th><th>KUALITAS/<br>MUTU</th><th>WAKTU</th><th>BIAYA<br>(Rp)</th>
         </tr>
     </thead>
     <tbody>
@@ -97,14 +97,17 @@
             <td colspan="6">UNSUR PELAKSANAAN PENDIDIKAN</td>
         </tr>
         @foreach($pendidikanItems as $item)
+        @php
+            $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+        @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center">{{ $cs_val }}</td>
             <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
             <td class="text-center">{{ $item->target_quality }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center"></td>
         </tr>
         @endforeach
 
@@ -114,14 +117,17 @@
             <td colspan="6">UNSUR PELAKSANAAN PENELITIAN</td>
         </tr>
         @foreach($penelitianItems as $item)
+        @php
+            $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+        @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center">{{ $cs_val }}</td>
             <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
             <td class="text-center">{{ $item->target_quality }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center"></td>
         </tr>
         @endforeach
 
@@ -131,14 +137,17 @@
             <td colspan="6">UNSUR PELAKSANAAN PENGABDIAN KEPADA MASYARAKAT</td>
         </tr>
         @foreach($pengabdianItems as $item)
+        @php
+            $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+        @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center">{{ $cs_val }}</td>
             <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
             <td class="text-center">{{ $item->target_quality }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center"></td>
         </tr>
         @endforeach
 
@@ -148,14 +157,17 @@
             <td colspan="6">UNSUR PELAKSANAAN PENUNJANG TRIDHARMA PERGURUAN TINGGI</td>
         </tr>
         @foreach($penunjangItems as $item)
+        @php
+            $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+        @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center">{{ $cs_val }}</td>
             <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
             <td class="text-center">{{ $item->target_quality }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center"></td>
         </tr>
         @endforeach
     </tbody>
