@@ -235,20 +235,20 @@
                         </tr>
                         <tr>
                             <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[0][credit_score]" value="" placeholder="AK" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[0][real_credit_score]" value="" placeholder="AK" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[0][credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[0][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                             
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[0][target_qty]" value="1" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[0][target_output]" value="Dokumen" placeholder="Output" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[0][target_output]" value="Dokumen" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[0][real_qty]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[0][real_output]" value="" placeholder="Output" class="flex-1 min-w-[60px] border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[0][real_output]" value="" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
 
@@ -260,13 +260,13 @@
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[0][target_time]" value="12" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[0][target_time_unit]" value="Bulan" placeholder="Satuan" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[0][target_time_unit]" value="Bulan" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[0][real_time]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[0][real_time_unit]" value="" placeholder="Satuan" class="flex-1 min-w-[60px] border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[0][real_time_unit]" value="" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
 
@@ -420,20 +420,20 @@
                         </tr>
                         <tr>
                             <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="" placeholder="AK" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                             
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_output]" value="Dokumen" placeholder="Output" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_output]" value="Dokumen" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][real_qty]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="flex-1 min-w-[60px] border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
 
@@ -445,13 +445,13 @@
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][target_time]" value="12" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" placeholder="Satuan" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="Bulan" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][real_time]" value="" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="flex-1 min-w-[60px] border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
 
@@ -600,20 +600,20 @@
                         </tr>
                         <tr>
                             <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" placeholder="AK" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="0.001" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                             
                             <!-- Kuantitas -->
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" placeholder="Output" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="flex-1 min-w-[60px] border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
 
@@ -625,13 +625,13 @@
                             <td class="p-2 border border-slate-300 align-top bg-white">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-12 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" placeholder="Satuan" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                             </td>
                             <td class="p-2 border border-slate-300 align-top bg-blue-50">
                                 <div class="flex gap-1">
                                     <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-12 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="flex-1 min-w-[60px] border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                             </td>
 
