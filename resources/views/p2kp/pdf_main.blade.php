@@ -353,6 +353,9 @@
                         
                         // Output the credit_score properly formatted or blank if 0
                         $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '0';
+                        $real_cs_val = isset($item->real_credit_score) && $item->real_credit_score !== null ? rtrim(rtrim(number_format($item->real_credit_score, 3, ',', '.'), '0'), ',') : '0';
+                        $real_output = $item->real_output ?: $item->target_output;
+                        $real_time_unit = $item->real_time_unit ?: $item->target_time_unit;
                         
                         echo "<tr>
                             <td class='text-center font-bold'>{$globalIndex}</td>
@@ -362,10 +365,10 @@
                             <td class='text-center'>{$item->target_quality}</td>
                             <td class='text-center'>{$item->target_time} {$item->target_time_unit}</td>
                             <td class='text-center'>-</td>
-                            <td class='text-center'>{$cs_val}</td>
-                            <td class='text-center'>{$real_qty}/{$item->target_output}</td>
+                            <td class='text-center'>{$real_cs_val}</td>
+                            <td class='text-center'>{$real_qty}/{$real_output}</td>
                             <td class='text-center'>{$real_quality}</td>
-                            <td class='text-center'>{$real_time} {$item->target_time_unit}</td>
+                            <td class='text-center'>{$real_time} {$real_time_unit}</td>
                             <td class='text-center'>-</td>
                             <td class='text-center'>" . number_format($penghitungan, 0) . "</td>
                             <td class='text-center'>" . number_format($nilai_capaian, 0) . "</td>

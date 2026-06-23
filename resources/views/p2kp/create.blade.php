@@ -193,25 +193,6 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="utama-table">
-                    <thead class="bg-slate-100 text-slate-700">
-                        <tr>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                        </tr>
-                    </thead>
                     <tbody class="border-b-4 border-slate-300">
                         <tr class="bg-indigo-50/50">
                             <td colspan="10" class="p-3 border-x border-t border-slate-300">
@@ -221,6 +202,23 @@
                                     <textarea name="items[0][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required></textarea>
                                 </div>
                             </td>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
+                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                        </tr>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
                         </tr>
                         <tr>
                             <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[0][credit_score]" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
@@ -257,25 +255,6 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="tambahan-table">
-                    <thead class="bg-slate-100 text-slate-700">
-                        <tr>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                        </tr>
-                    </thead>
                 </table>
             </div>
         </div>
@@ -292,25 +271,6 @@
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full border-collapse border border-slate-200" id="kreatifitas-table">
-                    <thead class="bg-slate-100 text-slate-700">
-                        <tr>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
-                        </tr>
-                    </thead>
                 </table>
             </div>
         </div>
@@ -384,6 +344,23 @@
                     </div>
                 </td>
             </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                </tr>
             <tr>
                 <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" placeholder="AK" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                 <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" name="items[${rowCount}][target_qty]" value="1" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
@@ -502,6 +479,23 @@
                             <textarea name="items[${rowCount}][activity]" class="flex-1 border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>${item.activity}</textarea>
                         </div>
                     </td>
+                </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-24">AK</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kuantitas</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Output</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Kualitas/Mutu</th>
+                    <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300">Waktu</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-32">Satuan</th>
+                    <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                </tr>
+                <tr class="bg-slate-100 text-slate-700">
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Target</th>
+                    <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 w-20">Realisasi</th>
                 </tr>
                 <tr>
                     <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="0.001" name="items[${rowCount}][credit_score]" value="${item.credit_score}" class="w-full border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
