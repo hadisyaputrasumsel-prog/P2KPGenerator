@@ -92,10 +92,6 @@
         @endphp
 
         {{-- 1. Unsur Pelaksanaan Pendidikan --}}
-        <tr class="font-bold bg-slate-50">
-            <td class="text-center">I.</td>
-            <td colspan="6">UNSUR PELAKSANAAN PENDIDIKAN</td>
-        </tr>
         @foreach($pendidikanItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
@@ -115,10 +111,6 @@
         @endforeach
 
         {{-- 2. Unsur Pelaksanaan Penelitian --}}
-        <tr class="font-bold bg-slate-50">
-            <td class="text-center">II.</td>
-            <td colspan="6">UNSUR PELAKSANAAN PENELITIAN</td>
-        </tr>
         @foreach($penelitianItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
@@ -138,10 +130,6 @@
         @endforeach
 
         {{-- 3. Unsur Pelaksanaan Pengabdian --}}
-        <tr class="font-bold bg-slate-50">
-            <td class="text-center">III.</td>
-            <td colspan="6">UNSUR PELAKSANAAN PENGABDIAN KEPADA MASYARAKAT</td>
-        </tr>
         @foreach($pengabdianItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
@@ -161,10 +149,6 @@
         @endforeach
 
         {{-- 4. Unsur Pelaksanaan Penunjang --}}
-        <tr class="font-bold bg-slate-50">
-            <td class="text-center">IV.</td>
-            <td colspan="6">UNSUR PELAKSANAAN PENUNJANG TRIDHARMA PERGURUAN TINGGI</td>
-        </tr>
         @foreach($penunjangItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
