@@ -99,13 +99,16 @@
         @foreach($pendidikanItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+            $real_cs_val = isset($item->real_credit_score) && $item->real_credit_score !== null ? rtrim(rtrim(number_format($item->real_credit_score, 3, ',', '.'), '0'), ',') : '0';
+            $real_qty = $item->real_qty ?? 0;
+            $real_output = $item->real_output ?: $item->target_output;
         @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
             <td class="text-center">{{ $cs_val }}</td>
-            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
-            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $real_cs_val }}</td>
+            <td class="text-center">{{ $real_qty }}/{{ $real_output }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
             <td class="text-center"></td>
         </tr>
@@ -119,13 +122,16 @@
         @foreach($penelitianItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+            $real_cs_val = isset($item->real_credit_score) && $item->real_credit_score !== null ? rtrim(rtrim(number_format($item->real_credit_score, 3, ',', '.'), '0'), ',') : '0';
+            $real_qty = $item->real_qty ?? 0;
+            $real_output = $item->real_output ?: $item->target_output;
         @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
             <td class="text-center">{{ $cs_val }}</td>
-            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
-            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $real_cs_val }}</td>
+            <td class="text-center">{{ $real_qty }}/{{ $real_output }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
             <td class="text-center"></td>
         </tr>
@@ -139,13 +145,16 @@
         @foreach($pengabdianItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+            $real_cs_val = isset($item->real_credit_score) && $item->real_credit_score !== null ? rtrim(rtrim(number_format($item->real_credit_score, 3, ',', '.'), '0'), ',') : '0';
+            $real_qty = $item->real_qty ?? 0;
+            $real_output = $item->real_output ?: $item->target_output;
         @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
             <td class="text-center">{{ $cs_val }}</td>
-            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
-            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $real_cs_val }}</td>
+            <td class="text-center">{{ $real_qty }}/{{ $real_output }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
             <td class="text-center"></td>
         </tr>
@@ -159,13 +168,16 @@
         @foreach($penunjangItems as $item)
         @php
             $cs_val = $item->credit_score > 0 ? rtrim(rtrim(number_format($item->credit_score, 3, ',', '.'), '0'), ',') : '-';
+            $real_cs_val = isset($item->real_credit_score) && $item->real_credit_score !== null ? rtrim(rtrim(number_format($item->real_credit_score, 3, ',', '.'), '0'), ',') : '0';
+            $real_qty = $item->real_qty ?? 0;
+            $real_output = $item->real_output ?: $item->target_output;
         @endphp
         <tr>
             <td class="text-center">{{ $globalIndex++ }}</td>
             <td>{{ $item->activity }}</td>
             <td class="text-center">{{ $cs_val }}</td>
-            <td class="text-center">{{ $item->target_qty }} {{ $item->target_output }}</td>
-            <td class="text-center">{{ $item->target_quality }}</td>
+            <td class="text-center">{{ $real_cs_val }}</td>
+            <td class="text-center">{{ $real_qty }}/{{ $real_output }}</td>
             <td class="text-center">{{ $item->target_time }} {{ $item->target_time_unit }}</td>
             <td class="text-center"></td>
         </tr>
