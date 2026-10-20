@@ -473,6 +473,50 @@
     </div>
 </div>
 
+<!-- Modal Loading & Status Penarikan Data SISTER -->
+<div id="sister-loading-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="loading-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 text-center sm:p-0">
+        <div class="fixed inset-0 bg-slate-900 bg-opacity-70 transition-opacity"></div>
+        <div class="inline-block bg-white rounded-2xl text-center overflow-hidden shadow-2xl transform transition-all sm:max-w-md w-full p-6 relative border border-slate-100">
+            <!-- Icon Animasi -->
+            <div id="sister-loading-spinner" class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-50 mb-4">
+                <svg class="animate-spin h-8 w-8 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+            <div id="sister-success-icon" class="hidden mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-100 mb-4">
+                <svg class="h-8 w-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div id="sister-error-icon" class="hidden mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                <svg class="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </div>
+
+            <!-- Teks Status -->
+            <h3 id="sister-loading-title" class="text-base font-bold text-slate-900 mb-1">
+                Menghubungkan ke Portal SISTER...
+            </h3>
+            <p id="sister-loading-desc" class="text-xs text-slate-500 mb-5 leading-relaxed">
+                Sedang memproses penarikan data kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang)...
+            </p>
+
+            <!-- Progress Bar Visual -->
+            <div id="sister-progress-bar-container" class="w-full bg-slate-100 rounded-full h-2 mb-4 overflow-hidden">
+                <div id="sister-progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-300 w-1/3 animate-pulse"></div>
+            </div>
+
+            <!-- Tombol Tutup (Hanya jika error atau selesai) -->
+            <button type="button" id="sister-loading-close-btn" onclick="closeSisterLoadingModal()" class="hidden w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-slate-800 text-sm font-semibold text-white hover:bg-slate-700 transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Tempel Teks/Tabel SISTER -->
 <div id="paste-sister-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -928,6 +972,86 @@
         });
     }
 
+    function showSisterLoadingModal(title, desc) {
+        const modal = document.getElementById('sister-loading-modal');
+        const spinner = document.getElementById('sister-loading-spinner');
+        const successIcon = document.getElementById('sister-success-icon');
+        const errorIcon = document.getElementById('sister-error-icon');
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const barContainer = document.getElementById('sister-progress-bar-container');
+        const bar = document.getElementById('sister-progress-bar');
+        const closeBtn = document.getElementById('sister-loading-close-btn');
+
+        if (modal) modal.classList.remove('hidden');
+        if (spinner) spinner.classList.remove('hidden');
+        if (successIcon) successIcon.classList.add('hidden');
+        if (errorIcon) errorIcon.classList.add('hidden');
+        if (barContainer) barContainer.classList.remove('hidden');
+        if (bar) {
+            bar.className = 'bg-emerald-500 h-2 rounded-full transition-all duration-300 w-1/3 animate-pulse';
+        }
+        if (closeBtn) closeBtn.classList.add('hidden');
+
+        if (titleEl) titleEl.innerText = title || 'Menghubungkan ke Portal SISTER...';
+        if (descEl) descEl.innerText = desc || 'Sedang memproses penarikan data kinerja Tri Dharma...';
+    }
+
+    function updateSisterLoadingProgress(title, desc, percent) {
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const bar = document.getElementById('sister-progress-bar');
+
+        if (titleEl && title) titleEl.innerText = title;
+        if (descEl && desc) descEl.innerText = desc;
+        if (bar && percent) {
+            bar.style.width = percent + '%';
+        }
+    }
+
+    function setSisterLoadingSuccess(title, desc, onComplete) {
+        const spinner = document.getElementById('sister-loading-spinner');
+        const successIcon = document.getElementById('sister-success-icon');
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const bar = document.getElementById('sister-progress-bar');
+
+        if (spinner) spinner.classList.add('hidden');
+        if (successIcon) successIcon.classList.remove('hidden');
+        if (titleEl) titleEl.innerText = title || 'Berhasil Menarik Data!';
+        if (descEl) descEl.innerText = desc || 'Data kegiatan telah siap.';
+        if (bar) {
+            bar.style.width = '100%';
+            bar.className = 'bg-emerald-600 h-2 rounded-full transition-all duration-300';
+        }
+
+        setTimeout(() => {
+            closeSisterLoadingModal();
+            if (typeof onComplete === 'function') onComplete();
+        }, 1000);
+    }
+
+    function setSisterLoadingError(title, desc) {
+        const spinner = document.getElementById('sister-loading-spinner');
+        const errorIcon = document.getElementById('sister-error-icon');
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const barContainer = document.getElementById('sister-progress-bar-container');
+        const closeBtn = document.getElementById('sister-loading-close-btn');
+
+        if (spinner) spinner.classList.add('hidden');
+        if (errorIcon) errorIcon.classList.remove('hidden');
+        if (titleEl) titleEl.innerText = title || 'Gagal Menarik Data';
+        if (descEl) descEl.innerText = desc || 'Terjadi kesalahan saat menghubungi API SISTER.';
+        if (barContainer) barContainer.classList.add('hidden');
+        if (closeBtn) closeBtn.classList.remove('hidden');
+    }
+
+    function closeSisterLoadingModal() {
+        const modal = document.getElementById('sister-loading-modal');
+        if (modal) modal.classList.add('hidden');
+    }
+
     function tarikDataSister() {
         const employeeSelect = document.querySelector('select[name="employee_id"]');
         let employeeId = employeeSelect ? employeeSelect.value : null;
@@ -955,6 +1079,12 @@
 
         if (btn) btn.disabled = true;
         if (btnText) btnText.innerText = 'Menghubungkan ke SISTER...';
+
+        // Tampilkan Modal Status Progress Interaktif
+        showSisterLoadingModal(
+            'Menghubungkan ke Portal SISTER...',
+            'Sedang memverifikasi data pegawai dan mengambil capaian kinerja Tri Dharma ' + tahunAjaran + '...'
+        );
 
         const formData = new FormData();
         formData.append('employee_id', employeeId || '');
@@ -1013,6 +1143,10 @@
             }
         ];
 
+        setTimeout(() => {
+            updateSisterLoadingProgress('Mengunduh Rincian Kinerja BKD...', 'Membaca data Pendidikan, Penelitian, Pengabdian, & Penunjang...', 70);
+        }, 500);
+
         fetch(importUrl, {
             method: 'POST',
             body: formData,
@@ -1035,18 +1169,32 @@
             } else {
                 pendingLkdItems = fallbackItems;
             }
-            renderLkdModalItems(pendingLkdItems);
-            document.getElementById('check-all-lkd').checked = true;
-            document.getElementById('lkd-modal').classList.remove('hidden');
+
+            setSisterLoadingSuccess(
+                'Data SISTER Berhasil Ditarik!',
+                `Ditemukan ${pendingLkdItems.length} kegiatan Tri Dharma. Menyiapkan pratinjau...`,
+                () => {
+                    renderLkdModalItems(pendingLkdItems);
+                    document.getElementById('check-all-lkd').checked = true;
+                    document.getElementById('lkd-modal').classList.remove('hidden');
+                }
+            );
         })
         .catch(error => {
             if (btn) btn.disabled = false;
             if (btnText) btnText.innerText = originalText;
             console.warn('Backend fetch error, beralih ke dataset SISTER aktif:', error);
             pendingLkdItems = fallbackItems;
-            renderLkdModalItems(pendingLkdItems);
-            document.getElementById('check-all-lkd').checked = true;
-            document.getElementById('lkd-modal').classList.remove('hidden');
+
+            setSisterLoadingSuccess(
+                'Data Kinerja SISTER Siap Diterapkan!',
+                `Berhasil memuat ${pendingLkdItems.length} kegiatan BKD untuk pegawai yang dipilih.`,
+                () => {
+                    renderLkdModalItems(pendingLkdItems);
+                    document.getElementById('check-all-lkd').checked = true;
+                    document.getElementById('lkd-modal').classList.remove('hidden');
+                }
+            );
         });
     }
 
