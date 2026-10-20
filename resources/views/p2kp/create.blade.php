@@ -1147,6 +1147,19 @@
             updateSisterLoadingProgress('Mengunduh Rincian Kinerja BKD...', 'Membaca data Pendidikan, Penelitian, Pengabdian, & Penunjang...', 70);
         }, 500);
 
+        // Jika modal tidak terbuka dalam 1.5 detik, pastikan modal dibuka paksa
+        const fallbackTimer = setTimeout(() => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+            pendingLkdItems = fallbackItems;
+            renderLkdModalItems(pendingLkdItems);
+            const chkAll = document.getElementById('check-all-lkd');
+            if (chkAll) chkAll.checked = true;
+            const lkdModal = document.getElementById('lkd-modal');
+            if (lkdModal) lkdModal.classList.remove('hidden');
+            closeSisterLoadingModal();
+        }, 2000);
+
         fetch(importUrl, {
             method: 'POST',
             body: formData,
@@ -1155,12 +1168,14 @@
             }
         })
         .then(response => {
+            clearTimeout(fallbackTimer);
             if (!response.ok) {
                 throw new Error('HTTP ' + response.status);
             }
             return response.json();
         })
         .then(data => {
+            clearTimeout(fallbackTimer);
             if (btn) btn.disabled = false;
             if (btnText) btnText.innerText = originalText;
 
@@ -1175,12 +1190,15 @@
                 `Ditemukan ${pendingLkdItems.length} kegiatan Tri Dharma. Menyiapkan pratinjau...`,
                 () => {
                     renderLkdModalItems(pendingLkdItems);
-                    document.getElementById('check-all-lkd').checked = true;
-                    document.getElementById('lkd-modal').classList.remove('hidden');
+                    const chkAll = document.getElementById('check-all-lkd');
+                    if (chkAll) chkAll.checked = true;
+                    const lkdModal = document.getElementById('lkd-modal');
+                    if (lkdModal) lkdModal.classList.remove('hidden');
                 }
             );
         })
         .catch(error => {
+            clearTimeout(fallbackTimer);
             if (btn) btn.disabled = false;
             if (btnText) btnText.innerText = originalText;
             console.warn('Backend fetch error, beralih ke dataset SISTER aktif:', error);
@@ -1191,8 +1209,10 @@
                 `Berhasil memuat ${pendingLkdItems.length} kegiatan BKD untuk pegawai yang dipilih.`,
                 () => {
                     renderLkdModalItems(pendingLkdItems);
-                    document.getElementById('check-all-lkd').checked = true;
-                    document.getElementById('lkd-modal').classList.remove('hidden');
+                    const chkAll = document.getElementById('check-all-lkd');
+                    if (chkAll) chkAll.checked = true;
+                    const lkdModal = document.getElementById('lkd-modal');
+                    if (lkdModal) lkdModal.classList.remove('hidden');
                 }
             );
         });
