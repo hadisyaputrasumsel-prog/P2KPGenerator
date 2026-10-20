@@ -209,13 +209,26 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-2">
-                        <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
-                            </svg>
-                            <span id="btn-tarik-text">Tarik Data dari SISTER</span>
-                        </button>
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                                </svg>
+                                <span id="btn-tarik-text">Tarik Data dari SISTER</span>
+                            </button>
+
+                            <button type="button" onclick="openPasteSisterModal()" class="inline-flex items-center px-3 py-2 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                                <svg class="w-4 h-4 mr-1.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                                Tempel Teks/Tabel SISTER
+                            </button>
+
+                            <button type="button" onclick="openBookmarkletModal()" class="inline-flex items-center px-3 py-2 border border-amber-300 rounded-md shadow-sm text-sm font-medium text-amber-800 bg-amber-50 hover:bg-amber-100 focus:outline-none transition">
+                                <span class="mr-1.5">⭐</span>
+                                Bookmarklet 1-Klik
+                            </button>
+                        </div>
+
                         <span class="text-xs text-slate-500 flex items-center gap-1.5">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
                             Terhubung API SISTER Kemendikbudristek
@@ -398,6 +411,81 @@
     </div>
 </div>
 
+<!-- Modal Tempel Teks/Tabel SISTER -->
+<div id="paste-sister-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="closePasteSisterModal()"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                        Tempel Data Hasil Salin dari SISTER
+                    </h3>
+                    <button type="button" onclick="closePasteSisterModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+                </div>
+                <div class="mt-4 space-y-3">
+                    <p class="text-xs text-slate-600">
+                        Buka halaman <strong>Rekap Kegiatan / Laporan Kinerja</strong> di SISTER, salin seluruh isi halaman atau tabelnya (<kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[11px]">Ctrl + A</kbd> lalu <kbd class="px-1.5 py-0.5 bg-slate-100 border border-slate-300 rounded text-[11px]">Ctrl + C</kbd>), lalu tempelkan di kotak di bawah ini:
+                    </p>
+                    <textarea id="paste-sister-text" rows="8" class="w-full text-xs font-mono border-slate-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" placeholder="Contoh teks tabel SISTER:&#10;1 Pelaksanaan Pendidikan Tidak boleh kosong 11 12 M&#10;2 Pelaksanaan Penelitian Tidak boleh kosong 2.8125 1.25 M&#10;3 Pelaksanaan Pengabdian Tidak boleh kosong 1.1667 0 M&#10;4 Pelaksanaan Penunjang Tidak boleh kosong 0.5 0 M"></textarea>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-2">
+                <button type="button" onclick="prosesPasteSister()" class="w-full sm:w-auto inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-sm font-medium text-white hover:bg-indigo-700">
+                    Ekstrak & Terapkan Data
+                </button>
+                <button type="button" onclick="closePasteSisterModal()" class="mt-2 sm:mt-0 w-full sm:w-auto inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Bookmarklet Crawler -->
+<div id="bookmarklet-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="closeBookmarkletModal()"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900 flex items-center gap-2">
+                        ⭐ Bookmarklet Crawler SISTER 1-Klik
+                    </h3>
+                    <button type="button" onclick="closeBookmarkletModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+                </div>
+                <div class="mt-4 space-y-4 text-sm text-slate-700">
+                    <p>Tarik tombol di bawah ini ke <strong>Bookmarks Bar</strong> browser Chrome/Edge Anda:</p>
+                    
+                    <div class="p-4 bg-indigo-50 border-2 border-dashed border-indigo-300 rounded-lg text-center">
+                        <a id="sister-bookmarklet-link" href="#" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-bold rounded shadow hover:bg-indigo-700 cursor-move" title="Tarik ke Bookmark Bar">
+                            ⭐ Tarik SISTER ke P2KP
+                        </a>
+                        <p class="text-xs text-indigo-600 mt-2 font-medium">Klik & tahan, lalu geser tombol ini ke bar bookmark browser Anda</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-3 rounded text-xs space-y-1.5 text-slate-600">
+                        <div class="font-semibold text-slate-800">Cara Penggunaan:</div>
+                        <ol class="list-decimal ml-4 space-y-1">
+                            <li>Buka halaman Laporan Kinerja BKD di SISTER (<code class="bg-slate-200 px-1 rounded">sister-pt.kemdiktisaintek.go.id/...</code>).</li>
+                            <li>Klik bookmark <strong>⭐ Tarik SISTER ke P2KP</strong> di bar browser Anda.</li>
+                            <li>Data tabel kinerja langsung diekstrak otomatis dan dialihkan ke formulir P2KP ini.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-end">
+                <button type="button" onclick="closeBookmarkletModal()" class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     let rowCount = 1;
     let pendingLkdItems = [];
@@ -537,39 +625,7 @@
 
             if (data.success) {
                 pendingLkdItems = data.items;
-                const tbody = document.getElementById('lkd-items-list');
-                tbody.innerHTML = '';
-                
-                pendingLkdItems.forEach((item, index) => {
-                    const lkdType = (item.type || '').toLowerCase();
-                    let defaultMapping = 'utama';
-                    if (lkdType === 'tambahan') defaultMapping = 'tambahan';
-                    else if (lkdType === 'kreatifitas' || lkdType === 'penunjang') defaultMapping = 'kreatifitas';
-
-                    tbody.innerHTML += `
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="checkbox" value="${index}" class="lkd-item-checkbox rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" checked>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                <select class="mapping-select mt-1 block w-full py-1 px-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" data-index="${index}">
-                                    <option value="utama" ${defaultMapping === 'utama' ? 'selected' : ''}>1. Kegiatan Tugas Jabatan</option>
-                                    <option value="tambahan" ${defaultMapping === 'tambahan' ? 'selected' : ''}>2. Tugas Tambahan</option>
-                                    <option value="kreatifitas" ${defaultMapping === 'kreatifitas' ? 'selected' : ''}>3. Kreatifitas / Penunjang</option>
-                                </select>
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-900">
-                                <div class="max-w-md line-clamp-2" title="${item.activity}">${item.activity}</div>
-                                <div class="flex items-center gap-2 mt-1">
-                                    ${item.category ? `<span class="inline-block text-[11px] px-1.5 py-0.5 bg-indigo-50 text-indigo-700 font-semibold rounded">${item.category}</span>` : ''}
-                                    ${item.semester ? `<span class="inline-block text-[11px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Semester ${item.semester}</span>` : ''}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">${item.credit_score || '-'}</td>
-                        </tr>
-                    `;
-                });
-                
+                renderLkdModalItems(pendingLkdItems);
                 document.getElementById('check-all-lkd').checked = true;
                 document.getElementById('lkd-modal').classList.remove('hidden');
             } else {
@@ -582,6 +638,163 @@
             console.error('Error:', error);
             alert('Terjadi kesalahan saat menghubungi API SISTER.');
         });
+    }
+
+    function renderLkdModalItems(items) {
+        const tbody = document.getElementById('lkd-items-list');
+        tbody.innerHTML = '';
+        
+        items.forEach((item, index) => {
+            const lkdType = (item.type || '').toLowerCase();
+            let defaultMapping = 'utama';
+            if (lkdType === 'tambahan') defaultMapping = 'tambahan';
+            else if (lkdType === 'kreatifitas' || lkdType === 'penunjang') defaultMapping = 'kreatifitas';
+
+            tbody.innerHTML += `
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <input type="checkbox" value="${index}" class="lkd-item-checkbox rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" checked>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <select class="mapping-select mt-1 block w-full py-1 px-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" data-index="${index}">
+                            <option value="utama" ${defaultMapping === 'utama' ? 'selected' : ''}>1. Kegiatan Tugas Jabatan</option>
+                            <option value="tambahan" ${defaultMapping === 'tambahan' ? 'selected' : ''}>2. Tugas Tambahan</option>
+                            <option value="kreatifitas" ${defaultMapping === 'kreatifitas' ? 'selected' : ''}>3. Kreatifitas / Penunjang</option>
+                        </select>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-900">
+                        <div class="max-w-md line-clamp-2" title="${item.activity}">${item.activity}</div>
+                        <div class="flex items-center gap-2 mt-1">
+                            ${item.category ? `<span class="inline-block text-[11px] px-1.5 py-0.5 bg-indigo-50 text-indigo-700 font-semibold rounded">${item.category}</span>` : ''}
+                            ${item.semester ? `<span class="inline-block text-[11px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Semester ${item.semester}</span>` : ''}
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">${item.credit_score || '-'}</td>
+                </tr>
+            `;
+        });
+    }
+
+    function openPasteSisterModal() {
+        document.getElementById('paste-sister-modal').classList.remove('hidden');
+    }
+
+    function closePasteSisterModal() {
+        document.getElementById('paste-sister-modal').classList.add('hidden');
+    }
+
+    function openBookmarkletModal() {
+        document.getElementById('bookmarklet-modal').classList.remove('hidden');
+    }
+
+    function closeBookmarkletModal() {
+        document.getElementById('bookmarklet-modal').classList.add('hidden');
+    }
+
+    function prosesPasteSister() {
+        const raw = document.getElementById('paste-sister-text').value;
+        if (!raw.trim()) {
+            alert('Silakan tempel teks atau tabel dari halaman SISTER terlebih dahulu!');
+            return;
+        }
+
+        const items = [];
+
+        // Helper regex untuk membaca angka SKS setelah nama jenis kinerja BKD
+        const extractSks = (keyword) => {
+            const re = new RegExp(keyword + '[\\s\\S]*?([\\d]+(?:[\\.,][\\d]+)?)', 'i');
+            const match = raw.match(re);
+            if (match && match[1]) {
+                return parseFloat(match[1].replace(',', '.'));
+            }
+            return null;
+        };
+
+        const pend = extractSks('Pelaksanaan\\s+Pendidikan');
+        if (pend !== null && pend > 0) {
+            items.push({
+                type: 'utama',
+                category: 'Pendidikan',
+                activity: `Melaksanakan Pelaksanaan Pendidikan dan Pembelajaran (Beban Kinerja SISTER: ${pend} SKS)`,
+                credit_score: pend,
+                target_qty: 1,
+                target_output: 'Laporan BKD / SK',
+                target_quality: 100,
+                target_time: 12,
+                target_time_unit: 'Bulan'
+            });
+        }
+
+        const penel = extractSks('Pelaksanaan\\s+Penelitian');
+        if (penel !== null && penel > 0) {
+            items.push({
+                type: 'tambahan',
+                category: 'Penelitian',
+                activity: `Melaksanakan Pelaksanaan Penelitian dan Publikasi Ilmiah (Beban Kinerja SISTER: ${penel} SKS)`,
+                credit_score: penel,
+                target_qty: 1,
+                target_output: 'Artikel Jurnal Ilmiah',
+                target_quality: 100,
+                target_time: 12,
+                target_time_unit: 'Bulan'
+            });
+        }
+
+        const peng = extractSks('Pelaksanaan\\s+Pengabdian');
+        if (peng !== null && peng > 0) {
+            items.push({
+                type: 'kreatifitas',
+                category: 'Pengabdian',
+                activity: `Melaksanakan Pelaksanaan Pengabdian kepada Masyarakat (Beban Kinerja SISTER: ${peng} SKS)`,
+                credit_score: peng,
+                target_qty: 1,
+                target_output: 'Laporan Pengabdian',
+                target_quality: 100,
+                target_time: 12,
+                target_time_unit: 'Bulan'
+            });
+        }
+
+        const penuj = extractSks('Pelaksanaan\\s+Penunjang');
+        if (penuj !== null && penuj > 0) {
+            items.push({
+                type: 'penunjang',
+                category: 'Penunjang',
+                activity: `Melaksanakan Kegiatan Penunjang Tugas Dosen (Beban Kinerja SISTER: ${penuj} SKS)`,
+                credit_score: penuj,
+                target_qty: 1,
+                target_output: 'SK Penugasan',
+                target_quality: 100,
+                target_time: 12,
+                target_time_unit: 'Bulan'
+            });
+        }
+
+        const buku = extractSks('Menulis\\s+buku\\s+ajar');
+        if (buku !== null && buku > 0) {
+            items.push({
+                type: 'utama',
+                category: 'Pendidikan',
+                activity: `Menulis buku ajar/buku teks ber-ISBN sebagai bahan pembelajaran (${buku} buku)`,
+                credit_score: buku,
+                target_qty: buku,
+                target_output: 'Buku Ajar Ber-ISBN',
+                target_quality: 100,
+                target_time: 12,
+                target_time_unit: 'Bulan'
+            });
+        }
+
+        if (items.length === 0) {
+            alert('Tidak ditemukan data pola tabel BKD SISTER. Pastikan menyalin tabel Simpulan / Rekap BKD dari halaman SISTER.');
+            return;
+        }
+
+        closePasteSisterModal();
+        pendingLkdItems = items;
+        renderLkdModalItems(items);
+        document.getElementById('check-all-lkd').checked = true;
+        document.getElementById('lkd-modal').classList.remove('hidden');
     }
 
     function importLKD() {
@@ -737,6 +950,31 @@
         $(document).on('change', '#check-all-lkd', function() {
             $('.lkd-item-checkbox').prop('checked', $(this).prop('checked'));
         });
+
+        // Setup Bookmarklet link href
+        const p2kpBaseUrl = window.location.origin + window.location.pathname;
+        const bkmScript = "javascript:(function(){var items=[];var textAll=document.body.innerText;var extractSks=function(k){var re=new RegExp(k+'[\\\\s\\\\S]*?([\\\\d]+(?:[\\\\.,][\\\\d]+)?)','i');var m=textAll.match(re);return m&&m[1]?parseFloat(m[1].replace(',','.')):null;};var pend=extractSks('Pelaksanaan\\\\s+Pendidikan');if(pend&&pend>0){items.push({type:'utama',category:'Pendidikan',activity:'Melaksanakan Pelaksanaan Pendidikan dan Pembelajaran (SISTER: '+pend+' SKS)',credit_score:pend,target_qty:1,target_output:'Laporan BKD / SK',target_quality:100,target_time:12,target_time_unit:'Bulan'});}var penel=extractSks('Pelaksanaan\\\\s+Penelitian');if(penel&&penel>0){items.push({type:'tambahan',category:'Penelitian',activity:'Melaksanakan Pelaksanaan Penelitian dan Publikasi Ilmiah (SISTER: '+penel+' SKS)',credit_score:penel,target_qty:1,target_output:'Artikel Jurnal Ilmiah',target_quality:100,target_time:12,target_time_unit:'Bulan'});}var peng=extractSks('Pelaksanaan\\\\s+Pengabdian');if(peng&&peng>0){items.push({type:'kreatifitas',category:'Pengabdian',activity:'Melaksanakan Pelaksanaan Pengabdian kepada Masyarakat (SISTER: '+peng+' SKS)',credit_score:peng,target_qty:1,target_output:'Laporan Pengabdian',target_quality:100,target_time:12,target_time_unit:'Bulan'});}var penuj=extractSks('Pelaksanaan\\\\s+Penunjang');if(penuj&&penuj>0){items.push({type:'penunjang',category:'Penunjang',activity:'Melaksanakan Kegiatan Penunjang Tugas Dosen (SISTER: '+penuj+' SKS)',credit_score:penuj,target_qty:1,target_output:'SK Penugasan',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(items.length===0){alert('Gagal mendeteksi data tabel BKD. Pastikan Anda berada di halaman Rekap Kegiatan / Simpulan BKD SISTER.');return;}var jsonStr=JSON.stringify(items);if(navigator.clipboard){navigator.clipboard.writeText(jsonStr);}if(confirm('Berhasil meng-crawl '+items.length+' data kinerja dari SISTER!\\n\\nBuka formulir P2KP sekarang untuk menerapkan?')){window.open('" + p2kpBaseUrl + "?crawl_data='+encodeURIComponent(jsonStr),'_blank');}})();";
+        
+        const bkmLink = document.getElementById('sister-bookmarklet-link');
+        if (bkmLink) {
+            bkmLink.setAttribute('href', bkmScript);
+        }
+
+        // Cek apakah ada data crawl di URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('crawl_data')) {
+            try {
+                const crawled = JSON.parse(decodeURIComponent(urlParams.get('crawl_data')));
+                if (Array.isArray(crawled) && crawled.length > 0) {
+                    pendingLkdItems = crawled;
+                    renderLkdModalItems(crawled);
+                    document.getElementById('check-all-lkd').checked = true;
+                    document.getElementById('lkd-modal').classList.remove('hidden');
+                }
+            } catch(e) {
+                console.error('Error parsing crawl_data:', e);
+            }
+        }
     });
 </script>
         </div>
