@@ -169,7 +169,7 @@
         </div>
     </div>
 
-    <!-- Integrasi Tarik Data dari SISTER Section -->
+    <!-- Integrasi Tarik Data dari SISTER & Tahun Sebelumnya Section -->
     <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6 border-l-4 border-indigo-600">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -179,17 +179,66 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                         </svg>
                     </span>
-                    <h3 class="text-lg font-medium leading-6 text-slate-900">Tarik Data dari SISTER</h3>
+                    <h3 class="text-lg font-medium leading-6 text-slate-900">Tarik Data Otomatis</h3>
                 </div>
                 <p class="mt-2 text-sm text-slate-500">
-                    Tarik dan sinkronisasikan capaian kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang) langsung dari sistem <strong>SISTER Kemendikbudristek</strong> untuk mengisi formulir secara otomatis.
+                    Isi formulir P2KP secara cepat dengan menarik data <strong>Tahun/Periode Sebelumnya</strong> atau sinkronisasi langsung dari <strong>SISTER Kemendikbudristek</strong>.
                 </p>
             </div>
-            <div class="mt-5 md:mt-0 md:col-span-2">
+            <div class="mt-5 md:mt-0 md:col-span-2 space-y-4">
+                {{-- OPSI 1: Tarik dari Tahun Sebelumnya --}}
+                <div class="bg-indigo-50/70 p-4 rounded-lg border border-indigo-200">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-bold text-indigo-900 flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Opsi 1: Tarik dari Tahun Sebelumnya
+                        </span>
+                        <span class="text-xs text-indigo-700 font-medium bg-indigo-100 px-2 py-0.5 rounded-full">Salin Penilaian Lama</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+                        <div class="sm:col-span-7">
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Pilih Tahun Dokumen Sebelumnya</label>
+                            <select id="tarik_tahun_sebelumnya" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                @php
+                                    $prevYearList = isset($previousYears) && count($previousYears) > 0 ? $previousYears : collect([date('Y') - 1, date('Y') - 2, date('Y') - 3]);
+                                @endphp
+                                @foreach($prevYearList as $py)
+                                    <option value="{{ $py }}">Tahun Penilaian {{ $py }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="sm:col-span-5">
+                            <button type="button" id="btn-tarik-tahun-lalu" onclick="tarikDariTahunSebelumnya()" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+                                </svg>
+                                <span id="btn-tarik-tahun-text">Tarik Data Tahun Lalu</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="mt-2 text-xs text-indigo-700/80">Otomatis mengisi target kegiatan, pejabat penilai, dan unsur nilai perilaku dari dokumen P2KP pegawai yang dipilih di tahun sebelumnya.</p>
+                </div>
+
+                {{-- OPSI 2: Tarik dari SISTER --}}
                 <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            Opsi 2: Tarik Data dari Portal SISTER Kemendikbudristek
+                        </span>
+                        <span class="text-xs text-slate-500 flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                            Terhubung SISTER
+                        </span>
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1">Tahun Ajaran / Akademik</label>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Tahun Ajaran / Akademik</label>
                             <select id="sister_tahun_ajaran" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 @php
                                     $currentYear = (int) date('Y');
@@ -200,7 +249,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1">Semester</label>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Semester</label>
                             <select id="sister_semester" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 <option value="all">Semester Ganjil & Genap (1 Tahun Penuh)</option>
                                 <option value="ganjil">Semester Ganjil</option>
@@ -211,7 +260,7 @@
 
                     <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
                         <div class="flex flex-wrap items-center gap-2">
-                            <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                            <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                                 </svg>
@@ -228,14 +277,8 @@
                                 Bookmarklet 1-Klik
                             </button>
                         </div>
-
-                        <span class="text-xs text-slate-500 flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                            Terhubung API SISTER Kemendikbudristek
-                        </span>
                     </div>
                 </div>
-                <p class="mt-2 text-xs text-slate-500">Sistem akan menarik data kegiatan Tridharma berdasarkan pegawai yang dipilih dan memetakannya ke dalam formulir P2KP.</p>
             </div>
         </div>
     </div>
@@ -596,6 +639,105 @@
         `;
         table.appendChild(newBody);
         rowCount++;
+    }
+
+    function tarikDariTahunSebelumnya() {
+        const employeeSelect = document.querySelector('select[name="employee_id"]');
+        let employeeId = employeeSelect ? employeeSelect.value : null;
+
+        if (!employeeId && employeeSelect && employeeSelect.options.length > 1) {
+            for (let i = 0; i < employeeSelect.options.length; i++) {
+                if (employeeSelect.options[i].value) {
+                    employeeSelect.selectedIndex = i;
+                    employeeId = employeeSelect.options[i].value;
+                    if (window.jQuery && $(employeeSelect).data('select2')) {
+                        $(employeeSelect).val(employeeId).trigger('change');
+                    }
+                    break;
+                }
+            }
+        }
+
+        const yearSelect = document.getElementById('tarik_tahun_sebelumnya');
+        const selectedYear = yearSelect ? yearSelect.value : '';
+
+        const btn = document.getElementById('btn-tarik-tahun-lalu');
+        const btnText = document.getElementById('btn-tarik-tahun-text');
+        const originalText = btnText ? btnText.innerText : 'Tarik Data Tahun Lalu';
+
+        if (btn) btn.disabled = true;
+        if (btnText) btnText.innerText = 'Mengambil data P2KP ' + selectedYear + '...';
+
+        const url = '{{ route("p2kp.previous-year-data", [], false) }}?employee_id=' + encodeURIComponent(employeeId || '') + '&year=' + encodeURIComponent(selectedYear || '');
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw new Error(err.message || 'Data tidak ditemukan'); });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+
+            if (data.success && data.source_p2kp) {
+                const src = data.source_p2kp;
+                
+                // Isi Pejabat Penilai & Atasan jika belum ada
+                const ratingSelect = document.querySelector('select[name="rating_official_id"]');
+                if (ratingSelect && src.rating_official_id) {
+                    ratingSelect.value = src.rating_official_id;
+                    if (window.jQuery && $(ratingSelect).data('select2')) {
+                        $(ratingSelect).val(src.rating_official_id).trigger('change');
+                    }
+                }
+
+                const higherSelect = document.querySelector('select[name="higher_official_id"]');
+                if (higherSelect && src.higher_official_id) {
+                    higherSelect.value = src.higher_official_id;
+                    if (window.jQuery && $(higherSelect).data('select2')) {
+                        $(higherSelect).val(src.higher_official_id).trigger('change');
+                    }
+                }
+
+                // Isi Nilai Perilaku Kerja jika bernilai > 0
+                if (src.service_orientation) document.querySelector('input[name="service_orientation"]').value = src.service_orientation;
+                if (src.integrity) document.querySelector('input[name="integrity"]').value = src.integrity;
+                if (src.commitment) document.querySelector('input[name="commitment"]').value = src.commitment;
+                if (src.discipline) document.querySelector('input[name="discipline"]').value = src.discipline;
+                if (src.cooperation) document.querySelector('input[name="cooperation"]').value = src.cooperation;
+                if (src.leadership && document.querySelector('input[name="leadership"]')) {
+                    document.querySelector('input[name="leadership"]').value = src.leadership;
+                }
+                if (src.location && document.querySelector('input[name="location"]')) {
+                    document.querySelector('input[name="location"]').value = src.location;
+                }
+
+                // Masukkan kegiatan-kegiatan ke modal LKD / Review agar bisa dipilih
+                if (Array.isArray(data.items) && data.items.length > 0) {
+                    pendingLkdItems = data.items;
+                    renderLkdModalItems(pendingLkdItems);
+                    document.getElementById('check-all-lkd').checked = true;
+                    document.getElementById('lkd-modal').classList.remove('hidden');
+                } else {
+                    alert('Data P2KP tahun sebelumnya berhasil dimuat, tetapi tidak memiliki rincian kegiatan.');
+                }
+            } else {
+                alert(data.message || 'Tidak ditemukan dokumen P2KP tahun sebelumnya.');
+            }
+        })
+        .catch(error => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+            console.error('Error fetching previous year P2KP:', error);
+            alert(error.message || 'Gagal memuat data dari tahun sebelumnya.');
+        });
     }
 
     function tarikDataSister() {

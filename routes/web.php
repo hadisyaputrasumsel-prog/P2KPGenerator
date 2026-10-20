@@ -122,6 +122,8 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('p2kp.import-lkd', $request->all());
     })->name('p2kp.fetch-sister');
 
+    Route::get('/p2kp/previous-year-data', [P2kpController::class, 'getPreviousYearData'])->name('p2kp.previous-year-data');
+
     // Admin Settings
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings');
     Route::post('/admin/settings', [SettingController::class, 'update'])->name('admin.settings.update');

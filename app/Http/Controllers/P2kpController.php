@@ -57,7 +57,93 @@ class P2kpController extends Controller
     public function create()
     {
         $pegawais = Pegawai::all();
-        return view('p2kp.create', compact('pegawais'));
+        $previousYears = P2kp::selectRaw('YEAR(period_start) as year')
+            ->whereNotNull('period_start')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year')
+            ->filter();
+
+        return view('p2kp.create', compact('pegawais', 'previousYears'));
+    }
+
+    public function getPreviousYearData(Request $request)
+    {
+        $employeeId = $request->get('employee_id');
+        $year = $request->get('year');
+
+        $query = P2kp::with(['items' => function($q) {
+            $q->orderBy('order', 'asc')->orderBy('id', 'asc');
+        }]);
+
+        if ($employeeId) {
+            $query->where('employee_id', $employeeId);
+        }
+
+        if ($year) {
+            $query->where(function($q) use ($year) {
+                $q->whereYear('period_start', $year)
+                  ->orWhereYear('period_end', $year);
+            });
+        }
+
+        // Ambil data P2KP tahun sebelumnya (yang paling baru di periode tersebut)
+        $previousP2kp = $query->latest('period_start')->first();
+
+        // Jika tidak ketemu berdasarkan pegawai spesifik di tahun itu, coba cari P2KP terakhir dari pegawai tersebut
+        if (!$previousP2kp && $employeeId) {
+            $previousP2kp = P2kp::with(['items' => function($q) {
+                $q->orderBy('order', 'asc')->orderBy('id', 'asc');
+            }])
+            ->where('employee_id', $employeeId)
+            ->latest('period_start')
+            ->first();
+        }
+
+        if (!$previousP2kp) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak ditemukan dokumen P2KP pada tahun/periode sebelumnya untuk pegawai yang dipilih.'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'source_p2kp' => [
+                'id' => $previousP2kp->id,
+                'employee_id' => $previousP2kp->employee_id,
+                'rating_official_id' => $previousP2kp->rating_official_id,
+                'higher_official_id' => $previousP2kp->higher_official_id,
+                'period_start' => $previousP2kp->period_start,
+                'period_end' => $previousP2kp->period_end,
+                'location' => $previousP2kp->location,
+                'service_orientation' => $previousP2kp->service_orientation,
+                'integrity' => $previousP2kp->integrity,
+                'commitment' => $previousP2kp->commitment,
+                'discipline' => $previousP2kp->discipline,
+                'cooperation' => $previousP2kp->cooperation,
+                'leadership' => $previousP2kp->leadership,
+                'recommendation' => $previousP2kp->recommendation,
+            ],
+            'items' => $previousP2kp->items->map(function($item) {
+                return [
+                    'type' => $item->type,
+                    'activity' => $item->activity,
+                    'credit_score' => $item->credit_score,
+                    'real_credit_score' => $item->real_credit_score,
+                    'target_qty' => $item->target_qty,
+                    'target_output' => $item->target_output,
+                    'real_qty' => $item->real_qty,
+                    'real_output' => $item->real_output,
+                    'target_quality' => $item->target_quality,
+                    'real_quality' => $item->real_quality,
+                    'target_time' => $item->target_time,
+                    'target_time_unit' => $item->target_time_unit,
+                    'real_time' => $item->real_time,
+                    'real_time_unit' => $item->real_time_unit,
+                ];
+            })
+        ]);
     }
 
     public function store(Request $request)
