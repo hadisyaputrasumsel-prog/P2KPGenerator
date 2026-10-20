@@ -15,15 +15,43 @@ class P2kpController extends Controller
         $query = P2kp::with(['employee', 'ratingOfficial'])->latest();
 
         if ($request->filled('search')) {
-            $search = $request->get('search');
+            $search = trim($request->get('search'));
             $query->whereHas('employee', function($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                   ->orWhere('nuptk', 'like', "%{$search}%");
             });
         }
 
-        $p2kps = $query->get();
-        return view('p2kp.index', compact('p2kps'));
+        if ($request->filled('year')) {
+            $year = $request->get('year');
+            $query->where(function ($q) use ($year) {
+                $q->whereYear('period_start', $year)
+                  ->orWhereYear('period_end', $year);
+            });
+        }
+
+        if ($request->filled('period_start')) {
+            $query->whereDate('period_start', '>=', $request->get('period_start'));
+        }
+
+        if ($request->filled('period_end')) {
+            $query->whereDate('period_end', '<=', $request->get('period_end'));
+        }
+
+        $availableYears = P2kp::selectRaw('YEAR(period_start) as year')
+            ->whereNotNull('period_start')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year')
+            ->filter();
+
+        if ($availableYears->isEmpty()) {
+            $currentYear = (int) date('Y');
+            $availableYears = collect([$currentYear, $currentYear - 1]);
+        }
+
+        $p2kps = $query->paginate(15)->withQueryString();
+        return view('p2kp.index', compact('p2kps', 'availableYears'));
     }
 
     public function create()
