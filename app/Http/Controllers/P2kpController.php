@@ -117,6 +117,7 @@ class P2kpController extends Controller
                 'period_start' => $previousP2kp->period_start,
                 'period_end' => $previousP2kp->period_end,
                 'location' => $previousP2kp->location,
+                'date_signed' => $previousP2kp->date_signed,
                 'service_orientation' => $previousP2kp->service_orientation,
                 'integrity' => $previousP2kp->integrity,
                 'commitment' => $previousP2kp->commitment,
@@ -124,6 +125,9 @@ class P2kpController extends Controller
                 'cooperation' => $previousP2kp->cooperation,
                 'leadership' => $previousP2kp->leadership,
                 'recommendation' => $previousP2kp->recommendation,
+                'objection' => $previousP2kp->objection,
+                'response' => $previousP2kp->response,
+                'decision' => $previousP2kp->decision,
             ],
             'items' => $previousP2kp->items->map(function($item) {
                 return [
