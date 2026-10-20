@@ -28,8 +28,8 @@
 
 {{-- OPSI 1: Tarik dari Tahun Sebelumnya (Tepat di bawah teks Buat P2KP Baru) --}}
 <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 rounded-xl p-5 mb-8 shadow-sm">
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="space-y-1">
+    <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-100 pb-3">
             <div class="flex items-center gap-2">
                 <span class="inline-flex items-center justify-center p-1.5 bg-indigo-600 text-white rounded-lg shadow-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,19 +39,25 @@
                 <h3 class="text-base font-bold text-indigo-950">
                     Opsi 1: Tarik dari Tahun Sebelumnya
                 </h3>
-                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
-                    Salin 100% Isian P2KP
-                </span>
             </div>
-            <p class="text-xs text-indigo-800/80">
-                Otomatis menyalin seluruh data P2KP tahun lalu: Pejabat Penilai, Atasan, Tanggal/Lokasi, Perilaku Kerja, Rekomendasi, hingga <strong>seluruh rincian tabel kegiatan</strong>.
-            </p>
+            <span class="inline-flex items-center text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200 self-start sm:self-auto">
+                Salin 100% Isian P2KP
+            </span>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2.5">
-            <div class="w-48">
-                <label class="sr-only">Pilih Tahun</label>
-                <select id="tarik_tahun_sebelumnya" class="block w-full text-sm font-medium rounded-lg border-indigo-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+            <div class="md:col-span-6">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Pegawai yang Dinilai</label>
+                <select id="tarik_pegawai_id" class="select2-dropdown block w-full text-sm rounded-lg border-indigo-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 bg-white">
+                    <option value="">-- Pilih Pegawai --</option>
+                    @foreach($pegawais as $p)
+                        <option value="{{ $p->id }}">{{ $p->name }} ({{ $p->nuptk }})</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="md:col-span-3">
+                <label class="block text-xs font-bold text-slate-700 mb-1">Tahun Dokumen</label>
+                <select id="tarik_tahun_sebelumnya" class="block w-full text-sm font-medium rounded-lg border-indigo-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 bg-white py-2">
                     @php
                         $prevYearList = isset($previousYears) && count($previousYears) > 0 ? $previousYears : collect([date('Y') - 1, date('Y') - 2, date('Y') - 3]);
                     @endphp
@@ -60,13 +66,18 @@
                     @endforeach
                 </select>
             </div>
-            <button type="button" id="btn-tarik-tahun-lalu" onclick="tarikDariTahunSebelumnya()" class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
-                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
-                </svg>
-                <span id="btn-tarik-tahun-text">Tarik Data Tahun Lalu</span>
-            </button>
+            <div class="md:col-span-3">
+                <button type="button" id="btn-tarik-tahun-lalu" onclick="tarikDariTahunSebelumnya()" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+                    </svg>
+                    <span id="btn-tarik-tahun-text">Tarik Data Tahun Lalu</span>
+                </button>
+            </div>
         </div>
+        <p class="text-xs text-indigo-800/80">
+            Pilih pegawai & tahun dokumen di atas, lalu klik tombol untuk menyalin otomatis Pejabat Penilai, Atasan, Perilaku Kerja, Rekomendasi, hingga seluruh rincian kegiatan ke formulir ini.
+        </p>
     </div>
 </div>
 
@@ -650,19 +661,28 @@
     }
 
     function tarikDariTahunSebelumnya() {
-        const employeeSelect = document.querySelector('select[name="employee_id"]');
-        let employeeId = employeeSelect ? employeeSelect.value : null;
+        const topPegawaiSelect = document.getElementById('tarik_pegawai_id');
+        const formEmployeeSelect = document.querySelector('select[name="employee_id"]');
+        
+        let employeeId = topPegawaiSelect && topPegawaiSelect.value ? topPegawaiSelect.value : (formEmployeeSelect ? formEmployeeSelect.value : null);
 
-        if (!employeeId && employeeSelect && employeeSelect.options.length > 1) {
-            for (let i = 0; i < employeeSelect.options.length; i++) {
-                if (employeeSelect.options[i].value) {
-                    employeeSelect.selectedIndex = i;
-                    employeeId = employeeSelect.options[i].value;
-                    if (window.jQuery && $(employeeSelect).data('select2')) {
-                        $(employeeSelect).val(employeeId).trigger('change');
-                    }
-                    break;
-                }
+        if (!employeeId) {
+            alert('Silakan pilih Nama Pegawai yang Dinilai terlebih dahulu!');
+            if (topPegawaiSelect) topPegawaiSelect.focus();
+            return;
+        }
+
+        // Sinkronisasi pilihan pegawai ke form utama
+        if (formEmployeeSelect) {
+            formEmployeeSelect.value = employeeId;
+            if (window.jQuery && $(formEmployeeSelect).data('select2')) {
+                $(formEmployeeSelect).val(employeeId).trigger('change');
+            }
+        }
+        if (topPegawaiSelect) {
+            topPegawaiSelect.value = employeeId;
+            if (window.jQuery && $(topPegawaiSelect).data('select2')) {
+                $(topPegawaiSelect).val(employeeId).trigger('change');
             }
         }
 
@@ -1353,6 +1373,23 @@
         // Select All checkbox logic for LKD Modal
         $(document).on('change', '#check-all-lkd', function() {
             $('.lkd-item-checkbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Sinkronisasi otomatis saat user memilih pegawai di Opsi 1 atau di Form Informasi Dasar
+        $('#tarik_pegawai_id').on('change', function() {
+            const val = $(this).val();
+            const formEmp = $('select[name="employee_id"]');
+            if (formEmp.val() !== val) {
+                formEmp.val(val).trigger('change.select2');
+            }
+        });
+
+        $('select[name="employee_id"]').on('change', function() {
+            const val = $(this).val();
+            const topEmp = $('#tarik_pegawai_id');
+            if (topEmp.val() !== val) {
+                topEmp.val(val).trigger('change.select2');
+            }
         });
 
         // Setup Bookmarklet link href
