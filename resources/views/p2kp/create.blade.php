@@ -1235,12 +1235,30 @@
             alert('Pilih setidaknya satu kegiatan untuk diimport.');
             return;
         }
+
+        // Tentukan tabel apa saja yang terlibat agar bisa dikosongkan terlebih dahulu (tidak menumpuk baris lama)
+        const typesToClear = new Set();
+        checkboxes.forEach(cb => {
+            const index = cb.value;
+            const selectEl = document.querySelector(`.mapping-select[data-index="${index}"]`);
+            const type = selectEl ? selectEl.value : (pendingLkdItems[index]?.type || 'utama');
+            typesToClear.add(type);
+        });
+
+        // Kosongkan tabel terkait (Kegiatan Tugas Jabatan, Tambahan, atau Kreatifitas)
+        typesToClear.forEach(type => {
+            const table = document.getElementById(`${type}-table`);
+            if (table) {
+                const bodies = table.querySelectorAll('tbody');
+                bodies.forEach(b => b.remove());
+            }
+        });
         
         checkboxes.forEach(cb => {
             const index = cb.value;
             const item = pendingLkdItems[index];
             const selectEl = document.querySelector(`.mapping-select[data-index="${index}"]`);
-            const type = selectEl ? selectEl.value : 'utama'; 
+            const type = selectEl ? selectEl.value : (item.type || 'utama'); 
             
             const table = document.getElementById(`${type}-table`);
             if (!table) {
@@ -1259,7 +1277,7 @@
                             <textarea name="items[${rowCount}][activity]" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>${item.activity}</textarea>
                         </div>
                     </td>
-                        </tr>
+                </tr>
                 <tr class="bg-slate-100 text-slate-700">
                     <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">AK</th>
                     <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kuantitas & Output</th>
@@ -1277,68 +1295,51 @@
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                 </tr>
-                        <tr class="bg-slate-100 text-slate-700">
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kuantitas & Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Waktu & Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr class="bg-slate-100 text-slate-700">
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                        </tr>
-                        <tr>
-                            <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null ? item.credit_score + 0 : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            
-                            <!-- Kuantitas -->
-                            <td class="p-2 border border-slate-300 align-top bg-white">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                </div>
-                            </td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                </div>
-                            </td>
+                <tr>
+                    <!-- AK -->
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null && item.credit_score !== undefined ? item.credit_score : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="${item.real_credit_score !== null && item.real_credit_score !== undefined ? item.real_credit_score : ''}" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    
+                    <!-- Kuantitas -->
+                    <td class="p-2 border border-slate-300 align-top bg-white">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty || 1}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output || 'Dokumen'}" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                    </td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty !== null && item.real_qty !== undefined ? item.real_qty : (item.target_qty || '')}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="items[${rowCount}][real_output]" value="${item.real_output || ''}" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </td>
 
-                            <!-- Kualitas -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+                    <!-- Kualitas -->
+                    <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality || 100}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality !== null && item.real_quality !== undefined ? item.real_quality : (item.target_quality || '')}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
 
-                            <!-- Waktu -->
-                            <td class="p-2 border border-slate-300 align-top bg-white">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                </div>
-                            </td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                </div>
-                            </td>
+                    <!-- Waktu -->
+                    <td class="p-2 border border-slate-300 align-top bg-white">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time || 12}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit || 'Bulan'}" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                    </td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time !== null && item.real_time !== undefined ? item.real_time : (item.target_time || '')}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="items[${rowCount}][real_time_unit]" value="${item.real_time_unit || (item.target_time_unit || 'Bulan')}" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </td>
 
-                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                    <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                         <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                         </button>
                     </td>
-                        </tr>
+                </tr>
             `;
             table.appendChild(newBody);
             rowCount++;
