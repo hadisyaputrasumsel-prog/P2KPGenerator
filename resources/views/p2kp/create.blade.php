@@ -20,9 +20,53 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-<div class="md:flex md:items-center md:justify-between mb-8">
+<div class="md:flex md:items-center md:justify-between mb-6">
     <div class="flex-1 min-w-0">
         <h2 class="text-2xl font-bold leading-7 text-slate-900 sm:text-3xl sm:truncate">Buat P2KP Baru</h2>
+    </div>
+</div>
+
+{{-- OPSI 1: Tarik dari Tahun Sebelumnya (Tepat di bawah teks Buat P2KP Baru) --}}
+<div class="bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 rounded-xl p-5 mb-8 shadow-sm">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center p-1.5 bg-indigo-600 text-white rounded-lg shadow-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </span>
+                <h3 class="text-base font-bold text-indigo-950">
+                    Opsi 1: Tarik dari Tahun Sebelumnya
+                </h3>
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
+                    Salin 100% Isian P2KP
+                </span>
+            </div>
+            <p class="text-xs text-indigo-800/80">
+                Otomatis menyalin seluruh data P2KP tahun lalu: Pejabat Penilai, Atasan, Tanggal/Lokasi, Perilaku Kerja, Rekomendasi, hingga <strong>seluruh rincian tabel kegiatan</strong>.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5">
+            <div class="w-48">
+                <label class="sr-only">Pilih Tahun</label>
+                <select id="tarik_tahun_sebelumnya" class="block w-full text-sm font-medium rounded-lg border-indigo-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 bg-white">
+                    @php
+                        $prevYearList = isset($previousYears) && count($previousYears) > 0 ? $previousYears : collect([date('Y') - 1, date('Y') - 2, date('Y') - 3]);
+                    @endphp
+                    @foreach($prevYearList as $py)
+                        <option value="{{ $py }}">Tahun Penilaian {{ $py }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="button" id="btn-tarik-tahun-lalu" onclick="tarikDariTahunSebelumnya()" class="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+                </svg>
+                <span id="btn-tarik-tahun-text">Tarik Data Tahun Lalu</span>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -169,59 +213,23 @@
         </div>
     </div>
 
-    <!-- Integrasi Tarik Data dari SISTER & Tahun Sebelumnya Section -->
-    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6 border-l-4 border-indigo-600">
+    <!-- Integrasi Tarik Data dari SISTER Section -->
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6 border-l-4 border-emerald-600">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center justify-center p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                    <span class="inline-flex items-center justify-center p-2 bg-emerald-50 text-emerald-700 rounded-lg">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
                     </span>
-                    <h3 class="text-lg font-medium leading-6 text-slate-900">Tarik Data Otomatis</h3>
+                    <h3 class="text-lg font-medium leading-6 text-slate-900">Opsi 2: Tarik Data dari SISTER</h3>
                 </div>
                 <p class="mt-2 text-sm text-slate-500">
-                    Isi formulir P2KP secara cepat dengan menarik data <strong>Tahun/Periode Sebelumnya</strong> atau sinkronisasi langsung dari <strong>SISTER Kemendikbudristek</strong>.
+                    Tarik dan sinkronisasikan capaian kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang) langsung dari portal <strong>SISTER Kemendikbudristek</strong>.
                 </p>
             </div>
-            <div class="mt-5 md:mt-0 md:col-span-2 space-y-4">
-                {{-- OPSI 1: Tarik dari Tahun Sebelumnya --}}
-                <div class="bg-indigo-50/70 p-4 rounded-lg border border-indigo-200">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm font-bold text-indigo-900 flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            Opsi 1: Tarik dari Tahun Sebelumnya
-                        </span>
-                        <span class="text-xs text-indigo-700 font-medium bg-indigo-100 px-2 py-0.5 rounded-full">Salin Penilaian Lama</span>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
-                        <div class="sm:col-span-7">
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Pilih Tahun Dokumen Sebelumnya</label>
-                            <select id="tarik_tahun_sebelumnya" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                @php
-                                    $prevYearList = isset($previousYears) && count($previousYears) > 0 ? $previousYears : collect([date('Y') - 1, date('Y') - 2, date('Y') - 3]);
-                                @endphp
-                                @foreach($prevYearList as $py)
-                                    <option value="{{ $py }}">Tahun Penilaian {{ $py }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="sm:col-span-5">
-                            <button type="button" id="btn-tarik-tahun-lalu" onclick="tarikDariTahunSebelumnya()" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
-                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
-                                </svg>
-                                <span id="btn-tarik-tahun-text">Tarik Data Tahun Lalu</span>
-                            </button>
-                        </div>
-                    </div>
-                    <p class="mt-2 text-xs text-indigo-700/80">Otomatis mengisi target kegiatan, pejabat penilai, dan unsur nilai perilaku dari dokumen P2KP pegawai yang dipilih di tahun sebelumnya.</p>
-                </div>
-
-                {{-- OPSI 2: Tarik dari SISTER --}}
+            <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-4">
                     <div class="flex items-center justify-between mb-1">
                         <span class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
