@@ -165,28 +165,60 @@
         </div>
     </div>
 
-    <!-- Import LKD Section -->
-    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6">
+    <!-- Integrasi Tarik Data dari SISTER Section -->
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6 border-l-4 border-indigo-600">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
-                <h3 class="text-lg font-medium leading-6 text-slate-900">Import LKD (2 Berkas)</h3>
-                <p class="mt-1 text-sm text-slate-500">Unggah 2 file PDF LKD (Semester Ganjil & Genap) untuk menambahkan otomatis form.</p>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                    </span>
+                    <h3 class="text-lg font-medium leading-6 text-slate-900">Tarik Data dari SISTER</h3>
+                </div>
+                <p class="mt-2 text-sm text-slate-500">
+                    Tarik dan sinkronisasikan capaian kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang) langsung dari sistem <strong>SISTER Kemendikbudristek</strong> untuk menambahkan baris formulir secara otomatis.
+                </p>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">LKD Semester Ganjil</label>
-                        <input type="file" id="lkd_file_1" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Tahun Ajaran / Akademik</label>
+                            <select id="sister_tahun_ajaran" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                @php
+                                    $currentYear = (int) date('Y');
+                                @endphp
+                                @for($y = $currentYear; $y >= $currentYear - 4; $y--)
+                                    <option value="{{ $y }}/{{ $y + 1 }}">{{ $y }}/{{ $y + 1 }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Semester</label>
+                            <select id="sister_semester" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="all">Semester Ganjil & Genap (1 Tahun Penuh)</option>
+                                <option value="ganjil">Semester Ganjil</option>
+                                <option value="genap">Semester Genap</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">LKD Semester Genap</label>
-                        <input type="file" id="lkd_file_2" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-2">
+                        <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                            </svg>
+                            <span id="btn-tarik-text">Tarik Data dari SISTER</span>
+                        </button>
+                        <span class="text-xs text-slate-500 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                            Terhubung API SISTER Kemendikbudristek
+                        </span>
                     </div>
-                    <button type="button" onclick="importLKD()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
-                        Import LKD
-                    </button>
                 </div>
-                <p class="mt-2 text-xs text-slate-500">Sistem akan menambahkan baris otomatis ke formulir berdasarkan data LKD yang diunggah.</p>
+                <p class="mt-2 text-xs text-slate-500">Sistem akan menarik data kegiatan Tridharma berdasarkan pegawai yang dipilih dan memetakannya ke dalam formulir P2KP.</p>
             </div>
         </div>
     </div>
@@ -480,7 +512,7 @@
                 <div class="sm:flex sm:items-start">
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                            Pilih Kegiatan untuk Diimport
+                            Data Capaian Tri Dharma dari SISTER (Pilih Kegiatan untuk Diimport)
                         </h3>
                         <div class="mt-4 max-h-96 overflow-y-auto border border-gray-200 rounded-md">
                             <table class="min-w-full divide-y divide-gray-200">
@@ -504,7 +536,7 @@
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="button" onclick="insertSelectedLKD()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
-                    Import Terpilih
+                    Import ke Formulir
                 </button>
                 <button type="button" onclick="closeLkdModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                     Batal
@@ -616,34 +648,51 @@
         rowCount++;
     }
 
-    function importLKD() {
-        const fileInput1 = document.getElementById('lkd_file_1');
-        const fileInput2 = document.getElementById('lkd_file_2');
-        
-        if (!fileInput1.files.length && !fileInput2.files.length) {
-            alert('Pilih setidaknya satu file LKD!');
+    function tarikDataSister() {
+        const employeeSelect = document.querySelector('select[name="employee_id"]');
+        const employeeId = employeeSelect ? employeeSelect.value : '{{ $p2kp->employee_id }}';
+
+        if (!employeeId) {
+            alert('Silakan pilih Pegawai yang Dinilai terlebih dahulu di bagian Informasi Dasar!');
+            if (employeeSelect) employeeSelect.focus();
             return;
         }
-        
+
+        const tahunAjaran = document.getElementById('sister_tahun_ajaran') ? document.getElementById('sister_tahun_ajaran').value : '';
+        const semester = document.getElementById('sister_semester') ? document.getElementById('sister_semester').value : 'all';
+
+        const btn = document.getElementById('btn-tarik-sister');
+        const btnText = document.getElementById('btn-tarik-text');
+        const originalText = btnText ? btnText.innerText : 'Tarik Data dari SISTER';
+
+        if (btn) btn.disabled = true;
+        if (btnText) btnText.innerText = 'Menghubungkan ke SISTER...';
+
         const formData = new FormData();
-        if (fileInput1.files.length) formData.append('file1', fileInput1.files[0]);
-        if (fileInput2.files.length) formData.append('file2', fileInput2.files[0]);
+        formData.append('employee_id', employeeId);
+        formData.append('tahun_ajaran', tahunAjaran);
+        formData.append('semester', semester);
         formData.append('_token', '{{ csrf_token() }}');
-        
+
         fetch('{{ route("p2kp.import-lkd") }}', {
             method: 'POST',
             body: formData
         })
         .then(response => response.json())
         .then(data => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+
             if (data.success) {
                 pendingLkdItems = data.items;
                 const tbody = document.getElementById('lkd-items-list');
                 tbody.innerHTML = '';
                 
                 pendingLkdItems.forEach((item, index) => {
-                    const lkdType = item.type.toLowerCase();
-                    const defaultMapping = 'utama';
+                    const lkdType = (item.type || '').toLowerCase();
+                    let defaultMapping = 'utama';
+                    if (lkdType === 'tambahan') defaultMapping = 'tambahan';
+                    else if (lkdType === 'kreatifitas' || lkdType === 'penunjang') defaultMapping = 'kreatifitas';
 
                     tbody.innerHTML += `
                         <tr>
@@ -657,8 +706,14 @@
                                     <option value="kreatifitas" ${defaultMapping === 'kreatifitas' ? 'selected' : ''}>3. Kreatifitas / Penunjang</option>
                                 </select>
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900"><div class="max-w-md line-clamp-2" title="${item.activity}">${item.activity}</div></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${item.credit_score || '-'}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">
+                                <div class="max-w-md line-clamp-2" title="${item.activity}">${item.activity}</div>
+                                <div class="flex items-center gap-2 mt-1">
+                                    ${item.category ? `<span class="inline-block text-[11px] px-1.5 py-0.5 bg-indigo-50 text-indigo-700 font-semibold rounded">${item.category}</span>` : ''}
+                                    ${item.semester ? `<span class="inline-block text-[11px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Semester ${item.semester}</span>` : ''}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">${item.credit_score || '-'}</td>
                         </tr>
                     `;
                 });
@@ -666,13 +721,19 @@
                 document.getElementById('check-all-lkd').checked = true;
                 document.getElementById('lkd-modal').classList.remove('hidden');
             } else {
-                alert('Gagal mengambil LKD: ' + data.message);
+                alert('Gagal mengambil data SISTER: ' + (data.message || 'Terjadi kesalahan'));
             }
         })
         .catch(error => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
             console.error('Error:', error);
-            alert('Terjadi kesalahan saat memproses LKD.');
+            alert('Terjadi kesalahan saat menghubungi API SISTER.');
         });
+    }
+
+    function importLKD() {
+        tarikDataSister();
     }
 
     function closeLkdModal() {

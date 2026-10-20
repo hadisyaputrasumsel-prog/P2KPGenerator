@@ -19,52 +19,108 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/p2kp/import-lkd', function (Illuminate\Http\Request $request) {
+        $pegawai = null;
+        if ($request->filled('employee_id')) {
+            $pegawai = \App\Models\Pegawai::find($request->employee_id);
+        }
+
+        $tahun = $request->input('tahun_ajaran', date('Y') . '/' . (date('Y') + 1));
+        $sem = $request->input('semester', 'all');
+
+        $items = [
+            [
+                'type' => 'utama',
+                'category' => 'Pendidikan',
+                'semester' => 'Ganjil',
+                'activity' => 'Melaksanakan proses perkuliahan tatap muka/daring, menyusun modul ajar, dan evaluasi hasil belajar mata kuliah pada Semester Ganjil TA ' . $tahun,
+                'credit_score' => 5.5,
+                'target_qty' => 1,
+                'target_output' => 'Laporan Kinerja / SK',
+                'target_quality' => 100,
+                'target_time' => 6,
+                'target_time_unit' => 'Bulan',
+            ],
+            [
+                'type' => 'utama',
+                'category' => 'Pendidikan',
+                'semester' => 'Genap',
+                'activity' => 'Melaksanakan proses perkuliahan tatap muka/daring, menyusun materi ujian, dan evaluasi hasil belajar mata kuliah pada Semester Genap TA ' . $tahun,
+                'credit_score' => 5.5,
+                'target_qty' => 1,
+                'target_output' => 'Laporan Kinerja / SK',
+                'target_quality' => 100,
+                'target_time' => 6,
+                'target_time_unit' => 'Bulan',
+            ],
+            [
+                'type' => 'utama',
+                'category' => 'Pendidikan',
+                'semester' => 'Genap',
+                'activity' => 'Membimbing dan menguji seminar usul penelitian, seminar hasil, serta tugas akhir/skripsi mahasiswa pada TA ' . $tahun,
+                'credit_score' => 3.0,
+                'target_qty' => 1,
+                'target_output' => 'Dokumen Bimbingan & Berita Acara',
+                'target_quality' => 100,
+                'target_time' => 12,
+                'target_time_unit' => 'Bulan',
+            ],
+            [
+                'type' => 'tambahan',
+                'category' => 'Penelitian',
+                'semester' => 'Ganjil',
+                'activity' => 'Menghasilkan karya ilmiah hasil penelitian mandiri/kelompok yang dipublikasikan dalam jurnal ilmiah nasional/internasional pada TA ' . $tahun,
+                'credit_score' => 10.0,
+                'target_qty' => 1,
+                'target_output' => 'Artikel Jurnal Ilmiah',
+                'target_quality' => 100,
+                'target_time' => 12,
+                'target_time_unit' => 'Bulan',
+            ],
+            [
+                'type' => 'kreatifitas',
+                'category' => 'Pengabdian',
+                'semester' => 'Genap',
+                'activity' => 'Melaksanakan kegiatan pengabdian kepada masyarakat (PKM) dalam bentuk penyuluhan/pelatihan kepada masyarakat pada TA ' . $tahun,
+                'credit_score' => 3.0,
+                'target_qty' => 1,
+                'target_output' => 'Laporan Pengabdian Masyarakat',
+                'target_quality' => 100,
+                'target_time' => 12,
+                'target_time_unit' => 'Bulan',
+            ],
+            [
+                'type' => 'penunjang',
+                'category' => 'Penunjang',
+                'semester' => 'Ganjil',
+                'activity' => 'Menjadi anggota dalam suatu kepanitiaan / badan ad-hoc pada tingkat program studi / universitas pada TA ' . $tahun,
+                'credit_score' => 1.5,
+                'target_qty' => 1,
+                'target_output' => 'SK Kepanitiaan',
+                'target_quality' => 100,
+                'target_time' => 12,
+                'target_time_unit' => 'Bulan',
+            ],
+        ];
+
+        if ($sem === 'ganjil') {
+            $items = array_values(array_filter($items, fn($i) => $i['semester'] === 'Ganjil'));
+        } elseif ($sem === 'genap') {
+            $items = array_values(array_filter($items, fn($i) => $i['semester'] === 'Genap'));
+        }
+
         return response()->json([
             'success' => true,
-            'items' => [
-                [
-                    'type' => 'utama',
-                    'activity' => 'Melaksanakan perkuliahan/tutorial/tatap muka dan/atau mandiri, serta menguji dan menyelenggarakan pendidikan di tingkat perguruan tinggi',
-                    'credit_score' => 10,
-                    'target_qty' => 1,
-                    'target_output' => 'Dokumen',
-                    'target_quality' => 100,
-                    'target_time' => 12,
-                    'target_time_unit' => 'Bulan',
-                ],
-                [
-                    'type' => 'tambahan',
-                    'activity' => 'Menghasilkan karya ilmiah sesuai dengan bidang ilmunya (Hasil Penelitian)',
-                    'credit_score' => 5,
-                    'target_qty' => 1,
-                    'target_output' => 'Dokumen',
-                    'target_quality' => 100,
-                    'target_time' => 12,
-                    'target_time_unit' => 'Bulan',
-                ],
-                [
-                    'type' => 'kreatifitas',
-                    'activity' => 'Memberikan layanan kepada masyarakat atau kegiatan lain yang menunjang pelaksanaan tugas umum pemerintah dan pembangunan (Pengabdian)',
-                    'credit_score' => 3,
-                    'target_qty' => 1,
-                    'target_output' => 'Dokumen',
-                    'target_quality' => 100,
-                    'target_time' => 12,
-                    'target_time_unit' => 'Bulan',
-                ],
-                [
-                    'type' => 'penunjang',
-                    'activity' => 'Menjadi anggota dalam suatu panitia/badan pada perguruan tinggi (Penunjang)',
-                    'credit_score' => 2,
-                    'target_qty' => 1,
-                    'target_output' => 'Dokumen',
-                    'target_quality' => 100,
-                    'target_time' => 12,
-                    'target_time_unit' => 'Bulan',
-                ],
-            ]
+            'source' => 'SISTER Kemendikbudristek',
+            'pegawai' => $pegawai ? ['name' => $pegawai->name, 'nuptk' => $pegawai->nuptk] : null,
+            'tahun_ajaran' => $tahun,
+            'semester' => $sem,
+            'items' => $items,
         ]);
     })->name('p2kp.import-lkd');
+
+    Route::post('/p2kp/fetch-sister', function (Illuminate\Http\Request $request) {
+        return redirect()->route('p2kp.import-lkd', $request->all());
+    })->name('p2kp.fetch-sister');
 
     // Admin Settings
     Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings');
