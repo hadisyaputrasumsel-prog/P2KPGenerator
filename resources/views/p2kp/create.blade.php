@@ -1298,7 +1298,7 @@
                 <tr>
                     <!-- AK -->
                     <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null && item.credit_score !== undefined ? item.credit_score : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="${item.real_credit_score !== null && item.real_credit_score !== undefined ? item.real_credit_score : ''}" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="${item.real_credit_score !== null && item.real_credit_score !== undefined ? item.real_credit_score : (item.credit_score || '')}" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
                     
                     <!-- Kuantitas -->
                     <td class="p-2 border border-slate-300 align-top bg-white">
@@ -1309,14 +1309,14 @@
                     </td>
                     <td class="p-2 border border-slate-300 align-top bg-blue-50">
                         <div class="flex gap-1">
-                            <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty !== null && item.real_qty !== undefined ? item.real_qty : (item.target_qty || '')}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                            <input type="text" name="items[${rowCount}][real_output]" value="${item.real_output || ''}" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty !== null && item.real_qty !== undefined ? item.real_qty : (item.target_qty || 1)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="items[${rowCount}][real_output]" value="${item.real_output || (item.target_output || 'Dokumen')}" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                         </div>
                     </td>
 
                     <!-- Kualitas -->
                     <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality || 100}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
-                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality !== null && item.real_quality !== undefined ? item.real_quality : (item.target_quality || '')}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality !== null && item.real_quality !== undefined ? item.real_quality : (item.target_quality || 100)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
 
                     <!-- Waktu -->
                     <td class="p-2 border border-slate-300 align-top bg-white">
@@ -1327,7 +1327,7 @@
                     </td>
                     <td class="p-2 border border-slate-300 align-top bg-blue-50">
                         <div class="flex gap-1">
-                            <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time !== null && item.real_time !== undefined ? item.real_time : (item.target_time || '')}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time !== null && item.real_time !== undefined ? item.real_time : (item.target_time || 12)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                             <input type="text" name="items[${rowCount}][real_time_unit]" value="${item.real_time_unit || (item.target_time_unit || 'Bulan')}" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
                         </div>
                     </td>
