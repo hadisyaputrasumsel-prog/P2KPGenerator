@@ -230,7 +230,14 @@ class P2kpController extends Controller
     {
         $p2kp->load('items');
         $pegawais = Pegawai::all();
-        return view('p2kp.edit', compact('p2kp', 'pegawais'));
+        $previousYears = P2kp::selectRaw('YEAR(period_start) as year')
+            ->whereNotNull('period_start')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year')
+            ->filter();
+
+        return view('p2kp.edit', compact('p2kp', 'pegawais', 'previousYears'));
     }
 
     public function update(Request $request, P2kp $p2kp)

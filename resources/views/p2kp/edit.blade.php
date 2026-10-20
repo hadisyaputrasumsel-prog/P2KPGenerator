@@ -20,6 +20,66 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between mb-6">
+                <div class="flex-1 min-w-0">
+                    <h2 class="text-2xl font-bold leading-7 text-slate-900 sm:text-3xl sm:truncate">Edit P2KP</h2>
+                </div>
+            </div>
+
+            {{-- OPSI 1: Tarik dari Tahun Sebelumnya (Di bawah judul Edit P2KP) --}}
+            <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border-2 border-indigo-200 rounded-xl p-5 mb-8 shadow-sm">
+                <div class="space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-100 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="inline-flex items-center justify-center p-1.5 bg-indigo-600 text-white rounded-lg shadow-sm">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </span>
+                            <h3 class="text-base font-bold text-indigo-950">
+                                Opsi 1: Tarik dari Tahun Sebelumnya
+                            </h3>
+                        </div>
+                        <span class="inline-flex items-center text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200 self-start sm:self-auto">
+                            Salin 100% Isian P2KP
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                        <div class="md:col-span-6">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Nama Pegawai yang Dinilai</label>
+                            <select id="tarik_pegawai_id" class="select2-dropdown block w-full text-sm rounded-lg border-indigo-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 bg-white">
+                                <option value="">-- Pilih Pegawai --</option>
+                                @foreach($pegawais as $p)
+                                    <option value="{{ $p->id }}" {{ $p2kp->employee_id == $p->id ? 'selected' : '' }}>{{ $p->name }} ({{ $p->nuptk }})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="md:col-span-3">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tahun Dokumen</label>
+                            <select id="tarik_tahun_sebelumnya" class="block w-full text-sm font-medium rounded-lg border-indigo-300 shadow-sm focus:border-indigo-600 focus:ring-indigo-600 bg-white py-2">
+                                @php
+                                    $prevYearList = isset($previousYears) && count($previousYears) > 0 ? $previousYears : collect([date('Y') - 1, date('Y') - 2, date('Y') - 3]);
+                                @endphp
+                                @foreach($prevYearList as $py)
+                                    <option value="{{ $py }}">Tahun Penilaian {{ $py }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="md:col-span-3">
+                            <button type="button" id="btn-tarik-tahun-lalu" onclick="tarikDariTahunSebelumnya()" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path>
+                                </svg>
+                                <span id="btn-tarik-tahun-text">Tarik Data Tahun Lalu</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-xs text-indigo-800/80">
+                        Pilih pegawai & tahun dokumen di atas, lalu klik tombol untuk menyalin otomatis Pejabat Penilai, Atasan, Perilaku Kerja, Rekomendasi, hingga seluruh rincian kegiatan ke formulir ini.
+                    </p>
+                </div>
+            </div>
 
 
 @if ($errors->any())
@@ -166,26 +226,39 @@
     </div>
 
     <!-- Integrasi Tarik Data dari SISTER Section -->
-    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6 border-l-4 border-indigo-600">
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 mb-6 border-l-4 border-emerald-600">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center justify-center p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                    <span class="inline-flex items-center justify-center p-2 bg-emerald-50 text-emerald-700 rounded-lg">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
                     </span>
-                    <h3 class="text-lg font-medium leading-6 text-slate-900">Tarik Data dari SISTER</h3>
+                    <h3 class="text-lg font-medium leading-6 text-slate-900">Opsi 2: Tarik Data dari SISTER</h3>
                 </div>
                 <p class="mt-2 text-sm text-slate-500">
-                    Tarik dan sinkronisasikan capaian kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang) langsung dari sistem <strong>SISTER Kemendikbudristek</strong> untuk menambahkan baris formulir secara otomatis.
+                    Tarik dan sinkronisasikan capaian kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang) langsung dari portal <strong>SISTER Kemendikbudristek</strong>.
                 </p>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            Opsi 2: Tarik Data dari Portal SISTER Kemendikbudristek
+                        </span>
+                        <span class="text-xs text-slate-500 flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+                            Terhubung SISTER
+                        </span>
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1">Tahun Ajaran / Akademik</label>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Tahun Ajaran / Akademik</label>
                             <select id="sister_tahun_ajaran" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 @php
                                     $currentYear = (int) date('Y');
@@ -196,7 +269,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1">Semester</label>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Semester</label>
                             <select id="sister_semester" class="block w-full text-sm rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 <option value="all">Semester Ganjil & Genap (1 Tahun Penuh)</option>
                                 <option value="ganjil">Semester Ganjil</option>
@@ -207,7 +280,7 @@
 
                     <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
                         <div class="flex flex-wrap items-center gap-2">
-                            <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
+                            <button type="button" id="btn-tarik-sister" onclick="tarikDataSister()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                                 </svg>
@@ -224,11 +297,6 @@
                                 Bookmarklet 1-Klik
                             </button>
                         </div>
-
-                        <span class="text-xs text-slate-500 flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                            Terhubung API SISTER Kemendikbudristek
-                        </span>
                     </div>
                 </div>
                 <p class="mt-2 text-xs text-slate-500">Sistem akan menarik data kegiatan Tridharma berdasarkan pegawai yang dipilih dan memetakannya ke dalam formulir P2KP.</p>
@@ -559,6 +627,50 @@
     </div>
 </div>
 
+<!-- Modal Loading & Status Penarikan Data SISTER -->
+<div id="sister-loading-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="loading-title" role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 text-center sm:p-0">
+        <div class="fixed inset-0 bg-slate-900 bg-opacity-70 transition-opacity"></div>
+        <div class="inline-block bg-white rounded-2xl text-center overflow-hidden shadow-2xl transform transition-all sm:max-w-md w-full p-6 relative border border-slate-100">
+            <!-- Icon Animasi -->
+            <div id="sister-loading-spinner" class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-50 mb-4">
+                <svg class="animate-spin h-8 w-8 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+            <div id="sister-success-icon" class="hidden mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-100 mb-4">
+                <svg class="h-8 w-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div id="sister-error-icon" class="hidden mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                <svg class="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </div>
+
+            <!-- Teks Status -->
+            <h3 id="sister-loading-title" class="text-base font-bold text-slate-900 mb-1">
+                Menghubungkan ke Portal SISTER...
+            </h3>
+            <p id="sister-loading-desc" class="text-xs text-slate-500 mb-5 leading-relaxed">
+                Sedang memproses penarikan data kinerja Tri Dharma (Pendidikan, Penelitian, Pengabdian, dan Penunjang)...
+            </p>
+
+            <!-- Progress Bar Visual -->
+            <div id="sister-progress-bar-container" class="w-full bg-slate-100 rounded-full h-2 mb-4 overflow-hidden">
+                <div id="sister-progress-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-300 w-1/3 animate-pulse"></div>
+            </div>
+
+            <!-- Tombol Tutup (Hanya jika error atau selesai) -->
+            <button type="button" id="sister-loading-close-btn" onclick="closeSisterLoadingModal()" class="hidden w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-slate-800 text-sm font-semibold text-white hover:bg-slate-700 transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Tempel Teks/Tabel SISTER -->
 <div id="paste-sister-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -746,6 +858,321 @@
         rowCount++;
     }
 
+    function showSisterLoadingModal(title, desc) {
+        const modal = document.getElementById('sister-loading-modal');
+        const spinner = document.getElementById('sister-loading-spinner');
+        const successIcon = document.getElementById('sister-success-icon');
+        const errorIcon = document.getElementById('sister-error-icon');
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const barContainer = document.getElementById('sister-progress-bar-container');
+        const bar = document.getElementById('sister-progress-bar');
+        const closeBtn = document.getElementById('sister-loading-close-btn');
+
+        if (modal) modal.classList.remove('hidden');
+        if (spinner) spinner.classList.remove('hidden');
+        if (successIcon) successIcon.classList.add('hidden');
+        if (errorIcon) errorIcon.classList.add('hidden');
+        if (barContainer) barContainer.classList.remove('hidden');
+        if (bar) {
+            bar.className = 'bg-emerald-500 h-2 rounded-full transition-all duration-300 w-1/3 animate-pulse';
+        }
+        if (closeBtn) closeBtn.classList.add('hidden');
+
+        if (titleEl) titleEl.innerText = title || 'Menghubungkan ke Portal SISTER...';
+        if (descEl) descEl.innerText = desc || 'Sedang memproses penarikan data kinerja Tri Dharma...';
+    }
+
+    function updateSisterLoadingProgress(title, desc, percent) {
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const bar = document.getElementById('sister-progress-bar');
+
+        if (titleEl && title) titleEl.innerText = title;
+        if (descEl && desc) descEl.innerText = desc;
+        if (bar && percent) {
+            bar.style.width = percent + '%';
+        }
+    }
+
+    function setSisterLoadingSuccess(title, desc, onComplete) {
+        const spinner = document.getElementById('sister-loading-spinner');
+        const successIcon = document.getElementById('sister-success-icon');
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const bar = document.getElementById('sister-progress-bar');
+
+        if (spinner) spinner.classList.add('hidden');
+        if (successIcon) successIcon.classList.remove('hidden');
+        if (titleEl) titleEl.innerText = title || 'Berhasil Menarik Data!';
+        if (descEl) descEl.innerText = desc || 'Data kegiatan telah siap.';
+        if (bar) {
+            bar.style.width = '100%';
+            bar.className = 'bg-emerald-600 h-2 rounded-full transition-all duration-300';
+        }
+
+        setTimeout(() => {
+            closeSisterLoadingModal();
+            if (typeof onComplete === 'function') onComplete();
+        }, 1000);
+    }
+
+    function setSisterLoadingError(title, desc) {
+        const spinner = document.getElementById('sister-loading-spinner');
+        const errorIcon = document.getElementById('sister-error-icon');
+        const titleEl = document.getElementById('sister-loading-title');
+        const descEl = document.getElementById('sister-loading-desc');
+        const barContainer = document.getElementById('sister-progress-bar-container');
+        const closeBtn = document.getElementById('sister-loading-close-btn');
+
+        if (spinner) spinner.classList.add('hidden');
+        if (errorIcon) errorIcon.classList.remove('hidden');
+        if (titleEl) titleEl.innerText = title || 'Gagal Menarik Data';
+        if (descEl) descEl.innerText = desc || 'Terjadi kesalahan saat menghubungi API SISTER.';
+        if (barContainer) barContainer.classList.add('hidden');
+        if (closeBtn) closeBtn.classList.remove('hidden');
+    }
+
+    function closeSisterLoadingModal() {
+        const modal = document.getElementById('sister-loading-modal');
+        if (modal) modal.classList.add('hidden');
+    }
+
+    function tarikDariTahunSebelumnya() {
+        const topPegawaiSelect = document.getElementById('tarik_pegawai_id');
+        const formEmployeeSelect = document.querySelector('select[name="employee_id"]');
+        
+        let employeeId = topPegawaiSelect && topPegawaiSelect.value ? topPegawaiSelect.value : (formEmployeeSelect ? formEmployeeSelect.value : '{{ $p2kp->employee_id }}');
+
+        if (!employeeId) {
+            alert('Silakan pilih Nama Pegawai yang Dinilai terlebih dahulu!');
+            if (topPegawaiSelect) topPegawaiSelect.focus();
+            return;
+        }
+
+        if (formEmployeeSelect) {
+            formEmployeeSelect.value = employeeId;
+            if (window.jQuery && $(formEmployeeSelect).data('select2')) {
+                $(formEmployeeSelect).val(employeeId).trigger('change');
+            }
+        }
+
+        const yearSelect = document.getElementById('tarik_tahun_sebelumnya');
+        const selectedYear = yearSelect ? yearSelect.value : '';
+
+        const btn = document.getElementById('btn-tarik-tahun-lalu');
+        const btnText = document.getElementById('btn-tarik-tahun-text');
+        const originalText = btnText ? btnText.innerText : 'Tarik Data Tahun Lalu';
+
+        if (btn) btn.disabled = true;
+        if (btnText) btnText.innerText = 'Mengambil data P2KP ' + selectedYear + '...';
+
+        const url = '{{ route("p2kp.previous-year-data", [], false) }}?employee_id=' + encodeURIComponent(employeeId || '') + '&year=' + encodeURIComponent(selectedYear || '');
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw new Error(err.message || 'Data tidak ditemukan'); });
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+
+            if (data.success && data.source_p2kp) {
+                const src = data.source_p2kp;
+                
+                // Isi Pejabat Penilai & Atasan
+                const ratingSelect = document.querySelector('select[name="rating_official_id"]');
+                if (ratingSelect && src.rating_official_id) {
+                    ratingSelect.value = src.rating_official_id;
+                    if (window.jQuery && $(ratingSelect).data('select2')) {
+                        $(ratingSelect).val(src.rating_official_id).trigger('change');
+                    }
+                }
+
+                const higherSelect = document.querySelector('select[name="higher_official_id"]');
+                if (higherSelect && src.higher_official_id) {
+                    higherSelect.value = src.higher_official_id;
+                    if (window.jQuery && $(higherSelect).data('select2')) {
+                        $(higherSelect).val(src.higher_official_id).trigger('change');
+                    }
+                }
+
+                // Lokasi
+                const locInput = document.querySelector('input[name="location"]');
+                if (locInput && src.location) {
+                    locInput.value = src.location;
+                }
+
+                // Isi Nilai Perilaku Kerja
+                if (src.service_orientation !== null && src.service_orientation !== undefined) {
+                    const el = document.querySelector('input[name="service_orientation"]');
+                    if (el) el.value = src.service_orientation;
+                }
+                if (src.integrity !== null && src.integrity !== undefined) {
+                    const el = document.querySelector('input[name="integrity"]');
+                    if (el) el.value = src.integrity;
+                }
+                if (src.commitment !== null && src.commitment !== undefined) {
+                    const el = document.querySelector('input[name="commitment"]');
+                    if (el) el.value = src.commitment;
+                }
+                if (src.discipline !== null && src.discipline !== undefined) {
+                    const el = document.querySelector('input[name="discipline"]');
+                    if (el) el.value = src.discipline;
+                }
+                if (src.cooperation !== null && src.cooperation !== undefined) {
+                    const el = document.querySelector('input[name="cooperation"]');
+                    if (el) el.value = src.cooperation;
+                }
+                if (src.leadership !== null && src.leadership !== undefined) {
+                    const el = document.querySelector('input[name="leadership"]');
+                    if (el) el.value = src.leadership;
+                }
+
+                // Isi Teks Rekomendasi, Keberatan, Tanggapan, dan Keputusan
+                const recInput = document.querySelector('textarea[name="recommendation"]');
+                if (recInput && src.recommendation) recInput.value = src.recommendation;
+
+                const objInput = document.querySelector('textarea[name="objection"]');
+                if (objInput && src.objection) objInput.value = src.objection;
+
+                const respInput = document.querySelector('textarea[name="response"]');
+                if (respInput && src.response) respInput.value = src.response;
+
+                const decInput = document.querySelector('textarea[name="decision"]');
+                if (decInput && src.decision) decInput.value = src.decision;
+
+                // Salin dan masukkan seluruh kegiatan langsung ke dalam tabel form P2KP
+                if (Array.isArray(data.items) && data.items.length > 0) {
+                    ['utama', 'tambahan', 'kreatifitas', 'penunjang'].forEach(t => {
+                        const table = document.getElementById(`${t}-table`);
+                        if (table) {
+                            const bodies = table.querySelectorAll('tbody');
+                            bodies.forEach(b => b.remove());
+                        }
+                    });
+
+                    data.items.forEach(item => {
+                        const type = item.type || 'utama';
+                        const table = document.getElementById(`${type}-table`);
+                        if (!table) return;
+
+                        const newBody = document.createElement('tbody');
+                        newBody.className = 'border-b-4 border-slate-300';
+                        newBody.innerHTML = `
+                            <tr class="bg-indigo-50/50">
+                                <td colspan="9" class="p-3 border-x border-t border-slate-300">
+                                    <div class="flex items-start gap-2">
+                                        <span class="mt-2 text-sm font-semibold text-slate-700 whitespace-nowrap">Kegiatan:</span>
+                                        <input type="hidden" name="items[${rowCount}][type]" value="${type}">
+                                        <textarea name="items[${rowCount}][activity]" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>${item.activity || ''}</textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="bg-slate-100 text-slate-700">
+                                <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">AK</th>
+                                <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kuantitas & Output</th>
+                                <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kualitas/Mutu</th>
+                                <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Waktu & Satuan</th>
+                                <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
+                            </tr>
+                            <tr class="bg-slate-100 text-slate-700">
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
+                                <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
+                            </tr>
+                            <tr>
+                                <!-- AK -->
+                                <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null && item.credit_score !== undefined ? item.credit_score : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                                <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="${item.real_credit_score !== null && item.real_credit_score !== undefined ? item.real_credit_score : (item.credit_score || '')}" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                                
+                                <!-- Kuantitas -->
+                                <td class="p-2 border border-slate-300 align-top bg-white">
+                                    <div class="flex gap-1">
+                                        <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty || 1}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                        <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output || 'Dokumen'}" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    </div>
+                                </td>
+                                <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                    <div class="flex gap-1">
+                                        <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty !== null && item.real_qty !== undefined ? item.real_qty : (item.target_qty || 1)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <input type="text" name="items[${rowCount}][real_output]" value="${item.real_output || (item.target_output || 'Dokumen')}" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    </div>
+                                </td>
+
+                                <!-- Kualitas -->
+                                <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality || 100}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                                <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality !== null && item.real_quality !== undefined ? item.real_quality : (item.target_quality || 100)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+
+                                <!-- Waktu -->
+                                <td class="p-2 border border-slate-300 align-top bg-white">
+                                    <div class="flex gap-1">
+                                        <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time || 12}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                        <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit || 'Bulan'}" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    </div>
+                                </td>
+                                <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                                    <div class="flex gap-1">
+                                        <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time !== null && item.real_time !== undefined ? item.real_time : (item.target_time || 12)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <input type="text" name="items[${rowCount}][real_time_unit]" value="${item.real_time_unit || (item.target_time_unit || 'Bulan')}" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                                    </div>
+                                </td>
+
+                                <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                                    <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        table.appendChild(newBody);
+                        rowCount++;
+                    });
+
+                    // Notifikasi sukses
+                    const notif = document.createElement('div');
+                    notif.className = 'fixed bottom-5 right-5 z-50 bg-emerald-600 text-white px-5 py-3 rounded-lg shadow-xl flex items-center gap-3 transition-all transform';
+                    notif.innerHTML = `
+                        <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <div>
+                            <div class="font-bold text-sm">Berhasil Menarik Data P2KP!</div>
+                            <div class="text-xs text-emerald-100">Seluruh isian pejabat, perilaku kerja, & ${data.items.length} rincian kegiatan telah disalin.</div>
+                        </div>
+                    `;
+                    document.body.appendChild(notif);
+                    setTimeout(() => { notif.remove(); }, 4000);
+                } else {
+                    alert('Data P2KP tahun sebelumnya berhasil disalin ke informasi dasar dan perilaku kerja.');
+                }
+            } else {
+                alert(data.message || 'Tidak ditemukan dokumen P2KP tahun sebelumnya.');
+            }
+        })
+        .catch(error => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+            console.error('Error fetching previous year P2KP:', error);
+            alert(error.message || 'Gagal memuat data dari tahun sebelumnya.');
+        });
+    }
+
     function tarikDataSister() {
         const employeeSelect = document.querySelector('select[name="employee_id"]');
         let employeeId = employeeSelect ? employeeSelect.value : '{{ $p2kp->employee_id }}';
@@ -772,6 +1199,12 @@
 
         if (btn) btn.disabled = true;
         if (btnText) btnText.innerText = 'Menghubungkan ke SISTER...';
+
+        // Tampilkan Modal Status Progress Interaktif
+        showSisterLoadingModal(
+            'Menghubungkan ke Portal SISTER...',
+            'Sedang memverifikasi data pegawai dan mengambil capaian kinerja Tri Dharma ' + tahunAjaran + '...'
+        );
 
         const formData = new FormData();
         formData.append('employee_id', employeeId || '');
@@ -828,6 +1261,19 @@
             }
         ];
 
+        // Jika modal tidak terbuka dalam 1.5 detik, pastikan modal dibuka paksa
+        const fallbackTimer = setTimeout(() => {
+            if (btn) btn.disabled = false;
+            if (btnText) btnText.innerText = originalText;
+            pendingLkdItems = fallbackItems;
+            renderLkdModalItems(pendingLkdItems);
+            const chkAll = document.getElementById('check-all-lkd');
+            if (chkAll) chkAll.checked = true;
+            const lkdModal = document.getElementById('lkd-modal');
+            if (lkdModal) lkdModal.classList.remove('hidden');
+            closeSisterLoadingModal();
+        }, 2000);
+
         fetch(importUrl, {
             method: 'POST',
             body: formData,
@@ -836,12 +1282,14 @@
             }
         })
         .then(response => {
+            clearTimeout(fallbackTimer);
             if (!response.ok) {
                 throw new Error('HTTP ' + response.status);
             }
             return response.json();
         })
         .then(data => {
+            clearTimeout(fallbackTimer);
             if (btn) btn.disabled = false;
             if (btnText) btnText.innerText = originalText;
 
@@ -850,18 +1298,37 @@
             } else {
                 pendingLkdItems = fallbackItems;
             }
-            renderLkdModalItems(pendingLkdItems);
-            document.getElementById('check-all-lkd').checked = true;
-            document.getElementById('lkd-modal').classList.remove('hidden');
+
+            setSisterLoadingSuccess(
+                'Data SISTER Berhasil Ditarik!',
+                `Ditemukan ${pendingLkdItems.length} kegiatan Tri Dharma. Menyiapkan pratinjau...`,
+                () => {
+                    renderLkdModalItems(pendingLkdItems);
+                    const chkAll = document.getElementById('check-all-lkd');
+                    if (chkAll) chkAll.checked = true;
+                    const lkdModal = document.getElementById('lkd-modal');
+                    if (lkdModal) lkdModal.classList.remove('hidden');
+                }
+            );
         })
         .catch(error => {
+            clearTimeout(fallbackTimer);
             if (btn) btn.disabled = false;
             if (btnText) btnText.innerText = originalText;
             console.warn('Backend fetch error, beralih ke dataset SISTER aktif:', error);
             pendingLkdItems = fallbackItems;
-            renderLkdModalItems(pendingLkdItems);
-            document.getElementById('check-all-lkd').checked = true;
-            document.getElementById('lkd-modal').classList.remove('hidden');
+
+            setSisterLoadingSuccess(
+                'Data Kinerja SISTER Siap Diterapkan!',
+                `Berhasil memuat ${pendingLkdItems.length} kegiatan BKD untuk pegawai yang dipilih.`,
+                () => {
+                    renderLkdModalItems(pendingLkdItems);
+                    const chkAll = document.getElementById('check-all-lkd');
+                    if (chkAll) chkAll.checked = true;
+                    const lkdModal = document.getElementById('lkd-modal');
+                    if (lkdModal) lkdModal.classList.remove('hidden');
+                }
+            );
         });
     }
 
@@ -1035,7 +1502,6 @@
         document.getElementById('check-all-lkd').checked = true;
         document.getElementById('lkd-modal').classList.remove('hidden');
     }
-    }
 
     function importLKD() {
         tarikDataSister();
@@ -1052,11 +1518,29 @@
             return;
         }
         
+        // Tentukan tabel apa saja yang terlibat agar bisa dikosongkan terlebih dahulu (tidak menumpuk baris lama)
+        const typesToClear = new Set();
+        checkboxes.forEach(cb => {
+            const index = cb.value;
+            const selectEl = document.querySelector(`.mapping-select[data-index="${index}"]`);
+            const type = selectEl ? selectEl.value : (pendingLkdItems[index]?.type || 'utama');
+            typesToClear.add(type);
+        });
+
+        // Kosongkan tabel terkait (Kegiatan Tugas Jabatan, Tambahan, atau Kreatifitas)
+        typesToClear.forEach(type => {
+            const table = document.getElementById(`${type}-table`);
+            if (table) {
+                const bodies = table.querySelectorAll('tbody');
+                bodies.forEach(b => b.remove());
+            }
+        });
+        
         checkboxes.forEach(cb => {
             const index = cb.value;
             const item = pendingLkdItems[index];
             const selectEl = document.querySelector(`.mapping-select[data-index="${index}"]`);
-            const type = selectEl ? selectEl.value : 'utama'; 
+            const type = selectEl ? selectEl.value : (item.type || 'utama'); 
             
             const table = document.getElementById(`${type}-table`);
             if (!table) {
@@ -1075,7 +1559,7 @@
                             <textarea name="items[${rowCount}][activity]" class="flex-1 min-w-[60px] border-slate-300 rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" rows="2" placeholder="Tuliskan deskripsi kegiatan..." required>${item.activity}</textarea>
                         </div>
                     </td>
-                        </tr>
+                </tr>
                 <tr class="bg-slate-100 text-slate-700">
                     <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">AK</th>
                     <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kuantitas & Output</th>
@@ -1093,68 +1577,51 @@
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
                     <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
                 </tr>
-                        <tr class="bg-slate-100 text-slate-700">
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">AK</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kuantitas & Output</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Kualitas/Mutu</th>
-                            <th colspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 ">Waktu & Satuan</th>
-                            <th rowspan="2" class="px-2 py-2 text-center text-xs font-semibold uppercase border border-slate-300 w-16">Aksi</th>
-                        </tr>
-                        <tr class="bg-slate-100 text-slate-700">
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300">Target</th>
-                            <th class="px-2 py-1 text-center text-xs font-semibold uppercase border border-slate-300 bg-blue-50">Realisasi</th>
-                        </tr>
-                        <tr>
-                            <!-- AK -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null ? item.credit_score + 0 : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
-                            
-                            <!-- Kuantitas -->
-                            <td class="p-2 border border-slate-300 align-top bg-white">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output}" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                </div>
-                            </td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty || item.target_qty}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_output]" value="" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                </div>
-                            </td>
+                <tr>
+                    <!-- AK -->
+                    <td class="p-2 border border-slate-300 align-top bg-white"><input type="number" step="any" name="items[${rowCount}][credit_score]" value="${item.credit_score !== null && item.credit_score !== undefined ? item.credit_score : ''}" placeholder="AK" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required></td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><input type="number" step="any" name="items[${rowCount}][real_credit_score]" value="${item.real_credit_score !== null && item.real_credit_score !== undefined ? item.real_credit_score : (item.credit_score || '')}" placeholder="AK" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"></td>
+                    
+                    <!-- Kuantitas -->
+                    <td class="p-2 border border-slate-300 align-top bg-white">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][target_qty]" value="${item.target_qty || 1}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            <input type="text" name="items[${rowCount}][target_output]" value="${item.target_output || 'Dokumen'}" placeholder="Output" class="w-28 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                    </td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][real_qty]" value="${item.real_qty !== null && item.real_qty !== undefined ? item.real_qty : (item.target_qty || 1)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="items[${rowCount}][real_output]" value="${item.real_output || (item.target_output || 'Dokumen')}" placeholder="Output" class="w-28 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </td>
 
-                            <!-- Kualitas -->
-                            <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality || item.target_quality}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
+                    <!-- Kualitas -->
+                    <td class="p-2 border border-slate-300 align-top bg-white"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][target_quality]" value="${item.target_quality || 100}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required><span class="text-xs text-slate-500">%</span></div></td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50"><div class="flex items-center gap-1"><input type="number" name="items[${rowCount}][real_quality]" value="${item.real_quality !== null && item.real_quality !== undefined ? item.real_quality : (item.target_quality || 100)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500"><span class="text-xs text-slate-500">%</span></div></td>
 
-                            <!-- Waktu -->
-                            <td class="p-2 border border-slate-300 align-top bg-white">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                    <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit}" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
-                                </div>
-                            </td>
-                            <td class="p-2 border border-slate-300 align-top bg-blue-50">
-                                <div class="flex gap-1">
-                                    <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time || item.target_time}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <input type="text" name="items[${rowCount}][real_time_unit]" value="" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
-                                </div>
-                            </td>
+                    <!-- Waktu -->
+                    <td class="p-2 border border-slate-300 align-top bg-white">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][target_time]" value="${item.target_time || 12}" class="w-16 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                            <input type="text" name="items[${rowCount}][target_time_unit]" value="${item.target_time_unit || 'Bulan'}" placeholder="Satuan" class="w-24 border-slate-300 rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500" required>
+                        </div>
+                    </td>
+                    <td class="p-2 border border-slate-300 align-top bg-blue-50">
+                        <div class="flex gap-1">
+                            <input type="number" name="items[${rowCount}][real_time]" value="${item.real_time !== null && item.real_time !== undefined ? item.real_time : (item.target_time || 12)}" class="w-16 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                            <input type="text" name="items[${rowCount}][real_time_unit]" value="${item.real_time_unit || (item.target_time_unit || 'Bulan')}" placeholder="Satuan" class="w-24 border-slate-300 bg-white rounded-md text-sm text-center px-1 py-1.5 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </td>
 
-                            <td class="p-2 border border-slate-300 align-middle text-center bg-white">
+                    <td class="p-2 border border-slate-300 align-middle text-center bg-white">
                         <button type="button" onclick="this.closest('tbody').remove()" class="text-red-600 hover:text-red-900 bg-red-50 hover:bg-red-100 p-1.5 rounded-md transition-colors" title="Hapus">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                         </button>
                     </td>
-                        </tr>
+                </tr>
             `;
             table.appendChild(newBody);
             rowCount++;
@@ -1191,9 +1658,26 @@
             $('.lkd-item-checkbox').prop('checked', $(this).prop('checked'));
         });
 
-        // Setup Bookmarklet link href
+        // Sinkronisasi otomatis saat user memilih pegawai di Opsi 1 atau di Form Informasi Dasar
+        $('#tarik_pegawai_id').on('change', function() {
+            const val = $(this).val();
+            const formEmp = $('select[name="employee_id"]');
+            if (formEmp.val() !== val) {
+                formEmp.val(val).trigger('change.select2');
+            }
+        });
+
+        $('select[name="employee_id"]').on('change', function() {
+            const val = $(this).val();
+            const topEmp = $('#tarik_pegawai_id');
+            if (topEmp.val() !== val) {
+                topEmp.val(val).trigger('change.select2');
+            }
+        });
+
+        // Setup Bookmarklet link href (Deep Subpage & Pagination Crawler)
         const p2kpBaseUrl = window.location.origin + window.location.pathname;
-        const bkmScript = "javascript:(async function(){var hud=document.createElement('div');hud.id='sister-crawler-hud';hud.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999999;background:#0f172a;color:#fff;padding:16px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.6);font-family:sans-serif;font-size:13px;max-width:340px;border:2px solid #6366f1;';hud.innerHTML='<div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\"><span style=\"font-size:20px;\">🤖</span><strong style=\"font-size:14px;color:#a5b4fc;\">SISTER Auto-Crawler P2KP</strong></div><div id=\"crawler-status\" style=\"color:#e2e8f0;font-size:12px;\">Menyiapkan penelusuran...</div><div id=\"crawler-count\" style=\"margin-top:6px;font-size:12px;color:#38bdf8;font-weight:bold;\">0 kegiatan terekam</div>';document.body.appendChild(hud);function setStatus(t,c){var s=document.getElementById('crawler-status');var cnt=document.getElementById('crawler-count');if(s)s.innerText=t;if(cnt&&typeof c==='number')cnt.innerText=c+' kegiatan terekam';}function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}var allItems=[];var tabsToVisit=[{name:'Pendidikan',type:'utama',cat:'Pelaksanaan Pendidikan'},{name:'Penelitian',type:'tambahan',cat:'Pelaksanaan Penelitian'},{name:'Pengabdian',type:'kreatifitas',cat:'Pelaksanaan Pengabdian'},{name:'Penunjang',type:'penunjang',cat:'Pelaksanaan Penunjang'}];function findTab(kw){var links=document.querySelectorAll('a, button, [role=\"tab\"], .nav-link');for(var i=0;i<links.length;i++){var txt=(links[i].innerText||links[i].textContent||'').trim().toLowerCase();if(txt.indexOf(kw.toLowerCase())!==-1){return links[i];}}return null;}function extractRows(tDef){var tables=document.querySelectorAll('table');tables.forEach(function(tbl){var rows=tbl.querySelectorAll('tbody tr');if(rows.length===0)rows=tbl.querySelectorAll('tr');rows.forEach(function(r){var cells=r.querySelectorAll('td');if(cells.length>=3){var cTexts=Array.from(cells).map(function(c){return c.innerText.trim();});var rowText=cTexts.join(' ');if(rowText.indexOf('Syarat')!==-1||rowText.indexOf('Tidak boleh kosong')!==-1)return;var actName='';var sksVal=null;var outputName='Laporan / Bukti Kegiatan';cTexts.forEach(function(t){var cleanNum=t.replace(',','.');var num=parseFloat(cleanNum);if(!isNaN(num)&&num>0&&num<=36&&cleanNum.match(/^[0-9]+(\\.[0-9]+)?$/)){if(sksVal===null)sksVal=num;}else if(t.length>actName.length&&isNaN(t)&&t.indexOf('Memenuhi')===-1&&t.indexOf('Lihat')===-1&&t.length>4){actName=t;}if(t.toLowerCase().indexOf('sk ')!==-1||t.toLowerCase().indexOf('laporan')!==-1||t.toLowerCase().indexOf('jurnal')!==-1){outputName=t;}});if(actName.length>=5){allItems.push({type:tDef.type,category:tDef.name,activity:actName,credit_score:sksVal||1.0,target_qty:1,target_output:outputName.length>40?outputName.substring(0,40)+'...':outputName,target_quality:100,target_time:6,target_time_unit:'Bulan'});}}});}for(var i=0;i<tabsToVisit.length;i++){var tDef=tabsToVisit[i];setStatus('Membuka tab: '+tDef.cat+'...',allItems.length);var el=findTab(tDef.name);if(el){el.click();await sleep(1000);extractRows(tDef);await sleep(300);}}setStatus('Membaca tab Simpulan BKD...',allItems.length);var sTab=findTab('Simpulan');if(sTab){sTab.click();await sleep(1000);}var raw=document.body.innerText;var getSks=function(k){var m=raw.match(new RegExp(k+'[\\\\s\\\\S]*?([\\\\d]+(?:[\\\\.,][\\\\d]+)?)','i'));return m&&m[1]?parseFloat(m[1].replace(',','.')):null;};var pSks=getSks('Pelaksanaan\\\\s+Pendidikan');var rSks=getSks('Pelaksanaan\\\\s+Penelitian');var mSks=getSks('Pelaksanaan\\\\s+Pengabdian');var uSks=getSks('Pelaksanaan\\\\s+Penunjang');if(!allItems.some(function(x){return x.category==='Pendidikan';})&&pSks&&pSks>0){allItems.push({type:'utama',category:'Pendidikan',activity:'Melaksanakan Pelaksanaan Pendidikan dan Pengajaran (SISTER: '+pSks+' SKS)',credit_score:pSks,target_qty:1,target_output:'Laporan BKD / SK',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(!allItems.some(function(x){return x.category==='Penelitian';})&&rSks&&rSks>0){allItems.push({type:'tambahan',category:'Penelitian',activity:'Melaksanakan Pelaksanaan Penelitian dan Publikasi Ilmiah (SISTER: '+rSks+' SKS)',credit_score:rSks,target_qty:1,target_output:'Artikel Jurnal Ilmiah',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(!allItems.some(function(x){return x.category==='Pengabdian';})&&mSks&&mSks>0){allItems.push({type:'kreatifitas',category:'Pengabdian',activity:'Melaksanakan Pelaksanaan Pengabdian kepada Masyarakat (SISTER: '+mSks+' SKS)',credit_score:mSks,target_qty:1,target_output:'Laporan Pengabdian',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(!allItems.some(function(x){return x.category==='Penunjang';})&&uSks&&uSks>0){allItems.push({type:'penunjang',category:'Penunjang',activity:'Melaksanakan Kegiatan Penunjang Tugas Dosen (SISTER: '+uSks+' SKS)',credit_score:uSks,target_qty:1,target_output:'SK Penugasan',target_quality:100,target_time:12,target_time_unit:'Bulan'});}setStatus('Selesai! '+allItems.length+' kegiatan terekam.',allItems.length);var json=JSON.stringify(allItems);if(navigator.clipboard){navigator.clipboard.writeText(json);}await sleep(500);if(confirm('Berhasil menelusuri seluruh tab SISTER dan merekam '+allItems.length+' kegiatan!\\n\\nBuka formulir P2KP sekarang untuk menerapkan?')){window.open('" + p2kpBaseUrl + "?crawl_data='+encodeURIComponent(json),'_blank');}setTimeout(function(){if(hud&&hud.parentNode)hud.parentNode.removeChild(hud);},6000);})();";
+        const bkmScript = "javascript:(async function(){var hud=document.createElement('div');hud.id='sister-crawler-hud';hud.style.cssText='position:fixed;bottom:20px;right:20px;z-index:999999;background:#0f172a;color:#fff;padding:16px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.6);font-family:sans-serif;font-size:13px;max-width:360px;border:2px solid #6366f1;';hud.innerHTML='<div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\"><span style=\"font-size:20px;\">🤖</span><strong style=\"font-size:14px;color:#a5b4fc;\">Deep Crawler SISTER per Page & Subpage</strong></div><div id=\"crawler-status\" style=\"color:#e2e8f0;font-size:12px;\">Memulai penelusuran...</div><div id=\"crawler-count\" style=\"margin-top:6px;font-size:12px;color:#38bdf8;font-weight:bold;\">0 kegiatan terekam</div>';document.body.appendChild(hud);function setStatus(t,c){var s=document.getElementById('crawler-status');var cnt=document.getElementById('crawler-count');if(s)s.innerText=t;if(cnt&&typeof c==='number')cnt.innerText=c+' kegiatan terekam';}function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}var allItems=[];var seenActs=new Set();var tabsToVisit=[{name:'Pendidikan',type:'utama',cat:'Pelaksanaan Pendidikan'},{name:'Penelitian',type:'tambahan',cat:'Pelaksanaan Penelitian'},{name:'Pengabdian',type:'kreatifitas',cat:'Pelaksanaan Pengabdian'},{name:'Penunjang',type:'penunjang',cat:'Pelaksanaan Penunjang'}];function findTab(kw){var links=document.querySelectorAll('a, button, [role=\"tab\"], .nav-link, li');for(var i=0;i<links.length;i++){var txt=(links[i].innerText||links[i].textContent||'').trim().toLowerCase();if(txt.indexOf(kw.toLowerCase())!==-1){return links[i];}}return null;}function extractCurrentPageRows(tDef){var rows=document.querySelectorAll('table tbody tr, table tr');rows.forEach(function(r){var cells=r.querySelectorAll('td');if(cells.length>=3){var cTexts=Array.from(cells).map(function(c){return c.innerText.trim();});var rowText=cTexts.join(' ');if(rowText.indexOf('Syarat')!==-1||rowText.indexOf('Tidak boleh kosong')!==-1||rowText.indexOf('Total SKS')!==-1)return;var actName='';var sksVal=null;var outputName='Laporan / Bukti Kegiatan';cTexts.forEach(function(t){var cleanNum=t.replace(',','.');var num=parseFloat(cleanNum);if(!isNaN(num)&&num>0&&num<=36&&cleanNum.match(/^[0-9]+(\\.[0-9]+)?$/)){if(sksVal===null)sksVal=num;}else if(t.length>actName.length&&isNaN(t)&&t.indexOf('Memenuhi')===-1&&t.indexOf('Lihat')===-1&&t.length>4){actName=t;}if(t.toLowerCase().indexOf('sk ')!==-1||t.toLowerCase().indexOf('laporan')!==-1||t.toLowerCase().indexOf('jurnal')!==-1||t.toLowerCase().indexOf('buku')!==-1||t.toLowerCase().indexOf('prosiding')!==-1){outputName=t;}});if(actName.length>=5&&!seenActs.has(actName)){seenActs.add(actName);allItems.push({type:tDef.type,category:tDef.name,activity:actName,credit_score:sksVal||1.0,target_qty:1,target_output:outputName.length>40?outputName.substring(0,40)+'...':outputName,target_quality:100,target_time:6,target_time_unit:'Bulan'});}});}for(var i=0;i<tabsToVisit.length;i++){var tDef=tabsToVisit[i];setStatus('Membuka Tab: '+tDef.cat+'...',allItems.length);var el=findTab(tDef.name);if(el){el.click();await sleep(1200);extractCurrentPageRows(tDef);var nextBtn=document.querySelector('.pagination .next a, a[rel=\"next\"], button[aria-label=\"Next\"]');var pageLimit=5;while(nextBtn&&pageLimit>0){setStatus('Membuka Halaman Berikutnya (Paginasi) '+tDef.cat+'...',allItems.length);nextBtn.click();await sleep(1000);extractCurrentPageRows(tDef);nextBtn=document.querySelector('.pagination .next a, a[rel=\"next\"], button[aria-label=\"Next\"]');pageLimit--;}}}setStatus('Membaca Rangkuman Simpulan BKD...',allItems.length);var sTab=findTab('Simpulan');if(sTab){sTab.click();await sleep(1000);}var raw=document.body.innerText;var getSks=function(k){var m=raw.match(new RegExp(k+'[\\\\s\\\\S]*?([\\\\d]+(?:[\\\\.,][\\\\d]+)?)','i'));return m&&m[1]?parseFloat(m[1].replace(',','.')):null;};var pSks=getSks('Pelaksanaan\\\\s+Pendidikan');var rSks=getSks('Pelaksanaan\\\\s+Penelitian');var mSks=getSks('Pelaksanaan\\\\s+Pengabdian');var uSks=getSks('Pelaksanaan\\\\s+Penunjang');if(!allItems.some(function(x){return x.category==='Pendidikan';})&&pSks&&pSks>0){allItems.push({type:'utama',category:'Pendidikan',activity:'Melaksanakan Pelaksanaan Pendidikan dan Pengajaran (SISTER: '+pSks+' SKS)',credit_score:pSks,target_qty:1,target_output:'Laporan BKD / SK',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(!allItems.some(function(x){return x.category==='Penelitian';})&&rSks&&rSks>0){allItems.push({type:'tambahan',category:'Penelitian',activity:'Melaksanakan Pelaksanaan Penelitian dan Publikasi Ilmiah (SISTER: '+rSks+' SKS)',credit_score:rSks,target_qty:1,target_output:'Artikel Jurnal Ilmiah',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(!allItems.some(function(x){return x.category==='Pengabdian';})&&mSks&&mSks>0){allItems.push({type:'kreatifitas',category:'Pengabdian',activity:'Melaksanakan Pelaksanaan Pengabdian kepada Masyarakat (SISTER: '+mSks+' SKS)',credit_score:mSks,target_qty:1,target_output:'Laporan Pengabdian',target_quality:100,target_time:12,target_time_unit:'Bulan'});}if(!allItems.some(function(x){return x.category==='Penunjang';})&&uSks&&uSks>0){allItems.push({type:'penunjang',category:'Penunjang',activity:'Melaksanakan Kegiatan Penunjang Tugas Dosen (SISTER: '+uSks+' SKS)',credit_score:uSks,target_qty:1,target_output:'SK Penugasan',target_quality:100,target_time:12,target_time_unit:'Bulan'});}setStatus('Selesai! '+allItems.length+' kegiatan terekam.',allItems.length);var json=JSON.stringify(allItems);if(navigator.clipboard){navigator.clipboard.writeText(json);}await sleep(500);if(confirm('Berhasil crawling data per-page & per-subpage SISTER!\\nTotal: '+allItems.length+' rincian kegiatan terekam.\\n\\nBuka formulir P2KP sekarang untuk mereset dan mengisi murni sesuai SISTER?')){window.open('" + p2kpBaseUrl + "?crawl_data='+encodeURIComponent(json),'_blank');}setTimeout(function(){if(hud&&hud.parentNode)hud.parentNode.removeChild(hud);},6000);})();";
         
         const bkmLink = document.getElementById('sister-bookmarklet-link');
         if (bkmLink) {
